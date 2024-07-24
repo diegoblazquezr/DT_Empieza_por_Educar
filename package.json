@@ -1,0 +1,37 @@
+{
+  "name": "dt_empieza_por_educar",
+  "version": "1.0.0",
+  "description": "Desafío de Tripulaciones - Empieza por Educar",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js",
+    "server": "nodemon index.js",
+    "client": "npm start --prefix client",
+    "client:build": "npm run build --prefix client",
+    "dev": "concurrently \"npm run server\" \"npm run client\""
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/diegoblazquezr/DT_Empieza_por_Educar.git"
+  },
+  "author": "Antonio, Diego, Miguel y Sergio",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/diegoblazquezr/DT_Empieza_por_Educar/issues"
+  },
+  "homepage": "https://github.com/diegoblazquezr/DT_Empieza_por_Educar#readme",
+  "dependencies": {
+    "bcrypt": "^5.1.1",
+    "concurrently": "^8.2.2",
+    "cookie-parser": "^1.4.6",
+    "dotenv": "^16.4.5",
+    "express": "^4.19.2",
+    "express-validator": "^7.1.0",
+    "jsonwebtoken": "^9.0.2",
+    "mysql": "^2.18.1"
+  },
+  "devDependencies": {
+    "morgan": "^1.10.0",
+    "nodemon": "^3.1.4"
+  }
+}
