@@ -1,0 +1,325 @@
+{
+	"info": {
+		"_postman_id": "67521438-4b32-4179-9e7b-de7af7a53a35",
+		"name": "API_Empieza_por_Educar",
+		"schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json",
+		"_exporter_id": "35364824"
+	},
+	"item": [
+		{
+			"name": "Candidatos",
+			"item": [
+				{
+					"name": "/api/candidatos",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"nombre_candidato\": \"Marcos\",\n    \"apellidos_candidato\": \"Domínguez\",\n    \"email_candidato\": \"marcos@gmail.com\",\n    \"telefono_candidato\": \"680671702\",\n    \"edad\": 27,\n    \"carrera\": \"ADE\",\n    \"nota_media\": 8.1,\n    \"nivel_ingles\": \"B2\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "https://dt-empieza-por-educar.onrender.com/api/candidatos",
+						"description": "POST para crear un candidato con todos los campos necesarios"
+					},
+					"response": []
+				},
+				{
+					"name": "/api/candidatos",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://dt-empieza-por-educar.onrender.com/api/candidatos?limit=10&offset=0",
+							"protocol": "https",
+							"host": [
+								"dt-empieza-por-educar",
+								"onrender",
+								"com"
+							],
+							"path": [
+								"api",
+								"candidatos"
+							],
+							"query": [
+								{
+									"key": "limit",
+									"value": "10"
+								},
+								{
+									"key": "offset",
+									"value": "0"
+								}
+							]
+						},
+						"description": "GET todos los candidatos limitados por limit y offset"
+					},
+					"response": []
+				},
+				{
+					"name": "/api/candidatos",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://dt-empieza-por-educar.onrender.com/api/candidatos?email_candidato=obowenrn@wisc.edu",
+							"protocol": "https",
+							"host": [
+								"dt-empieza-por-educar",
+								"onrender",
+								"com"
+							],
+							"path": [
+								"api",
+								"candidatos"
+							],
+							"query": [
+								{
+									"key": "email_candidato",
+									"value": "obowenrn@wisc.edu"
+								}
+							]
+						},
+						"description": "GET para obtener los datos del candidato en base a su email"
+					},
+					"response": []
+				},
+				{
+					"name": "/api/candidatos?id_candidato=",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "https://dt-empieza-por-educar.onrender.com/api/candidatos?id_candidato=1007",
+							"protocol": "https",
+							"host": [
+								"dt-empieza-por-educar",
+								"onrender",
+								"com"
+							],
+							"path": [
+								"api",
+								"candidatos"
+							],
+							"query": [
+								{
+									"key": "id_candidato",
+									"value": "1007"
+								}
+							]
+						},
+						"description": "DELETE para eliminar un candidato en base a su ID"
+					},
+					"response": []
+				},
+				{
+					"name": "/api/candidatos",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"telefono_candidato\": \"680671701\",\n    \"edad\": 29,\n    \"nota_media\": 7.2,\n    \"id_candidato\": 1009\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "https://dt-empieza-por-educar.onrender.com/api/candidatos",
+						"description": "PUT para editar a un candidato en base a su ID. Necesita, al menos, un campo a editar y el id_candidato."
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Candidaturas",
+			"item": [
+				{
+					"name": "api/candidaturas",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"id_candidato\": 17\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "https://dt-empieza-por-educar.onrender.com/api/candidaturas"
+					},
+					"response": []
+				},
+				{
+					"name": "/api/candidaturas?search=mar&limit=10&offset=0",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://dt-empieza-por-educar.onrender.com/api/candidaturas?search=mar&limit=10&offset=0",
+							"protocol": "https",
+							"host": [
+								"dt-empieza-por-educar",
+								"onrender",
+								"com"
+							],
+							"path": [
+								"api",
+								"candidaturas"
+							],
+							"query": [
+								{
+									"key": "search",
+									"value": "mar"
+								},
+								{
+									"key": "limit",
+									"value": "10"
+								},
+								{
+									"key": "offset",
+									"value": "0"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "/api/candidaturas",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"id_empleado\": 6,\r\n    \"status\": \"Entrevista 1\",\r\n    \"id_candidatura\": 1005\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "https://dt-empieza-por-educar.onrender.com/api/candidaturas"
+					},
+					"response": []
+				},
+				{
+					"name": "/api/candidaturas?id_candidatura=1005",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "https://dt-empieza-por-educar.onrender.com/api/candidaturas?id_candidatura=1005",
+							"protocol": "https",
+							"host": [
+								"dt-empieza-por-educar",
+								"onrender",
+								"com"
+							],
+							"path": [
+								"api",
+								"candidaturas"
+							],
+							"query": [
+								{
+									"key": "id_candidatura",
+									"value": "1005"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Empleados",
+			"item": [
+				{
+					"name": "/api/empleados",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"nombre_empleado\": \"Noriaki\",\n    \"apellidos_empleado\": \"Kakyoin\",\n    \"email_empleado\": \"kakyoin@example.com\",\n    \"password\": \"securepassword\",\n    \"rol\": \"Recruiter\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "https://dt-empieza-por-educar.onrender.com/api/empleados",
+						"description": "POST para crear un empleado. Recibe todos los campos necesarios por body."
+					},
+					"response": []
+				},
+				{
+					"name": "/api/empleados?email_empleado=",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://dt-empieza-por-educar.onrender.com/api/empleados?email_empleado=jonas@mail.com",
+							"protocol": "https",
+							"host": [
+								"dt-empieza-por-educar",
+								"onrender",
+								"com"
+							],
+							"path": [
+								"api",
+								"empleados"
+							],
+							"query": [
+								{
+									"key": "email_empleado",
+									"value": "jonas@mail.com"
+								}
+							]
+						},
+						"description": "GET para obtener al empleado por su email"
+					},
+					"response": []
+				},
+				{
+					"name": "/api/empleados/login",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"email\": \"dio.brando@example.com\",\n    \"password\": \"securepassword\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "https://dt-empieza-por-educar.onrender.com/api/empleados/login",
+						"description": "POST para enviar los datos del login por body."
+					},
+					"response": []
+				},
+				{
+					"name": "/api/empleados/logout",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"url": "https://dt-empieza-por-educar.onrender.com/api/empleados/logout",
+						"description": "POST para enviar los datos del empleado que se desloguea. Recibe el token por Header."
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}
