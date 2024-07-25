@@ -1,6 +1,24 @@
 const queries = require('../queries/empleados.queries')
 const connection = require('../config/db_mysql');
 
+// READ EMPLEADO
+const getEmpleadoByEmail = async (email) => {
+    return new Promise((resolve, reject) => {
+        connection.query(queries.readEmpleadoByEmail, [email], (error, results) => {
+            if (error) {
+                console.log(error);
+                reject(error);
+            } else {
+                resolve(results);
+            }
+        });
+    });
+};
+
+// getEmpleadoByEmail('maria@example.com')
+//     .then(data => console.log(data))
+//     .catch(error => console.log(error))
+
 // CREATE USER
 const createEmpleado = async (user) => {
     const { nombre_empleado, apellidos_empleado, email_empleado, password, rol } = user;
@@ -77,11 +95,12 @@ const updateLastLoggedDate = async (email) => {
     });
 };
 
-updateLastLoggedDate('maria@example.com')
-    .then(data => console.log(data))
-    .catch(error => console.log(error))
+// updateLastLoggedDate('maria@example.com')
+//     .then(data => console.log(data))
+//     .catch(error => console.log(error))
 
 module.exports = {
+    getEmpleadoByEmail,
     createEmpleado,
     setLoggedTrue,
     setLoggedFalse,

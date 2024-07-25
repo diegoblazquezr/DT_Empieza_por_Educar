@@ -1,4 +1,5 @@
 const queries = {
+    readEmpleadoByEmail: `SELECT * FROM empleados WHERE email_empleado = ?`,
     createEmpleados: `INSERT INTO empleados (
       nombre_empleado,
       apellidos_empleado,
