@@ -7,7 +7,9 @@ const Header = () => {
   const toggleMenu = () => {
     setMenuOpen(!menuOpen);
   };
-
+  if (location.pathname === '/login' || location.pathname === '/signup' || location.pathname === '/') {
+    return null; // No renderiza nada si estás en la página de inicio
+  }
   return <header>
      <button className="hamburger-menu" onClick={toggleMenu}>
         ☰
