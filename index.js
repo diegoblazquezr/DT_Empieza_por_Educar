@@ -23,10 +23,12 @@ app.use(cookieParser());
 // Routes
 const candidaturasRoutes = require("./routes/candidaturas.routes");
 const empleadosRoutes = require("./routes/empleados.routes");
+const candidatosRoutes = require ("./routes/candidatos.routes");
 
 // API Routes
 app.use('/api/candidaturas', candidaturasRoutes);
 app.use('/api/empleados', empleadosRoutes);
+app.use('/api/candidatos', candidatosRoutes);
 
 // app.get('*', (req,res) =>{
 //     res.sendFile(path.join(__dirname+'/client/build/index.html'));
