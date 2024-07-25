@@ -20,10 +20,10 @@ app.use(express.json());
 // app.use(cors());
 
 // Routes
-// const usersRoutes = require("./routes/users.routes");
+const candidaturasRoutes = require("./routes/candidaturas.routes");
 
 // API Routes
-// app.use('/api/user', usersRoutes);
+app.use('/api/candidaturas', candidaturasRoutes);
 
 // app.get('*', (req,res) =>{
 //     res.sendFile(path.join(__dirname+'/client/build/index.html'));

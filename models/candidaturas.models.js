@@ -1,38 +1,11 @@
-const queries = require('../queries/candidaturas.queries')
+const candidaturasQueries = require('../queries/candidaturas.queries')
 const connection = require('../config/db_mysql');
 
-// // CREATE
-// const createCandidaturas = async (candidaturas) => {
-//     const { name, price, description, stock, categoryName } = candidaturas;
-//     let client, result;
-//     try {
-//         client = await connection.connect();
-//         const data = await client.query(queries.createCandidaturas, [name, price, description, stock, categoryName]);
-//         result = data.rowCount;
-//     } catch (err) {
-//         console.log(err);
-//         throw err;
-//     } finally {
-//         client.release();
-//     }
-//     return result;
-// }
-// // Pruebas MySQL
-// // let newCandidaturas = {
-// //     name: "Test Candidaturas",
-// //     price: 44.44,
-// //     description: "Description of Test Candidaturas",
-// //     stock: 44,
-// //     categoryName: "Miscellaneous"
-// // }
-// // createCandidaturas(newCandidaturas)
-// //     .then(data => console.log(data))
-// //     .catch(error => console.log(error))
-
-// READ ALL
-const readCandidaturas = async () => {
+// CREATE
+const createCandidaturaModel = async (newCandidatura) => {
+    const { id_candidato } = newCandidatura;
     return new Promise((resolve, reject) => {
-        connection.query(queries.readCandidaturas, (error, results) => {
+        connection.query(candidaturasQueries.createCandidaturaQuery, [id_candidato], (error, results) => {
             if (error) {
                 console.log(error);
                 reject(error);
@@ -42,92 +15,76 @@ const readCandidaturas = async () => {
         });
     });
 }
-// Pruebas MySQL
-readCandidaturas()
-    .then(data=>console.log(data))
-    .catch(error => console.log(error))
+// Pruebas MySQL Workbench
+// readCandidaturasModel(17)
+//     .then(data => console.log(data))
+//     .catch(error => console.log(error))
 
-// // READ BY FILTER
-// const readCandidaturassByFilter = async (search, categoryName, filter, order, limit, offset) => {
-//     let client, result;
-//     try {
-//         client = await connection.connect();
+// READ ALL
+const readCandidaturasModel = async (search, limit, offset) => {
+    return new Promise((resolve, reject) => {
+        connection.query(candidaturasQueries.readCandidaturasQuery, [`%${search}%`, limit, offset], (error, results) => {
+            if (error) {
+                console.log(error);
+                reject(error);
+            } else {
+                resolve(results);
+            }
+        });
+    });
+}
+// Pruebas MySQL Workbench
+// readCandidaturasModel('mar', 10, 0)
+//     .then(data => console.log(data))
+//     .catch(error => console.log(error))
 
-//         if (order === 'asc') {
-//             const data = await client.query(queries.readCandidaturassByFilterAsc, [`%${search}%`, categoryName, filter, limit, offset]);
-//             result = data.rows;
-//         } else if (order === 'desc') {
-//             const data = await client.query(queries.readCandidaturassByFilterDesc, [`%${search}%`, categoryName, filter, limit, offset]);
-//             result = data.rows;
-//         }
-//     } catch (err) {
-//         console.log(err);
-//         throw err;
-//     } finally {
-//         client.release();
-//     }
-//     return result;
+// UPDATE
+const updateCandidaturaModel = async (candidatura) => {
+    const { id_empleado, status, id_candidatura  } = candidatura
+    return new Promise((resolve, reject) => {
+        connection.query(candidaturasQueries.updateCandidaturaQuery, [id_empleado, status, id_candidatura], (error, results) => {
+            if (error) {
+                console.log(error);
+                reject(error);
+            } else {
+                resolve(results);
+            }
+        });
+    });
+}
+// Pruebas MySQL Workbench
+// const updatedCandidatura = {
+//     id_empleado: 6,
+//     status: "Registro",
+//     id_candidatura: 1005
 // }
-// // Pruebas MySQL
-// // readCandidaturassByFilter('', 'Electronics', 'price', 'asc', 3, 0)
-// //     .then(data => console.log(data))
-// //     .catch(error => console.log(error))
+// updateCandidaturaModel(updatedCandidatura)
+//     .then(data => console.log(data))
+//     .catch(error => console.log(error))
 
-// // UPDATE
-// const updateCandidaturas = async (candidaturas) => {
-//     const { name, price, description, stock, categoryName, actualName } = candidaturas;
-//     let client, result;
-//     try {
-//         client = await connection.connect();
-//         const data = await client.query(queries.updateCandidaturas, [name, price, description, stock, categoryName, actualName]);
-//         result = data.rowCount;
-//     } catch (err) {
-//         console.log(err);
-//         throw err;
-//     } finally {
-//         client.release();
-//     }
-//     return result;
-// }
-// // Pruebas MySQL
-// // const updatedCandidaturas = {
-// //     name : "Test Candidaturas 2",
-// //     price : 444.44,
-// //     description : "Description of Test Candidaturas 2",
-// //     stock : 444,
-// //     categoryName : "Electronics",
-// //     actualName : "Test Candidaturas"
-// // }
-// // updateCandidaturas(updatedCandidaturas)
-// //     .then(data => console.log(data))
-// //     .catch(error => console.log(error))
-
-// // DELETE
-// const deleteCandidaturas = async (candidaturasName) => {
-//     let client, result;
-//     try {
-//         client = await connection.connect();
-//         const data = await client.query(queries.deleteCandidaturas, [candidaturasName])
-//         result = data.rowCount
-//     } catch (err) {
-//         console.log(err);
-//         throw err;
-//     } finally {
-//         client.release();
-//     }
-//     return result;
-// }
-// // Pruebas MySQL
-// // deleteCandidaturas('Test Candidaturas 2')
-// //     .then(data => console.log(data))
-// //     .catch(error => console.log(error))
+// DELETE
+const deleteCandidaturaModel = async (id_candidatura) => {
+    return new Promise((resolve, reject) => {
+        connection.query(candidaturasQueries.deleteCandidaturaQuery, [id_candidatura], (error, results) => {
+            if (error) {
+                console.log(error);
+                reject(error);
+            } else {
+                resolve(results);
+            }
+        });
+    });
+}
+// Pruebas MySQL Workbench
+// deleteCandidaturaModel(1005)
+//     .then(data => console.log(data))
+//     .catch(error => console.log(error))
 
 const candidaturass = {
-    // createCandidaturas,
-    readCandidaturas,
-    // readCandidaturassByFilter,
-    // updateCandidaturas,
-    // deleteCandidaturas
+    createCandidaturaModel,
+    readCandidaturasModel,
+    updateCandidaturaModel,
+    deleteCandidaturaModel
 }
 
 module.exports = candidaturass;
