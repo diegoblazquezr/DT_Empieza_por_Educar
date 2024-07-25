@@ -3,7 +3,7 @@ const { body, query } = require('express-validator');
 const candidatoEmailValidator = [
     query('email_candidato')
         .isEmail().withMessage('Debe proporcionar una dirección de correo electrónico válida')
-        .isLength({ min: 6, max: 100 }).withMessage('El email debe tener entre 6 y 100 caracteres'),
+        .isLength({ min: 6, max: 100 }).withMessage('El email debe tener entre 6 y 100 caracteres')
 ];
 
 const readCandidatoValidator = [
@@ -43,7 +43,7 @@ const createCandidatoValidator = [
         .isString().withMessage('Nivel de inglés debe ser una cadena de texto')
         .isLength({ min: 2, max: 2 }).withMessage('Nivel inglés debe tener 2 caracteres')
         .matches(/^[A,B,C,a,b,c{1}][1,2{1}]$/i
-        ).withMessage('Nivel inglés debe tener un formato válido de acorde al Marco Común Europeo de Referencia para las Lenguas'), ,
+        ).withMessage('Nivel inglés debe tener un formato válido de acorde al Marco Común Europeo de Referencia para las Lenguas')
 ];
 
 const updateCandidatoValidator = [
@@ -78,7 +78,7 @@ const updateCandidatoValidator = [
         .isString().withMessage('Nivel de inglés debe ser una cadena de texto')
         .isLength({ min: 2, max: 2 }).withMessage('Nivel inglés debe tener 2 caracteres')
         .matches(/^[A,B,C,a,b,c{1}][1,2{1}]$/i
-        ).withMessage('Nivel inglés debe tener un formato válido de acorde al Marco Común Europeo de Referencia para las Lenguas'), ,
+        ).withMessage('Nivel inglés debe tener un formato válido de acorde al Marco Común Europeo de Referencia para las Lenguas')
 ];
 
 

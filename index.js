@@ -1,9 +1,10 @@
-const express = require("express");
+const express = require('express');
 require('dotenv').config();
 // const cors = require('cors');
 const cookieParser = require('cookie-parser');
 const app = express(); // Initialize server
-const port = 3000;
+const port = process.env.PORT || 3000;
+const URL = process.env.API_URL || 'http://localhost.3000';
 // const swaggerUi = require('swagger-ui-express');
 // const swaggerDocument = require('./swagger.json');
 
@@ -35,7 +36,7 @@ app.use('/api/candidatos', candidatosRoutes);
 // });
 
 const server = app.listen(port, () => {
-    console.log(`Example app listening on http://localhost:${port}`);
+    console.log(`App listening on ${URL}:${port}`);
 });
 
 module.exports = server;
