@@ -8,7 +8,11 @@ const jwt_secret = process.env.ULTRA_SECRET_KEY;
 const readEmpleadoByEmailController = async (req, res) => {
     let empleados;
     try {
-        empleados = await empleado.getEmpleadoByEmail(req.query.email);
+        const email = req.query.email_empleado;
+        empleados = await empleado.getEmpleadoByEmail(email);
+        if (empleados.length === 0) {
+            return res.status(404).json({ msg: 'Empleado no encontrado' });
+        }
         res.status(200).json(empleados);
     } catch (error) {
         res.status(500).json({ error: error.message });

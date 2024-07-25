@@ -17,7 +17,10 @@ router.get('/', validateReadEmpleadoByEmail, validateRequest, empleadosControlle
 // POST http://localhost:3000/api/empleados
 router.post('/', validateCreateEmpleado, validateRequest, empleadosController.createEmpleadoController);
 
+//POST http://localhost:3000/api/empleados/login
 router.post("/login", validateLogin, validateRequest, empleadosController.login);
+
+//POST http://localhost:3000/api/empleados/logout
 router.post("/logout", empleadosController.logout);
 
 module.exports = router;

@@ -12,14 +12,17 @@ const validateCreateEmpleado = [
         .isEmail().withMessage('email_empleado must be a valid email'),
     body('password')
         .notEmpty().withMessage('password is required')
-        .isLength({ min: 6 }).withMessage('password must be at least 6 characters long'),
+        .isLength({ min: 8 }).withMessage('password must be at least 8 characters long')
+        .matches(/[A-Z]/).withMessage('password must contain at least one uppercase letter')
+        .matches(/[a-z]/).withMessage('password must contain at least one lowercase letter')
+        .matches(/[!@#$%^&*(),.?":{}|<>]/).withMessage('password must contain at least one symbol'),
     body('rol')
         .notEmpty().withMessage('rol is required')
         .isString().withMessage('rol must be a string')
 ];
 
 const validateReadEmpleadoByEmail = [
-    query('email')
+    query('email_empleado')
         .notEmpty().withMessage('email is required')
         .isEmail().withMessage('email must be a valid email')
 ];
