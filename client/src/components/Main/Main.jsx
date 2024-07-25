@@ -2,7 +2,7 @@ import React from "react";
 import { Routes, Route } from "react-router-dom";
 import Login from "../Main/Login/Login";
 import Signup from "../Main/Signup/Signup";
-import ListaCandidaturas from "../Main/ListaCandidaturas/ListaCandidaturas";
+import Candidaturas from "../Main/Candidaturas/Candidaturas";
 import EstadisticasEmpleado from "../Main/EstadisticasEmpleado/EstadisticasEmpleado";
 import DetallesCandidatura from "../Main/DetallesCandidatura/DetallesCandidatura";
 import ListaEmpleados from "../Main/ListaEmpleados/ListaEmpleados";
@@ -17,7 +17,7 @@ const Main = () => {
         <Route path="/" element={<Home />} />
         <Route path="/login" element={<Login />} />
         <Route path="/signup" element={<Signup />} />
-        <Route path="/lista-candidaturas" element={<ListaCandidaturas />} />
+        <Route path="/candidaturas" element={<Candidaturas />} />
         <Route path="/estadisticas-empleado" element={<EstadisticasEmpleado />} />
         <Route path="/vista-detalle" element={<DetallesCandidatura />} />
         <Route path="/lista-empleados" element={<ListaEmpleados />} />

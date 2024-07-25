@@ -6,10 +6,10 @@ const Nav = ({ menuOpen }) => {
       <ul>
         <h3>Hola, Admin</h3>
         <li>
-          <Link to="/listaCandidaturas">Candidaturas</Link>
+          <Link to="/candidaturas">Candidaturas</Link>
         </li>
         <li>
-          <Link to="/estadisticas">Estadisticas</Link>
+          <Link to="/estadisticas-empleado">Estadisticas</Link>
         </li>
         <button className="logout">Logout</button>
       </ul>
