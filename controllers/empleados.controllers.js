@@ -73,16 +73,13 @@ const login = async (req, res) => {
             await empleado.setLoggedTrue(email);
 
             const userForToken = {
-                email: userData.email_empleado,
+                id: userData.id_empleado,
                 rol: userData.rol
             };
 
             const token = jwt.sign(userForToken, jwt_secret, { expiresIn: '20m' });
 
             res.cookie('token', token, { httpOnly: true, sameSite: 'none', maxAge: 20 * 60 * 1000 });
-            // res.cookie('email', email, { httpOnly: true, sameSite: 'none', maxAge: 20 * 60 * 1000 });
-
-            // console.log('Response headers:', res.getHeaders());
 
             res.status(200).json({
                 msg: 'Correct authentication',
@@ -113,11 +110,10 @@ const logout = async (req, res) => {
             return res.status(401).json({ message: 'Invalid token' });
         }
 
-        await empleado.updateLastLoggedDate(decoded.email);
-        await empleado.setLoggedFalse(decoded.email);
+        await empleado.updateLastLoggedDate(decoded.id);
+        await empleado.setLoggedFalse(decoded.id);
 
         res.clearCookie('token');
-        // res.clearCookie('email');
 
         return res.status(200).json({ message: 'Logged out successfully' });
     } catch (error) {

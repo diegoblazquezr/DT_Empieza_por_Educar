@@ -64,9 +64,9 @@ const setLoggedTrue = async (email) => {
 //     .then(data => console.log(data))
 //     .catch(error => console.log(error))
 
-const setLoggedFalse = async (email) => {
+const setLoggedFalse = async (id) => {
     return new Promise((resolve, reject) => {
-        connection.query(queries.setLoggedFalse, [email], (error, results) => {
+        connection.query(queries.setLoggedFalse, [id], (error, results) => {
             if (error) {
                 console.log(error);
                 reject(error);
@@ -77,14 +77,14 @@ const setLoggedFalse = async (email) => {
     });
 };
 
-// setLoggedFalse('maria@example.com')
+// setLoggedFalse(8)
 //     .then(data => console.log(data))
 //     .catch(error => console.log(error))
 
 // UPDATE LAST LOGGED DATE
-const updateLastLoggedDate = async (email) => {
+const updateLastLoggedDate = async (id) => {
     return new Promise((resolve, reject) => {
-        connection.query(queries.updateLastLoggedDate, [email], (error, results) => {
+        connection.query(queries.updateLastLoggedDate, [id], (error, results) => {
             if (error) {
                 console.log(error);
                 reject(error);
@@ -95,7 +95,7 @@ const updateLastLoggedDate = async (email) => {
     });
 };
 
-// updateLastLoggedDate('maria@example.com')
+// updateLastLoggedDate(5)
 //     .then(data => console.log(data))
 //     .catch(error => console.log(error))
 
