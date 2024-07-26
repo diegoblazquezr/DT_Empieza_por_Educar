@@ -21,9 +21,9 @@ const createCandidaturaModel = async (newCandidatura) => {
 //     .catch(error => console.log(error))
 
 // READ ALL
-const readCandidaturasModel = async (search, limit, offset) => {
+const readCandidaturasModel = async (search, id_empleado, status, filter, order, limit, offset) => {
     return new Promise((resolve, reject) => {
-        connection.query(candidaturasQueries.readCandidaturasQuery, [`%${search}%`, limit, offset], (error, results) => {
+        connection.query(candidaturasQueries.readCandidaturasQuery, [`%${search}%`, `%${search}%`, id_empleado, status, filter, order, filter, order, filter, order, filter, order, filter, order, filter, order, limit, offset], (error, results) => {
             if (error) {
                 console.log(error);
                 reject(error);
@@ -34,7 +34,7 @@ const readCandidaturasModel = async (search, limit, offset) => {
     });
 }
 // Pruebas MySQL Workbench
-// readCandidaturasModel('mar', 10, 0)
+// readCandidaturasModel('mar', '', '', 'nombre_candidato', 'desc', 10, 0)
 //     .then(data => console.log(data))
 //     .catch(error => console.log(error))
 
