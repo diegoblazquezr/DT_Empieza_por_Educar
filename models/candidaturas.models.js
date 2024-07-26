@@ -2,15 +2,22 @@ const candidaturasQueries = require('../queries/candidaturas.queries')
 const connection = require('../config/db_mysql');
 
 // CREATE
-const createCandidaturaModel = async (newCandidatura) => {
-    const { id_candidato } = newCandidatura;
+const createCandidaturaModel = async (id_candidato) => {
     return new Promise((resolve, reject) => {
         connection.query(candidaturasQueries.createCandidaturaQuery, [id_candidato], (error, results) => {
             if (error) {
                 console.log(error);
-                reject(error);
+                reject({
+                    success: false,
+                    message: 'Error al crear la candidatura',
+                    error: error
+                });
             } else {
-                resolve(results);
+                resolve({
+                    success: true,
+                    message: 'Candidatura creada exitosamente',
+                    affectedRows: results.affectedRows
+                });
             }
         });
     });

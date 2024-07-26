@@ -38,11 +38,14 @@ const queries = {
         nivel_ingles= COALESCE(?, nivel_ingles)
     WHERE 
         id_candidato=?;`,
-    deleteCandidato: `DELETE
+    deleteCandidato: `DELETE 
+        cas, cd
     FROM 
-        candidatos
-    WHERE
-        id_candidato = ?;`,
+        candidatos cd
+    LEFT JOIN 
+        candidaturas cas ON cd.id_candidato = cas.id_candidato
+    WHERE 
+        cd.id_candidato = ?;`,
 
 }
 

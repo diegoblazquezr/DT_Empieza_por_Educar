@@ -4,21 +4,45 @@
  * @namespace candidatos.controllers
  */
 
-const candidatos = require('../models/candidatos.models');
+const candidatosModels = require('../models/candidatos.models');
+const candidaturasModels = require('../models/candidaturas.models');
+const { validationResult } = require("express-validator");
+
 
 const createCandidato = async (req, res) => {
+    const errors = validationResult(req);
+    if (!errors.isEmpty()) {
+        return res.status(400).json({ errors: errors.array() });
+    }
+
     try {
-        const response = await candidatos.createCandidato(req.body);
-        res.status(201).json(response);
+        const response = await candidatosModels.createCandidato(req.body);
+
+        if (response) {
+            const id_candidato = response.insertId;
+            console.log(id_candidato);
+            try {
+                const responseCandidatura = await candidaturasModels.createCandidaturaModel(id_candidato);
+                res.status(201).json({
+                    candidato: response,
+                    candidatura: responseCandidatura
+                });
+            } catch (error) {
+                res.status(500).json(error);
+            }
+        } else {
+            res.status(500).json({ error: "Error al crear el candidato" });
+        }
+
     } catch (error) {
         res.status(500).json(error);
     }
 };
 
-const readCandidatos = async (req,res) => {
+const readCandidatos = async (req, res) => {
     if (req.query.email_candidato) {
         try {
-            const response = await candidatos.readCandidatoEmail(req.query.email_candidato);
+            const response = await candidatosModels.readCandidatoEmail(req.query.email_candidato);
             res.status(201).json(response);
         } catch (error) {
             res.status(500).json(error);
@@ -27,7 +51,7 @@ const readCandidatos = async (req,res) => {
         const limit = parseInt(req.query.limit, 10);
         const offset = parseInt(req.query.offset, 10);
         try {
-            const response = await candidatos.readAllCandidatos(limit, offset);
+            const response = await candidatosModels.readAllCandidatos(limit, offset);
             res.status(201).json(response);
         } catch (error) {
             res.status(500).json(error);
@@ -35,7 +59,7 @@ const readCandidatos = async (req,res) => {
     }
 };
 
-const updateCandidato = async (req,res) => {
+const updateCandidato = async (req, res) => {
     /*const errors = validationResult(req);
     if (!errors.isEmpty()) {
         return res.status(400).json({ errors: errors.array() });
@@ -44,17 +68,17 @@ const updateCandidato = async (req,res) => {
 
     if (
         "nombre_candidato" in candidatoUpdated ||
-            "apellidos_candidato" in candidatoUpdated ||
-            "email_candidato" in candidatoUpdated ||
-            "telefono_candidato" in candidatoUpdated ||
-            "edad" in candidatoUpdated ||
-            "carrera" in candidatoUpdated ||
-            "nota_media" in candidatoUpdated ||
-            "nivel_ingles" in candidatoUpdated &&
+        "apellidos_candidato" in candidatoUpdated ||
+        "email_candidato" in candidatoUpdated ||
+        "telefono_candidato" in candidatoUpdated ||
+        "edad" in candidatoUpdated ||
+        "carrera" in candidatoUpdated ||
+        "nota_media" in candidatoUpdated ||
+        "nivel_ingles" in candidatoUpdated &&
         "id_candidato" in candidatoUpdated
     ) {
         try {
-            const response = await candidatos.updateCandidato(candidatoUpdated);
+            const response = await candidatosModels.updateCandidato(candidatoUpdated);
             res.status(201).json(response);
         } catch (error) {
             res.status(500).json(error);
@@ -66,9 +90,9 @@ const updateCandidato = async (req,res) => {
 };
 
 const deleteCandidato = async (req, res) => {
-    const {id_candidato} = req.query;
+    const { id_candidato } = req.query;
     try {
-        const response = await candidatos.deleteCandidato(id_candidato);
+        const response = await candidatosModels.deleteCandidato(id_candidato);
         res.status(201).json(response);
     } catch (error) {
         res.status(500).json(error);

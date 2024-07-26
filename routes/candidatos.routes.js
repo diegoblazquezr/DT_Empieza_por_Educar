@@ -8,10 +8,10 @@ const candidatosControllers = require("../controllers/candidatos.controllers");
 const candidatosValidators = require("../validators/candidatos.validators");
 const router = express.Router();
 
-router.get('/', candidatosControllers.readCandidatos)
+router.get('/', candidatosValidators.readCandidatoValidator, candidatosControllers.readCandidatos)
 router.post('/', candidatosValidators.createCandidatoValidator, candidatosControllers.createCandidato);
 router.put('/', candidatosValidators.updateCandidatoValidator, candidatosControllers.updateCandidato);
-router.delete('/', candidatosControllers.deleteCandidato);
+router.delete('/', candidatosValidators.deleteCandidatoValidator,candidatosControllers.deleteCandidato);
 
 
 
