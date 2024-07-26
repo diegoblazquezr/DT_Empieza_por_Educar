@@ -1,7 +1,7 @@
 const candidaturasModels = require('../models/candidaturas.models');
 const { validationResult } = require("express-validator");
 
-const createCandidaturaController = async (req, res) => {
+/*const createCandidaturaController = async (req, res) => {
     const errors = validationResult(req);
     if (!errors.isEmpty()) {
         return res.status(400).json({ errors: errors.array() });
@@ -21,7 +21,8 @@ const createCandidaturaController = async (req, res) => {
     } else {
         res.status(400).json({ error: "Faltan campos en la entrada" });
     }
-}
+}*/
+
 // Prueba Postman
 // POST http://localhost:3000/api/candidaturas
 // {
@@ -100,7 +101,7 @@ const deleteCandidaturaController = async (req, res) => {
 // DELETE http://localhost:3000/api/candidaturas?id_candidatura=1005
 
 module.exports = {
-    createCandidaturaController,
+    //createCandidaturaController,
     readCandidaturasController,
     updateCandidaturaController,
     deleteCandidaturaController,

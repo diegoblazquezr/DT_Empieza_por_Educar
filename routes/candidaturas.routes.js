@@ -1,14 +1,14 @@
 const candidaturasController = require('../controllers/candidaturas.controllers');
 const router = require('express').Router();
 const {
-    validateCreateCandidatura,
+    //validateCreateCandidatura,
     validateReadCandidaturas,
     validateUpdateCandidatura,
     validateDeleteCandidatura
 } = require("../validators/candidaturas.validators");
 
 // POST http://localhost:3000/api/candidaturas
-router.post("/", validateCreateCandidatura, candidaturasController.createCandidaturaController);
+//router.post("/", validateCreateCandidatura, candidaturasController.createCandidaturaController);
 
 // GET http://localhost:3000/api/candidaturas?search=mar&limit=10&offset=0
 router.get("/", validateReadCandidaturas, candidaturasController.readCandidaturasController);
