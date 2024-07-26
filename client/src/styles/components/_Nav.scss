@@ -24,7 +24,7 @@ nav {
   display: block;
   max-width: 100%;
   padding: 40px 20px;
-  color: black;
+  color: rgb(63, 63, 63);
   text-decoration: none;
   font-size: 20px;
 
@@ -48,6 +48,10 @@ nav {
       border-radius: 20px;
       padding: 10px 20px;
     }
+    &>li:hover {
+      background-color: $amarillo;
+      color: white;
+    }
 
     & > button {
       background-color: white;
@@ -59,10 +63,17 @@ nav {
       border-radius: 20px;
       justify-content: center;
     }
+    & > button:hover {
+      background-color: $amarillo;
+      color: white;
+    }
     a:-webkit-any-link {
-      color: black;
+      color: rgb(63, 63, 63);
       cursor: pointer;
       text-decoration: none;
+    }
+    a:-webkit-any-link:hover {
+      color: white;
     }
   }
 }

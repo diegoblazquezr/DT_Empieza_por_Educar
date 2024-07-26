@@ -9,7 +9,13 @@ const Nav = ({ menuOpen }) => {
           <Link to="/candidaturas">Candidaturas</Link>
         </li>
         <li>
-          <Link to="/estadisticas-empleado">Estadisticas</Link>
+          <Link to="/estadisticas-empleado">Estadisticas Empleado</Link>
+        </li>
+        <li>
+          <Link to="/lista-empleados">Empleados</Link>
+        </li>
+        <li>
+          <Link to="/estadisticas-admin">Estadisticas Admin</Link>
         </li>
         <button className="logout">Logout</button>
       </ul>
