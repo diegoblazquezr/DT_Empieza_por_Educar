@@ -8,7 +8,7 @@ const validateCreateEmpleado = [
     body('apellidos_empleado')
         .notEmpty().withMessage('Apelliso del empleado es obligatorio')
         .isString().withMessage('Apellidos del empleado solo puede contener texto')
-        .matches(/^[A-Za-zÁÉÍÓÚáéíóúÀÈÌÒÙàèìòùÂÊÎÔÛâêîôûÄËÏÖÜäëïöüÿÇçÑñ\s'-]+$/i).withMessage('Apellidos del empleado solo puede contener letras'),,
+        .matches(/^[A-Za-zÁÉÍÓÚáéíóúÀÈÌÒÙàèìòùÂÊÎÔÛâêîôûÄËÏÖÜäëïöüÿÇçÑñ\s'-]+$/i).withMessage('Apellidos del empleado solo puede contener letras'),
     body('email_empleado')
         .notEmpty().withMessage('El email es obligatorio')
         .isEmail().withMessage('Debe proporcionar una dirección de correo electrónico válida')
