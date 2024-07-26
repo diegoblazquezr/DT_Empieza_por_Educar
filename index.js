@@ -45,9 +45,9 @@ app.use('/api/candidaturas', candidaturasRoutes);
 app.use('/api/empleados', empleadosRoutes);
 app.use('/api/candidatos', candidatosRoutes);
 
-app.get('*', (req,res) =>{
+/*app.get('*', (req,res) =>{
     res.sendFile(path.join(__dirname+'/client/build/index.html'));
-});
+});*/
 
 const server = app.listen(port, () => {
     console.log(`App listening on ${URL}:${port}`);
