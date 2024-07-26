@@ -34,7 +34,7 @@ const Signup = () => {
         title="logo-exe" 
         className="home-logo"
       />
-      <h2>¡Registrate!</h2>
+      <h2>¡Registra un empleado!</h2>
     <form 
     // onSubmit={handleSubmit}
     >
@@ -44,7 +44,6 @@ const Signup = () => {
       <input type="password" value={password} onChange={(e) => setPassword(e.target.value)} placeholder="Contraseña" required />
       <button type="submit">Registrar</button>
     </form>
-    <a href="/login">O inicia sesión...</a>
     </section>
   );
 };
