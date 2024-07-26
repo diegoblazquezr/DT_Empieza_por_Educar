@@ -57,15 +57,17 @@ nav {
       padding: 10px 20px;
       border: 2px solid $amarillo;
       border-radius: 20px;
+      justify-content: center;
+    }
+    a:-webkit-any-link {
+      color: black;
+      cursor: pointer;
+      text-decoration: none;
     }
   }
 }
 
-a:-webkit-any-link {
-  color: black;
-  cursor: pointer;
-  text-decoration: none;
-}
+
 
 @media (max-width: 715px) {
   .hamburger-menu {
@@ -83,9 +85,22 @@ a:-webkit-any-link {
   nav > ul {
     flex-direction: column;
     align-items: center;
+    border-bottom: 2px solid $amarillo;
+    &>h3{
+      padding-bottom: 40px;
+    }
+    &>button{
+      border: none;
+      text-align: center;
+      color: $verde;
+    }
+    a:-webkit-any-link {
+      color: $verde;
+    }
   }
 
   nav > ul > li {
     padding: 10px 0;
+    border: none;
   }
 }

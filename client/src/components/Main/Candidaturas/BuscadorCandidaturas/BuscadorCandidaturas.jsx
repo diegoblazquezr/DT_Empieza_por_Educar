@@ -11,6 +11,7 @@ const BuscadorCandidaturas = ({ definirNombreCandidatura }) => {
 
   return (
     <article className="buscadorCandidaturas">
+      <h2>Candidaturas</h2>
       <form onSubmit={handleSubmit}>
         <input
           type="text"

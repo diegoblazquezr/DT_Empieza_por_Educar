@@ -10,18 +10,24 @@ const BuscadorEmpleados = ({ definirNombreCandidatura }) => {
   };
 
   return (
-    <article className="buscadorEmpleados">
-      <form onSubmit={handleSubmit}>
-        <input
-          type="text"
-          value={value}
-          onChange={(e) => setValue(e.target.value)}
-          name="topic"
-          placeholder="Busca un empleado..."
-        />
-        <button type="submit">Buscar</button>
-      </form>
-    </article>
+    <>
+      <article className="buscadorEmpleados">
+        <form onSubmit={handleSubmit}>
+          <input
+            type="text"
+            value={value}
+            onChange={(e) => setValue(e.target.value)}
+            name="topic"
+            placeholder="Busca un empleado..."
+          />
+          <button type="submit">Buscar</button>
+        </form>
+      </article>
+      <div className="botonesEmpleado">
+        <button>Registrar nuevo empleado</button>
+        <button>Aprendizaje modelo</button>
+      </div>
+    </>
   );
 };
 export default BuscadorEmpleados;
