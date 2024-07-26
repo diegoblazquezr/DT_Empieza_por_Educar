@@ -52,7 +52,6 @@ const Login = () => {
         />
         <button type="submit">Login</button>
       </form>
-      <a href="/signup">Registrarse</a>
     </section>
   );
 };

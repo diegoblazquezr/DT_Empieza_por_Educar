@@ -1,0 +1,19 @@
+@import "../utils/variables.scss";
+
+.tarjetaCandidatura{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border: 1px solid #000;
+    border-radius: 20px;
+    padding: 10px 100px;
+    margin: 10px 100px;
+    &>button{
+        border-radius: 30px;
+        width: 20%;
+        height: 50px;
+        text-align: center;
+        background-color: $amarillo;
+        color: black;
+    }
+}
