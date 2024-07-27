@@ -13,6 +13,9 @@ const validateReadCandidaturas = [
     query("id_candidato")
         .optional()
         .isNumeric().withMessage("id_candidato debe ser un número"),
+    query("id_candidatura")
+        .optional()
+        .isNumeric().withMessage("id_candidatura debe ser un número"),
     query("status")
         .optional()
         .isString().withMessage("status solo puede contener texto")
@@ -23,13 +26,28 @@ const validateReadCandidaturas = [
         .isIn(['nombre_candidato', 'apellidos_candidato', 'fecha_registro']).withMessage("Valor de filtro no válido"),
     query("order")
         .optional()
-        .isIn(['asc', 'desc']).withMessage("Order must be 'asc' or 'desc'"),
+        .isIn(['asc', 'desc']).withMessage("Order debe ser 'asc' ó 'desc'"),
     query("limit")
-        .exists().withMessage("Limit es obligatorio")
+        .optional()
         .isInt({ min: 1, max: 50 }).withMessage("Limit debe ser un número entre 1 y 50"),
     query("offset")
-        .exists().withMessage("Offset es obligatorio")
-        .isInt({ min: 0 }).withMessage("Offset no puede ser negativo")
+        .optional()
+        .isInt({ min: 0 }).withMessage("Offset no puede ser negativo"),
+    query()
+        .custom((value, { req }) => {
+            if (req.query.id_candidatura) {
+                if (req.query.search !== undefined || req.query.id_candidato !== undefined || req.query.status !== undefined || req.query.filter || req.query.order || req.query.limit || req.query.offset) {
+                    throw new Error("Cuando se consulta por id_candidatura, no deben estar presentes otros parámetros de filtro");
+                }
+            } else if (req.query.search !== undefined || req.query.id_candidato !== undefined || req.query.status !== undefined) {
+                if (!req.query.filter || !req.query.order || !req.query.limit || !req.query.offset) {
+                    throw new Error("Al usar filtros de búsqueda, todos los parámetros de filtro (filter, order, limit, offset) son obligatorios");
+                }
+            } else {
+                throw new Error("Se requiere id_candidatura o parámetros de búsqueda");
+            }
+            return true;
+        })
 ];
 
 const validateUpdateCandidatura = [

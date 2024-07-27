@@ -19,6 +19,7 @@ const Main = () => {
         <Route path="/login" element={<Login />} />
         <Route path="/signup" element={<Signup />} />
         <Route path="/candidaturas" element={<Candidaturas />} />
+        <Route path="/candidatura" element={<DetallesCandidatura />} />
         <Route path="/estadisticas-empleado" element={<EstadisticasEmpleado />} />
         <Route path="/vista-detalle" element={<DetallesCandidatura />} />
         <Route path="/empleados" element={<Empleados />} />
