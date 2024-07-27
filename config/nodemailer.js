@@ -25,7 +25,7 @@ const sendMail = (email_candidato, subject, nombre_candidato) => {
         src="https://zx5f5b.n3cdn1.secureserver.net/wp-content/uploads/2019/08/logo-exe-300-01.png" 
         alt="logo-exe" 
         title="logo-exe" 
-        style="max-width: 20%; height: auto; display: block; margin: 0 auto;"
+        style="max-width: 200px; height: auto; display: block; margin: 0 auto;"
       />
     </div>
     <p>Estimad@ ${nombre_candidato}, ¿cómo estás?</p>
