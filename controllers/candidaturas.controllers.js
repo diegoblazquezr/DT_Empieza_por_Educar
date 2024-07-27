@@ -36,7 +36,14 @@ const readCandidaturasController = async (req, res) => {
     let candidaturas;
     console.log(req.query);
     try {
-        if ((req.query.search || req.query.search == "") && (req.query.id_empleado || req.query.id_empleado == "") && (req.query.status || req.query.status == "") && req.query.filter && req.query.order && req.query.limit && req.query.offset) {
+        if (req.query.id_candidatura) {
+            const errors = validationResult(req);
+            if (!errors.isEmpty()) {
+                return res.status(400).json({ errors: errors.array() });
+            }
+            candidaturas = await candidaturasModels.readCandidaturaByIdModel(req.query.id_candidatura);
+            res.status(200).json(candidaturas);
+        } else if ((req.query.search || req.query.search == "") && (req.query.id_empleado || req.query.id_empleado == "") && (req.query.status || req.query.status == "") && req.query.filter && req.query.order && req.query.limit && req.query.offset) {
             const errors = validationResult(req);
             if (!errors.isEmpty()) {
                 return res.status(400).json({ errors: errors.array() });
@@ -49,7 +56,8 @@ const readCandidaturasController = async (req, res) => {
     }
 }
 // Prueba Postman
-// GET http://localhost:3000/api/candidaturas?search=mar&id_empleado=1&status=&filter=nombre_candidato&order=asc&limit=10&offset=0
+// GET ONE http://localhost:3000/api/candidaturas?id_candidatura=1
+// GET ALL http://localhost:3000/api/candidaturas?search=mar&id_empleado=1&status=&filter=nombre_candidato&order=asc&limit=10&offset=0
 
 const updateCandidaturaController = async (req, res) => {
     const errors = validationResult(req);

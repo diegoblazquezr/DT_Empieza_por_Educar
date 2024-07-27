@@ -1,19 +1,19 @@
 import React, { useState } from "react";
-import BuscadorCandidaturas from "./BuscadorCandidaturas/BuscadorCandidaturas";
+// import BuscadorCandidaturas from "./BuscadorCandidaturas/BuscadorCandidaturas";
 import ListaCandidaturas from "./ListaCandidaturas/ListaCandidaturas";
 
 const Candidaturas = () => {
-  const [nombreCandidatura, definirNombreCandidatura] = useState("");
-  
+
+  const [candidaturas, setCandidaturas] = useState([]);
+
   return (
-  <>
+    <>
+      <section className="candidaturas">
+        {/* <BuscadorCandidaturas setCandidatura={definirNombreCandidatura} /> */}
+        <ListaCandidaturas candidaturas={candidaturas} setCandidaturas={setCandidaturas}/>
+      </section>
 
-  <section className="candidaturas">
-  <BuscadorCandidaturas setCandidatura={definirNombreCandidatura}/>
-  <ListaCandidaturas nombreCandidatura={nombreCandidatura}/>
-  </section>
-
-  </>
+    </>
   )
 }
 export default Candidaturas;
