@@ -18,8 +18,8 @@ const Main = () => {
         <Route path="/login" element={<Login />} />
         <Route path="/signup" element={<Signup />} />
         <Route path="/candidaturas" element={<Candidaturas />} />
+        <Route path="/candidatura" element={<DetallesCandidatura />} />
         <Route path="/estadisticas-empleado" element={<EstadisticasEmpleado />} />
-        <Route path="/vista-detalle" element={<DetallesCandidatura />} />
         <Route path="/lista-empleados" element={<ListaEmpleados />} />
         <Route path="/estadisticas-admin" element={<Estadisticas />} />
         <Route path="/*" element={"/"} />
