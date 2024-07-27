@@ -15,6 +15,9 @@ const Nav = ({ menuOpen }) => {
           <Link to="/lista-empleados">Empleados</Link>
         </li>
         <li>
+          <Link to="/lista-candidatos">Candidatos</Link>
+        </li>
+        <li>
           <Link to="/estadisticas-admin">Estadisticas Admin</Link>
         </li>
         <button className="logout">Logout</button>
