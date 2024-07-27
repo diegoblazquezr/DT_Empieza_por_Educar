@@ -8,6 +8,7 @@ import DetallesCandidatura from "../Main/DetallesCandidatura/DetallesCandidatura
 import ListaEmpleados from "../Main/ListaEmpleados/ListaEmpleados";
 import Estadisticas from "../Main/Estadisticas/Estadisticas";
 import Home from "../Main/Home/Home";
+import ListaCandidatos from "../Main/ListaCandidatos/ListaCandidatos"
 
 
 const Main = () => {
@@ -21,6 +22,7 @@ const Main = () => {
         <Route path="/candidatura" element={<DetallesCandidatura />} />
         <Route path="/estadisticas-empleado" element={<EstadisticasEmpleado />} />
         <Route path="/lista-empleados" element={<ListaEmpleados />} />
+        <Route path="/lista-candidatos" element={<ListaCandidatos />} />
         <Route path="/estadisticas-admin" element={<Estadisticas />} />
         <Route path="/*" element={"/"} />
       </Routes>
