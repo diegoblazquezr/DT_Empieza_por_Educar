@@ -5,10 +5,10 @@ import Signup from "../Main/Signup/Signup";
 import Candidaturas from "../Main/Candidaturas/Candidaturas";
 import EstadisticasEmpleado from "../Main/EstadisticasEmpleado/EstadisticasEmpleado";
 import DetallesCandidatura from "../Main/DetallesCandidatura/DetallesCandidatura";
-import ListaEmpleados from "../Main/ListaEmpleados/ListaEmpleados";
+import Empleados from "../Main/Empleados/Empleados";
 import Estadisticas from "../Main/Estadisticas/Estadisticas";
 import Home from "../Main/Home/Home";
-import ListaCandidatos from "../Main/ListaCandidatos/ListaCandidatos"
+import Candidatos from "../Main/Candidatos/Candidatos"
 
 
 const Main = () => {
@@ -21,8 +21,9 @@ const Main = () => {
         <Route path="/candidaturas" element={<Candidaturas />} />
         <Route path="/candidatura" element={<DetallesCandidatura />} />
         <Route path="/estadisticas-empleado" element={<EstadisticasEmpleado />} />
-        <Route path="/lista-empleados" element={<ListaEmpleados />} />
-        <Route path="/lista-candidatos" element={<ListaCandidatos />} />
+        <Route path="/vista-detalle" element={<DetallesCandidatura />} />
+        <Route path="/empleados" element={<Empleados />} />
+        <Route path="/candidatos" element={<Candidatos />} />
         <Route path="/estadisticas-admin" element={<Estadisticas />} />
         <Route path="/*" element={"/"} />
       </Routes>

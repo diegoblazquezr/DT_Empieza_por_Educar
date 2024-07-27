@@ -1,8 +1,38 @@
+@import "../utils/variables.scss";
+
 .tarjetaCandidatos{
     display: flex;
-    justify-content: space-between;
-    border: 1px solid #000;
+    text-align: center;
+    flex-wrap: wrap;
+    justify-content: space-evenly;
+    align-items: center;
+    border: 3px solid $amarillo;
     border-radius: 20px;
     padding: 10px 100px;
     margin: 10px 100px;
+    &>div{
+        padding-right: 10px;
+        &>h3{
+            color: $verde;
+        }
+        &>p{
+            padding: 10px 0;
+            font-weight: 500;
+            font-size: medium;
+        }
+    }
+}
+
+@media (max-width: 960px){
+    .tarjetaCandidatos{
+        flex-direction: column;
+        padding: 10px 20px;
+        margin: 10px 20px;
+        &>div{
+            &>p{
+                padding-top: 10px;
+                font-weight: 500;
+            }
+        }
+    }
 }
