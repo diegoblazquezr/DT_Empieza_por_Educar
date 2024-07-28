@@ -1,4 +1,5 @@
 const express = require('express');
+const helmet = require('helmet');
 const cors = require('cors');
 require('dotenv').config();
 const cookieParser = require('cookie-parser');
@@ -14,6 +15,7 @@ const URL = /*process.env.API_URL || */'http://localhost';
 const morgan = require('./middlewares/morgan');
 
 // Middlewares
+app.use(helmet());
 app.use(morgan(':method :url :status - :response-time ms :body'));
 app.use(express.static('public'));
 app.use(express.json());

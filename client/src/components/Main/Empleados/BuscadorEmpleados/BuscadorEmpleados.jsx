@@ -1,13 +1,13 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 
-const BuscadorEmpleados = ({ definirNombreCandidatura }) => {
+const BuscadorEmpleados = ({ setEmpleado }) => {
   const [value, setValue] = useState("");
   const navigate = useNavigate();
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    definirNombreCandidatura(value);
+    setEmpleado(value);
     setValue("");
   };
 
