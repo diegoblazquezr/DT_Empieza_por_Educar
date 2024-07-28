@@ -1,9 +1,9 @@
-import { useEffect, useState, useCallback } from "react";
+import React, { useEffect, useState, useCallback, useRef } from "react";
 import { useNavigate, useLocation } from 'react-router-dom';
 import axios from "axios";
 import TarjetaCandidatura from "./TarjetaCandidatura";
 import { v4 as uuidv4 } from "uuid";
-import debounce from "debounce";
+import debounce from "lodash.debounce";
 
 axios.defaults.withCredentials = true;
 
@@ -12,22 +12,36 @@ const ListaCandidaturas = ({ candidaturas, setCandidaturas }) => {
   const location = useLocation();
 
   const [inputSearch, setInputSearch] = useState('');
+  const debouncedSearchTerm = useDebounce(inputSearch, 300);
   const [id_empleado, setId_empleado] = useState('');
   const [selectStatus, setSelectStatus] = useState('');
   const [selectFilter, setSelectFilter] = useState('fecha_registro');
   const [selectOrder, setSelectOrder] = useState('desc');
   const [limit, setLimit] = useState(10);
   const [offset, setOffset] = useState(0);
+  const [currentPage, setCurrentPage] = useState(1);
+  const [totalItems, setTotalItems] = useState(0);
   const URL = import.meta.env.VITE_API_URL || 'http://localhost:3000';
 
-  const updateURL = useCallback((params) => {
-    const filteredParams = Object.fromEntries(
-      Object.entries(params).filter(([_, value]) => value !== '')
-    );
-    console.log(filteredParams);
-    const searchParams = new URLSearchParams(filteredParams);
-    navigate(`/candidaturas?${searchParams.toString()}`);
+  const updateURL = useCallback((page) => {
+    navigate(`/candidaturas?page=${page}`);
   }, [navigate]);
+
+  function useDebounce(value, delay) {
+    const [debouncedValue, setDebouncedValue] = useState(value);
+  
+    useEffect(() => {
+      const handler = setTimeout(() => {
+        setDebouncedValue(value);
+      }, delay);
+  
+      return () => {
+        clearTimeout(handler);
+      };
+    }, [value, delay]);
+  
+    return debouncedValue;
+  }
 
   const getCandidaturas = useCallback(async (search, id_empleado, status, filter, order, limit, offset) => {
     try {
@@ -35,68 +49,61 @@ const ListaCandidaturas = ({ candidaturas, setCandidaturas }) => {
         params: { search, id_empleado, status, filter, order, limit, offset }
       });
       const json = res.data;
-      console.log(json);
-      setCandidaturas(json);
+      setCandidaturas(json.items);
+      setTotalItems(json.totalCount);
     } catch (e) {
       console.error(e);
       setCandidaturas([]);
+      setTotalItems(0);
     }
   }, [URL, setCandidaturas]);
 
   useEffect(() => {
     const searchParams = new URLSearchParams(location.search);
-    const search = searchParams.get('search') || '';
-    const id_empleado = searchParams.get('id_empleado') || '';
-    const statusCandidatura = searchParams.get('status') || '';
-    const filter = searchParams.get('filter') || 'fecha_registro';
-    const order = searchParams.get('order') || 'desc';
-    const newLimit = parseInt(searchParams.get('limit') || '10', 10);
-    const newOffset = parseInt(searchParams.get('offset') || '0', 10);
-
-    setInputSearch(search);
-    setId_empleado(id_empleado);
-    setSelectStatus(statusCandidatura);
-    setSelectFilter(filter);
-    setSelectOrder(order);
-    setLimit(newLimit);
+    const page = parseInt(searchParams.get('page') || '1', 10);
+    const newOffset = (page - 1) * limit;
+  
+    setCurrentPage(page);
     setOffset(newOffset);
+  
+    getCandidaturas(debouncedSearchTerm, id_empleado, selectStatus, selectFilter, selectOrder, limit, newOffset);
+  }, [location.search, getCandidaturas, limit, debouncedSearchTerm, id_empleado, selectStatus, selectFilter, selectOrder]);
 
-    getCandidaturas(search, id_empleado, statusCandidatura, filter, order, newLimit, newOffset);
-  }, [location.search, getCandidaturas]);
+  useEffect(() => {
+    if (debouncedSearchTerm !== inputSearch) {
+      setCurrentPage(1);
+      navigate(`/candidaturas?page=1`);
+    }
+  }, [debouncedSearchTerm, inputSearch, navigate]);
 
   const debouncedUpdateURL = useCallback(
-    debounce((params) => updateURL(params), 500),
-    [updateURL]
+    debounce((page) => {
+      navigate(`/candidaturas?page=${page}`);
+    }, 300),
+    [navigate]
+  );
+
+  const debouncedGetCandidaturas = useCallback(
+    debounce((search, id_empleado, status, filter, order, limit, offset) => {
+      getCandidaturas(search, id_empleado, status, filter, order, limit, offset);
+    }, 300),
+    [getCandidaturas]
   );
 
   const handleInputChange = (e) => {
     const value = e.target.value;
     setInputSearch(value);
-    console.log(">>>" + value + ">>>" + inputSearch);
-    debouncedUpdateURL({
-      search: value.trim(),
-      id_empleado,
-      status: selectStatus,
-      filter: selectFilter,
-      order: selectOrder,
-      limit,
-      offset
-    });
+    setCurrentPage(1);
+    debouncedUpdateURL(1);
+    debouncedGetCandidaturas(value.trim(), id_empleado, selectStatus, selectFilter, selectOrder, limit, 0);
   };
 
   const handleStatusChange = (e) => {
     const value = e.target.value === 'All' ? '' : e.target.value;
     setSelectStatus(value);
-    console.log(">>>" + value + ">>>" + selectStatus);
-    updateURL({
-      search: inputSearch,
-      id_empleado,
-      status: value,
-      filter: selectFilter,
-      order: selectOrder,
-      limit,
-      offset
-    });
+    setCurrentPage(1);
+    updateURL(1);
+    getCandidaturas(inputSearch, id_empleado, value, selectFilter, selectOrder, limit, 0);
   };
 
   const handleFilterChange = (e) => {
@@ -104,16 +111,9 @@ const ListaCandidaturas = ({ candidaturas, setCandidaturas }) => {
     const [filter, order] = value.split('-');
     setSelectFilter(filter);
     setSelectOrder(order);
-    console.log(inputSearch, selectStatus);
-    updateURL({
-      search: inputSearch,
-      id_empleado,
-      status: selectStatus,
-      filter,
-      order,
-      limit,
-      offset
-    });
+    setCurrentPage(1);
+    updateURL(1);
+    getCandidaturas(inputSearch, id_empleado, selectStatus, filter, order, limit, 0);
   };
 
   const resetFilters = () => {
@@ -123,15 +123,20 @@ const ListaCandidaturas = ({ candidaturas, setCandidaturas }) => {
     setSelectOrder('desc');
     setLimit(10);
     setOffset(0);
-    updateURL({
-      search: '',
-      id_empleado: '',
-      status: '',
-      filter: 'fecha_registro',
-      order: 'desc',
-      limit: 10,
-      offset: 0
-    });
+    setCurrentPage(1);
+    updateURL(1);
+    getCandidaturas('', id_empleado, '', 'fecha_registro', 'desc', 10, 0);
+  };
+
+  const handlePageChange = (newPage) => {
+    const totalPages = Math.ceil(totalItems / limit);
+    if (newPage >= 1 && newPage <= totalPages) {
+      const newOffset = (newPage - 1) * limit;
+      setCurrentPage(newPage);
+      setOffset(newOffset);
+      updateURL(newPage);
+      getCandidaturas(inputSearch, id_empleado, selectStatus, selectFilter, selectOrder, limit, newOffset);
+    }
   };
 
   const renderCandidaturas = () =>
@@ -141,6 +146,43 @@ const ListaCandidaturas = ({ candidaturas, setCandidaturas }) => {
         dataCandidatura={candidatura}
       />
     ));
+
+  const renderPagination = () => {
+    const totalPages = Math.ceil(totalItems / limit);
+    const pageNumbers = [];
+    const maxVisiblePages = 5;
+
+    let startPage = Math.max(1, currentPage - Math.floor(maxVisiblePages / 2));
+    let endPage = Math.min(totalPages, startPage + maxVisiblePages - 1);
+
+    if (endPage - startPage + 1 < maxVisiblePages) {
+      startPage = Math.max(1, endPage - maxVisiblePages + 1);
+    }
+
+    for (let i = startPage; i <= endPage; i++) {
+      pageNumbers.push(i);
+    }
+
+    return (
+      <div className="pagination">
+        <button onClick={() => handlePageChange(currentPage - 1)} disabled={currentPage === 1}>
+          Previous
+        </button>
+        {pageNumbers.map(number => (
+          <button
+            key={number}
+            onClick={() => handlePageChange(number)}
+            className={currentPage === number ? 'active' : ''}
+          >
+            {number}
+          </button>
+        ))}
+        <button onClick={() => handlePageChange(currentPage + 1)} disabled={currentPage === totalPages}>
+          Next
+        </button>
+      </div>
+    );
+  };
 
   return (
     <>
@@ -191,6 +233,8 @@ const ListaCandidaturas = ({ candidaturas, setCandidaturas }) => {
       <section className="listaCandidaturas">
         {renderCandidaturas()}
       </section>
+
+      {renderPagination()}
     </>
   );
 };
