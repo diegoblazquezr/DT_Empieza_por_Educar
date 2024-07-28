@@ -17,7 +17,6 @@ const ListaCandidaturas = ({ nombreCandidatura }) => {
   useEffect(() => {
     const getCandidaturas = async () => {
       try {
-        // const res = await axios.get(`http://localhost:3000/api/candidaturas?search=&limit=10&offset=0`);
         const res = await axios.get(`${URL}/api/candidaturas?search=${inputSearch}&limit=${candidaturasPorPagina}&offset=${paginaActual}`,);
         console.log(res.data);
         // setCandidaturas(res.data);
