@@ -4,8 +4,8 @@ const cors = require('cors');
 require('dotenv').config();
 const cookieParser = require('cookie-parser');
 const app = express(); // Initialize server
-const port = process.env.PORT || 3000;
-const URL = process.env.API_URL || 'http://localhost';
+const port = /*process.env.PORT || */ 3000;
+const URL = /*process.env.API_URL || */'http://localhost';
 // const swaggerUi = require('swagger-ui-express');
 // const swaggerDocument = require('./swagger.json');
 
