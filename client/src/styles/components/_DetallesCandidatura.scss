@@ -1,0 +1,28 @@
+@import "../utils/variables.scss";
+
+.detallesCandidatura{
+    text-align: center;
+    &>h2{
+        padding: 40px;
+    }
+
+    &>.cajaDetalles{
+        padding: 60px;
+        border: 2px solid black;
+        margin: 20px 200px;
+        border-radius: 20px;
+      
+        &>h2{
+            padding: 30px;
+        }
+    }
+    &>button{
+        border-radius: 30px;
+        width: 10%;
+        height: 50px;
+        text-align: center;
+        background-color: $verde;
+        color: white;
+        margin-bottom:40px;
+    }
+}

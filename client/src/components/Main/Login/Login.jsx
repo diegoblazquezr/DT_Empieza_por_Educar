@@ -78,7 +78,6 @@ const Login = () => {
           {loading ? 'Iniciando sesión...' : 'Login'}
         </button>
       </form>
-      <a href="/signup">Registrarse</a>
     </section>
   );
 };

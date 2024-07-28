@@ -1,7 +1,7 @@
 const candidaturasController = require('../controllers/candidaturas.controllers');
 const router = require('express').Router();
 const {
-    validateCreateCandidatura,
+    //validateCreateCandidatura,
     validateReadCandidaturas,
     validateUpdateCandidatura,
     validateDeleteCandidatura
@@ -12,10 +12,11 @@ const empleadosRoutes = require('../middlewares/empleadoRoutes');
 const adminRoutes = require('../middlewares/adminRoutes');
 
 // POST http://localhost:3000/api/candidaturas
-router.post("/", /*getAccessToken, decodeToken, empleadosRoutes,*/ validateCreateCandidatura, candidaturasController.createCandidaturaController);
+//router.post("/",/*getAccessToken, decodeToken, empleadosRoutes, */ validateCreateCandidatura, candidaturasController.createCandidaturaController);
 
-// GET http://localhost:3000/api/candidaturas?search=mar&limit=10&offset=0
-router.get("/", /*getAccessToken, decodeToken, empleadosRoutes,*/ validateReadCandidaturas, candidaturasController.readCandidaturasController);
+// GET ONE http://localhost:3000/api/candidaturas?id_candidatura=1
+// GET ALL http://localhost:3000/api/candidaturas?search=mar&id_empleado=1&status=&filter=nombre_candidato&order=asc&limit=10&offset=0
+router.get("/",/*getAccessToken, decodeToken, empleadosRoutes, */ validateReadCandidaturas, candidaturasController.readCandidaturasController);
 
 // PUT http://localhost:3000/api/candidatura
 router.put("/", /*getAccessToken, decodeToken, empleadosRoutes, */validateUpdateCandidatura, candidaturasController.updateCandidaturaController);

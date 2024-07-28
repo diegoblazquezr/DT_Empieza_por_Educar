@@ -1,7 +1,7 @@
 const candidaturasModels = require('../models/candidaturas.models');
 const { validationResult } = require("express-validator");
 
-const createCandidaturaController = async (req, res) => {
+/*const createCandidaturaController = async (req, res) => {
     const errors = validationResult(req);
     if (!errors.isEmpty()) {
         return res.status(400).json({ errors: errors.array() });
@@ -21,7 +21,8 @@ const createCandidaturaController = async (req, res) => {
     } else {
         res.status(400).json({ error: "Faltan campos en la entrada" });
     }
-}
+}*/
+
 // Prueba Postman
 // POST http://localhost:3000/api/candidaturas
 // {
@@ -29,18 +30,25 @@ const createCandidaturaController = async (req, res) => {
 // }
 
 const readCandidaturasController = async (req, res) => {
-    if (req.query.limit > 100) {
-        return res.status(400).json("Limit can not surpass 100");
+    if (req.query.limit > 50) {
+        return res.status(400).json("Limit can not surpass 50");
     }
     let candidaturas;
     console.log(req.query);
     try {
-        if ((req.query.search || req.query.search == "") && req.query.limit && req.query.offset) {
+        if (req.query.id_candidatura) {
             const errors = validationResult(req);
             if (!errors.isEmpty()) {
                 return res.status(400).json({ errors: errors.array() });
             }
-            candidaturas = await candidaturasModels.readCandidaturasModel(req.query.search, parseInt(req.query.limit), parseInt(req.query.offset));
+            candidaturas = await candidaturasModels.readCandidaturaByIdModel(req.query.id_candidatura);
+            res.status(200).json(candidaturas);
+        } else if ((req.query.search || req.query.search == "") && (req.query.id_empleado || req.query.id_empleado == "") && (req.query.status || req.query.status == "") && req.query.filter && req.query.order && req.query.limit && req.query.offset) {
+            const errors = validationResult(req);
+            if (!errors.isEmpty()) {
+                return res.status(400).json({ errors: errors.array() });
+            }
+            candidaturas = await candidaturasModels.readCandidaturasModel(req.query.search, req.query.id_empleado, req.query.status, req.query.filter, req.query.order, parseInt(req.query.limit), parseInt(req.query.offset));
             res.status(200).json(candidaturas);
         }
     } catch (error) {
@@ -48,7 +56,8 @@ const readCandidaturasController = async (req, res) => {
     }
 }
 // Prueba Postman
-// GET http://localhost:3000/api/candidaturas?search=mar&limit=10&offset=0
+// GET ONE http://localhost:3000/api/candidaturas?id_candidatura=1
+// GET ALL http://localhost:3000/api/candidaturas?search=mar&id_empleado=1&status=&filter=nombre_candidato&order=asc&limit=10&offset=0
 
 const updateCandidaturaController = async (req, res) => {
     const errors = validationResult(req);
@@ -100,7 +109,7 @@ const deleteCandidaturaController = async (req, res) => {
 // DELETE http://localhost:3000/api/candidaturas?id_candidatura=1005
 
 module.exports = {
-    createCandidaturaController,
+    //createCandidaturaController,
     readCandidaturasController,
     updateCandidaturaController,
     deleteCandidaturaController,

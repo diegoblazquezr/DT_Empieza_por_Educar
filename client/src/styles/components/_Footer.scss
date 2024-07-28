@@ -1,23 +1,25 @@
 @import "../utils/variables.scss";
 .footerStyle {
-    bottom: 0;
-    width: 100%;
-    background-color: $verde;
-    text-align: center;
-    padding: 50px 0;
+  bottom: 0;
+  width: 100%;
+  background-color: $verde;
+  text-align: center;
+  padding: 50px 0;
+  color: white;
+  justify-content: center;
+  font-size: 14px;
+  & > .redes {
     display: flex;
-    color: white;
-    flex-wrap: wrap;
     justify-content: center;
-    font-size: 14px;
-    &>a{
+    justify-items: center;
+    & > a {
       color: white;
       text-decoration: none;
       cursor: pointer;
-      padding: 10px;
-      &>p{
-        color: white;
-        text-decoration: none;
+      padding-bottom: 5px;
+      & > img {
+        width: 30%;
       }
     }
-  };
+  }
+}

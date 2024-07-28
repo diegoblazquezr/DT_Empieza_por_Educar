@@ -2,15 +2,22 @@ const candidaturasQueries = require('../queries/candidaturas.queries')
 const connection = require('../config/db_mysql');
 
 // CREATE
-const createCandidaturaModel = async (newCandidatura) => {
-    const { id_candidato } = newCandidatura;
+const createCandidaturaModel = async (id_candidato) => {
     return new Promise((resolve, reject) => {
         connection.query(candidaturasQueries.createCandidaturaQuery, [id_candidato], (error, results) => {
             if (error) {
                 console.log(error);
-                reject(error);
+                reject({
+                    success: false,
+                    message: 'Error al crear la candidatura',
+                    error: error
+                });
             } else {
-                resolve(results);
+                resolve({
+                    success: true,
+                    message: 'Candidatura creada exitosamente',
+                    affectedRows: results.affectedRows
+                });
             }
         });
     });
@@ -20,10 +27,28 @@ const createCandidaturaModel = async (newCandidatura) => {
 //     .then(data => console.log(data))
 //     .catch(error => console.log(error))
 
-// READ ALL
-const readCandidaturasModel = async (search, limit, offset) => {
+// READ ONE
+const readCandidaturaByIdModel = async (id_candidatura) => {
     return new Promise((resolve, reject) => {
-        connection.query(candidaturasQueries.readCandidaturasQuery, [`%${search}%`, limit, offset], (error, results) => {
+        connection.query(candidaturasQueries.readCandidaturaByIdQuery, [id_candidatura], (error, results) => {
+            if (error) {
+                console.log(error);
+                reject(error);
+            } else {
+                resolve(results);
+            }
+        });
+    });
+}
+// Pruebas PostgreSQL
+// readCandidaturaByIdModel(1)
+//     .then(data=>console.log(data))
+//     .catch(error => console.log(error))
+
+// READ ALL
+const readCandidaturasModel = async (search, id_empleado, status, filter, order, limit, offset) => {
+    return new Promise((resolve, reject) => {
+        connection.query(candidaturasQueries.readCandidaturasQuery, [`%${search}%`, `%${search}%`, id_empleado, id_empleado, status, status, filter, order, filter, order, filter, order, filter, order, filter, order, filter, order, limit, offset], (error, results) => {
             if (error) {
                 console.log(error);
                 reject(error);
@@ -34,13 +59,13 @@ const readCandidaturasModel = async (search, limit, offset) => {
     });
 }
 // Pruebas MySQL Workbench
-// readCandidaturasModel('mar', 10, 0)
+// readCandidaturasModel('mar', '', 'Registro', 'nombre_candidato', 'desc', 10, 0)
 //     .then(data => console.log(data))
 //     .catch(error => console.log(error))
 
 // UPDATE
 const updateCandidaturaModel = async (candidatura) => {
-    const { id_empleado, status, id_candidatura  } = candidatura
+    const { id_empleado, status, id_candidatura } = candidatura
     return new Promise((resolve, reject) => {
         connection.query(candidaturasQueries.updateCandidaturaQuery, [id_empleado, status, id_candidatura], (error, results) => {
             if (error) {
@@ -82,6 +107,7 @@ const deleteCandidaturaModel = async (id_candidatura) => {
 
 const candidaturass = {
     createCandidaturaModel,
+    readCandidaturaByIdModel,
     readCandidaturasModel,
     updateCandidaturaModel,
     deleteCandidaturaModel

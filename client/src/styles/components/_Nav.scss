@@ -24,7 +24,7 @@ nav {
   display: block;
   max-width: 100%;
   padding: 40px 20px;
-  color: black;
+  color: rgb(63, 63, 63);
   text-decoration: none;
   font-size: 20px;
 
@@ -48,6 +48,10 @@ nav {
       border-radius: 20px;
       padding: 10px 20px;
     }
+    &>li:hover {
+      background-color: $amarillo;
+      color: white;
+    }
 
     & > button {
       background-color: white;
@@ -57,17 +61,26 @@ nav {
       padding: 10px 20px;
       border: 2px solid $amarillo;
       border-radius: 20px;
+      justify-content: center;
+    }
+    & > button:hover {
+      background-color: $amarillo;
+      color: white;
+    }
+    a:-webkit-any-link {
+      color: rgb(63, 63, 63);
+      cursor: pointer;
+      text-decoration: none;
+    }
+    a:-webkit-any-link:hover {
+      color: white;
     }
   }
 }
 
-a:-webkit-any-link {
-  color: black;
-  cursor: pointer;
-  text-decoration: none;
-}
 
-@media (max-width: 715px) {
+
+@media (max-width: 900px) {
   .hamburger-menu {
     display: block;
   }
@@ -83,9 +96,34 @@ a:-webkit-any-link {
   nav > ul {
     flex-direction: column;
     align-items: center;
+    border-bottom: 2px solid $amarillo;
+    &>h3{
+      padding-bottom: 40px;
+    }
+    &>button{
+      border: none;
+      text-align: center;
+      color: $verde;
+    }
+    a:-webkit-any-link {
+      color: $verde;
+    }
   }
 
   nav > ul > li {
     padding: 10px 0;
+    border: none;
+  }
+  
+}
+
+@media (max-width: 1200px) {
+  nav > ul {
+    &>li{
+      font-size: 14px;
+    }
+    &>button{
+      font-size: 14px;
+    }
   }
 }
