@@ -43,7 +43,7 @@
     }
   }
 }
-.botonesEmpleado{
+.botonesCandidatos{
   & > button {
     border-radius: 30px;
     width: 20%;
@@ -54,12 +54,22 @@
     margin-bottom: 30px;
   }
 }
+
+
 @media (max-width: 768px) {
-  input {
-    width: 80%;
-    margin-bottom: 20px;
-  }
-  button {
-    width: 50%;
+  .buscadorCandidatos {
+    & > form {
+      flex-direction: column;
+      justify-content: center;
+      justify-items: center;
+      display: grid;
+      & > input {
+        width: 100%;
+        margin-bottom: 10px;
+      }
+      & > button {
+        width: 100%;
+      }
+    }
   }
 }

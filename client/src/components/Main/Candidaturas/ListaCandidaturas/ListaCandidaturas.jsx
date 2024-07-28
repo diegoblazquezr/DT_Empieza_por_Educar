@@ -144,6 +144,8 @@ const ListaCandidaturas = ({ candidaturas, setCandidaturas }) => {
 
   return (
     <>
+    <section className="listaCandidaturas">
+      <h2>Candidaturas</h2>
       <form className="search-form" onSubmit={(e) => e.preventDefault()}>
         <input
           type="text"
@@ -188,8 +190,9 @@ const ListaCandidaturas = ({ candidaturas, setCandidaturas }) => {
         <button type="button" onClick={resetFilters}>Reiniciar Filtros</button>
       </form>
 
-      <section className="listaCandidaturas">
+      <article className="listaCandidaturas">
         {renderCandidaturas()}
+      </article>
       </section>
     </>
   );

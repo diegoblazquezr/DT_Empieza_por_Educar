@@ -4,3 +4,10 @@
     margin-bottom: 20px;
     
 }
+
+@media (max-width: 768px) {
+    .listaEmpleados{
+        margin-top: 10px;
+        margin-bottom: 10px;
+    }
+}

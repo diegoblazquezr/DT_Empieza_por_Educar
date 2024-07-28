@@ -6,10 +6,11 @@ import { v4 as uuidv4 } from "uuid";
 const ListaEmpleados = ({ empleadoName }) => {
   const [empleadoDetails, setEmpleadoDetails] = useState([]);
   const [filteredEmpleadoDetails, setFilteredEmpleadoDetails] = useState([]);
+  const URL = import.meta.env.VITE_API_DATA;
 
   const getEmpleadoDetails = async (name) => {
     try {
-      const response = await axios.get("http://localhost:3000/api/empleados");
+      const response = await axios.get(`${URL}/api/empleados`);
       return response.data;
     } catch (error) {
       console.error("Error obteniendo empleados", error);

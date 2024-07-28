@@ -35,11 +35,11 @@ const createEmpleado = async (user) => {
 };
 
 // const newUser = {
-//     'nombre_empleado': 'Juan',
-//     'apellidos_empleado': 'Pérez',
-//     'email_empleado': 'juan.perez@example.com',
+//     'nombre_empleado': 'Melquíades',
+//     'apellidos_empleado': 'Estrada',
+//     'email_empleado': 'melquiades@example.com',
 //     'password': 'securepassword',
-//     'rol': 'Recruiter'
+//     'rol': 'admin'
 // };
 
 // createEmpleado(newUser)
