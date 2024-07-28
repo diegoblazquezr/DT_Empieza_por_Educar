@@ -54,12 +54,25 @@
     margin-bottom: 30px;
   }
 }
+
 @media (max-width: 768px) {
-  input {
-    width: 80%;
-    margin-bottom: 20px;
+  .buscadorEmpleados {
+    flex-direction: column;
+    justify-content: center;
+    justify-items: center;
+    display: grid;
+    & > form > input {
+      width: 100%;
+      margin-bottom: 10px;
+    }
+    & > form > button {
+      width: 100%;
+    }
   }
-  button {
-    width: 50%;
+  .botonesEmpleado{
+    & > button {
+      width: 180px;
+      margin-bottom: 10px;
+    }
   }
 }

@@ -6,10 +6,11 @@ import { v4 as uuidv4 } from "uuid";
 const ListaCandidatos = ({ candidatosName }) => {
   const [candidatosDetails, setCandidatosDetails] = useState([]);
   const [filteredCandidatosDetails, setFilteredCandidatosDetails] = useState([]);
+  const URL = import.meta.env.VITE_API_URL;
 
   const getCandidatosDetails = async () => {
     try {
-      const response = await axios.get("https://dt-empieza-por-educar.onrender.com/api/candidatos?limit=10&offset=0");
+      const response = await axios.get(`${URL}/api/candidatos?limit=10&offset=0`);
       console.log("Response data:", response.data); 
       return response.data || []; 
     } catch (error) {
