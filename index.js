@@ -4,8 +4,8 @@ const cors = require('cors');
 require('dotenv').config();
 const cookieParser = require('cookie-parser');
 const app = express(); // Initialize server
-const port = process.env.PORT || 3000;
-const URL = process.env.API_URL || 'http://localhost';
+const port = /*process.env.PORT ||*/ 3000;
+const URL = /*process.env.API_URL ||*/ 'http://localhost';
 // const swaggerUi = require('swagger-ui-express');
 // const swaggerDocument = require('./swagger.json');
 
@@ -60,7 +60,7 @@ const nodemailerRoutes = require ("./routes/nodemailer.routes");
 app.use('/api/candidaturas', candidaturasRoutes);
 app.use('/api/empleados', empleadosRoutes);
 app.use('/api/candidatos', candidatosRoutes);
-app.use('/api/confirmacion-candidato', nodemailerRoutes);
+app.use('/api/mailing', nodemailerRoutes);
 
 /*app.get('*', (req,res) =>{
     res.sendFile(path.join(__dirname+'/client/build/index.html'));
