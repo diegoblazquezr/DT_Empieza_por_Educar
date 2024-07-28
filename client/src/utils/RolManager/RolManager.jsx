@@ -2,8 +2,6 @@ import React from "react";
 
 const RolManager = ({ role, allowedRoles, component }) => {
 
-  console.log('Rolmanager', role)
-
   if (allowedRoles.includes(role)) {
     return component;
   }
