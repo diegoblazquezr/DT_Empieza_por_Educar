@@ -10,7 +10,7 @@ const transporter = nodemailer.createTransport({
     }
 });
 
-transporter.verify().then(() => console.log('Email enviado con éxito')).catch(error => console.error(error));
+transporter.verify().then(() => console.log('Nodemailer Transporter en marcha')).catch(error => console.error(error));
 
 const sendMail = (email_candidato, subject, nombre_candidato) => {
     const mailOptions = {

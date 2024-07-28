@@ -1,11 +1,13 @@
 const queries = {
     createCandidato: `INSERT INTO 
         candidatos 
-            (nombre_candidato, apellidos_candidato, email_candidato, telefono_candidato, edad, carrera, nota_media, nivel_ingles)
+            (nombre_candidato, apellidos_candidato, email_candidato, telefono_candidato, edad, carrera, nota_media, nivel_ingles, sexo, cv)
     VALUES
         (?, 
         ?,
         ?, 
+        ?,
+        ?,
         ?,
         ?,
         ?,
@@ -35,7 +37,9 @@ const queries = {
         edad= COALESCE(?, edad),
         carrera= COALESCE(?, carrera),
         nota_media= COALESCE(?, nota_media),
-        nivel_ingles= COALESCE(?, nivel_ingles)
+        nivel_ingles= COALESCE(?, nivel_ingles),
+        sexo= COALESCE(?, sexo),
+        cv= COALESCE(?, cv)
     WHERE 
         id_candidato=?;`,
     deleteCandidato: `DELETE 

@@ -2,9 +2,9 @@ const queries = require('../queries/candidatos.queries')
 const connection = require('../config/db_mysql');
 
 const createCandidato = async (entry) => {
-    const { nombre_candidato, apellidos_candidato, email_candidato, telefono_candidato, edad, carrera, nota_media, nivel_ingles } = entry;
+    const { nombre_candidato, apellidos_candidato, email_candidato, telefono_candidato, edad, carrera, nota_media, nivel_ingles, sexo, cv } = entry;
     return new Promise((resolve, reject) => {
-        connection.query(queries.createCandidato, [nombre_candidato, apellidos_candidato, email_candidato, telefono_candidato, edad, carrera, nota_media, nivel_ingles], (error, results) => {
+        connection.query(queries.createCandidato, [nombre_candidato, apellidos_candidato, email_candidato, telefono_candidato, edad, carrera, nota_media, nivel_ingles, sexo, cv], (error, results) => {
             if (error) {
                 console.log(error);
                 reject({
