@@ -6,7 +6,7 @@ import { v4 as uuidv4 } from "uuid";
 const ListaCandidatos = ({ candidatosName }) => {
   const [candidatosDetails, setCandidatosDetails] = useState([]);
   const [filteredCandidatosDetails, setFilteredCandidatosDetails] = useState([]);
-  const URL = import.meta.env.VITE_API_URL;
+  const URL = import.meta.env.VITE_API_URL || 'http://localhost:3000';
 
   const getCandidatosDetails = async () => {
     try {
