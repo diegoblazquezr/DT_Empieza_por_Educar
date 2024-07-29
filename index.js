@@ -54,6 +54,7 @@ const candidaturasRoutes = require("./routes/candidaturas.routes");
 const empleadosRoutes = require("./routes/empleados.routes");
 const candidatosRoutes = require ("./routes/candidatos.routes");
 const nodemailerRoutes = require ("./routes/nodemailer.routes");
+const competenciasRoutes = require ("./routes/competencias.routes");
 
 
 // API Routes
@@ -61,6 +62,8 @@ app.use('/api/candidaturas', candidaturasRoutes);
 app.use('/api/empleados', empleadosRoutes);
 app.use('/api/candidatos', candidatosRoutes);
 app.use('/api/mailing', nodemailerRoutes);
+app.use('/api/competencias', competenciasRoutes);
+
 
 /*app.get('*', (req,res) =>{
     res.sendFile(path.join(__dirname+'/client/build/index.html'));

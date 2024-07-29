@@ -43,14 +43,15 @@ const queries = {
     WHERE 
         id_candidato=?;`,
     deleteCandidato: `DELETE 
-        cas, cd
+        cas, cd, comp
     FROM 
         candidatos cd
     LEFT JOIN 
         candidaturas cas ON cd.id_candidato = cas.id_candidato
+    LEFT JOIN 
+        competencias comp ON cas.id_candidatura = comp.id_candidatura
     WHERE 
-        cd.id_candidato = ?;`,
-
+        cd.id_candidato = ?;`
 }
 
 module.exports = queries;
