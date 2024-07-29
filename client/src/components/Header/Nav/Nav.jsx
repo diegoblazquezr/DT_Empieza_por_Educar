@@ -29,9 +29,9 @@ const Nav = ({ menuOpen }) => {
         <li>
           <Link to="/candidaturas">Candidaturas</Link>
         </li>
-        <li>
+        {/* <li>
           <Link to="/estadisticas-empleado">Estadisticas Empleado</Link>
-        </li>
+        </li> */}
         <li>
           <Link to="/empleados">Empleados</Link>
         </li>
@@ -50,9 +50,9 @@ const Nav = ({ menuOpen }) => {
       <li>
         <Link to="/candidaturas">Candidaturas</Link>
       </li>
-      {/* <li>
+      {<li>
         <Link to="/estadisticas-empleado">Estadisticas Empleado</Link>
-      </li> */}
+      </li>}
       <button onClick={handleLogout} className="logout">Logout</button>
     </ul>
 
