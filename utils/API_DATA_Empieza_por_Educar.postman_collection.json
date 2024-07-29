@@ -1,0 +1,178 @@
+{
+	"info": {
+		"_postman_id": "0c310c50-ad1e-4a45-a9e2-c9d698f18700",
+		"name": "API_DATA_Empieza_por_Educar",
+		"schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json",
+		"_exporter_id": "35364824"
+	},
+	"item": [
+		{
+			"name": "Estadísticas",
+			"item": [
+				{
+					"name": "https://api-empleados-2nuf.onrender.com/candidaturas_status",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": "https://api-empleados-2nuf.onrender.com/candidaturas_status",
+						"description": "GET para traer cuántas candidaturas están en cada status"
+					},
+					"response": []
+				},
+				{
+					"name": "https://api-empleados-2nuf.onrender.com/estadisticas/carrera",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": "https://api-empleados-2nuf.onrender.com/estadisticas/carrera",
+						"description": "GET para traer los % de candidatos que han estudiado cada carrera"
+					},
+					"response": []
+				},
+				{
+					"name": "https://api-empleados-2nuf.onrender.com/estadisticas/notas",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": "https://api-empleados-2nuf.onrender.com/estadisticas/notas",
+						"description": "GET para obtener la nota media por carrera de todos los candidatos"
+					},
+					"response": []
+				},
+				{
+					"name": "https://api-empleados-2nuf.onrender.com/estadisticas/ingles",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": "https://api-empleados-2nuf.onrender.com/estadisticas/ingles",
+						"description": "GET para obtener el % de candidatos que tiene cada nivel de inglés"
+					},
+					"response": []
+				},
+				{
+					"name": "https://api-empleados-2nuf.onrender.com/estadisticas/edad",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": "https://api-empleados-2nuf.onrender.com/estadisticas/edad",
+						"description": "GET para obtener el % de candidatos que está en cada rango de edad"
+					},
+					"response": []
+				},
+				{
+					"name": "https://api-empleados-2nuf.onrender.com/candidaturas_por_empleado?id_empleado=1",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://api-empleados-2nuf.onrender.com/candidaturas_por_empleado?id_empleado=1",
+							"protocol": "https",
+							"host": [
+								"api-empleados-2nuf",
+								"onrender",
+								"com"
+							],
+							"path": [
+								"candidaturas_por_empleado"
+							],
+							"query": [
+								{
+									"key": "id_empleado",
+									"value": "1"
+								}
+							]
+						},
+						"description": "GET para obtener el número de candidaturas que tiene cada empleado en cada status"
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Empleados",
+			"item": [
+				{
+					"name": "https://api-empleados-2nuf.onrender.com/update_empleado",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"nombre_empleado\": \"Francisco\",\n    \"id_empleado\": 7\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "https://api-empleados-2nuf.onrender.com/update_empleado",
+						"description": "PUT para editar alguno/s de los campos del empleado en base a su email."
+					},
+					"response": []
+				},
+				{
+					"name": "https://api-empleados-2nuf.onrender.com/delete_empleado?email_empleado=botero@example.com",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "https://api-empleados-2nuf.onrender.com/delete_empleado?id_empleado=18",
+							"protocol": "https",
+							"host": [
+								"api-empleados-2nuf",
+								"onrender",
+								"com"
+							],
+							"path": [
+								"delete_empleado"
+							],
+							"query": [
+								{
+									"key": "id_empleado",
+									"value": "18"
+								}
+							]
+						},
+						"description": "DELETE para eliminar un empleado en base a su email."
+					},
+					"response": []
+				},
+				{
+					"name": "https://api-empleados-2nuf.onrender.com/all_empleados?search=Roberto&offset=0&limit=5",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://api-empleados-2nuf.onrender.com/all_empleados?search=Roberto&offset=0&limit=5",
+							"protocol": "https",
+							"host": [
+								"api-empleados-2nuf",
+								"onrender",
+								"com"
+							],
+							"path": [
+								"all_empleados"
+							],
+							"query": [
+								{
+									"key": "search",
+									"value": "Roberto"
+								},
+								{
+									"key": "offset",
+									"value": "0"
+								},
+								{
+									"key": "limit",
+									"value": "5"
+								}
+							]
+						},
+						"description": "GET para obtener empeleados en base un offset y un limit. Además, opcionalmente, se puede usar el search para buscar por nombre y apellido."
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}

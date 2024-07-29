@@ -2,6 +2,7 @@ import React, { useState, useContext } from 'react';
 import axios from 'axios';
 import { useForm } from 'react-hook-form';
 import { useNavigate } from 'react-router-dom';
+import { ProgressBar } from 'react-loader-spinner';
 import { AuthContext } from "../../../context/AuthContext";
 
 
@@ -9,8 +10,6 @@ axios.defaults.withCredentials = true;
 
 const Login = () => {
   const { register, handleSubmit, formState: { errors }, reset } = useForm();
-  //const [email, setEmail] = useState('');
-  //const [password, setPassword] = useState('');
   const [error, setError] = useState('');
   const [loading, setLoading] = useState(false);
   const { setLogged, setId, setRol } = useContext(AuthContext);
@@ -64,6 +63,10 @@ const Login = () => {
           type="email"
           {...register('email', {
             required: 'El email es obligatorio',
+            pattern: { 
+              value: /^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/i, 
+              message: 'El email introducido no tiene el formato necesario' 
+            },
             minLength: {
               value: 6,
               message: 'El email debe tener al menos 6 caracteres'
@@ -83,18 +86,38 @@ const Login = () => {
             minLength: {
               value: 8,
               message: 'La contraseña debe tener al menos 8 caracteres'
+            },
+            validate: {
+              hasUppercase: value => /[A-Z]/.test(value) || 'La contraseña debe tener al menos una mayúscula',
+              hasLowercase: value => /[a-z]/.test(value) || 'La contraseña debe tener al menos una minúscula',
+              hasNumber: value => /[0-9]/.test(value) || 'La contraseña debe tener al menos un número',
+              hasSymbol: value => /[!@#$%^&*(),.?":{}|<>]/.test(value) || 'La contraseña debe tener al menos un símbolo'
             }
           })}
           placeholder="Password"
         />
         {errors.password && <p className="error">{errors.password.message}</p>}
-
-        <button type="submit" disabled={loading}>
-          {loading ? 'Iniciando sesión...' : 'Login'}
-        </button>
+        <button type="submit" disabled={loading}>{loading ? 'Iniciando sesión...' : 'Login'}</button>
       </form>
+      {loading ? (
+        <ProgressBar
+          visible={true}
+          height="100"
+          width="100"
+          color="#4fa94d"
+          barColor='#FFCC00'
+          borderColor='#11654d'
+          ariaLabel="progress-bar-loading"
+          wrapperStyle={{}}
+          wrapperClass=""
+          />
+      ) : (<p></p>)}
     </section>
   );
 };
 
 export default Login;
+
+/*  /<button type="submit" disabled={loading}>
+          {loading ? 'Iniciando sesión...' : 'Login'}
+        </button> */

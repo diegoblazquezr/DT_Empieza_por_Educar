@@ -1,6 +1,11 @@
 @import "../utils/variables.scss";
+@import "../utils/mixins.scss";
+
+
 
 .listaCandidaturas{
+    @include column;
+    @include centered-content;
     &>h2{
         color: black;
         margin-top: 30px;
@@ -8,7 +13,11 @@
         text-align: center;
         font-size: 30px;
     }
+   
 }
+
+
+
 .search-form {
     display: flex;
     justify-content: center;

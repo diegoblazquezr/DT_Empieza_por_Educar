@@ -4,6 +4,8 @@ import axios from "axios";
 import TarjetaCandidatura from "./TarjetaCandidatura";
 import { v4 as uuidv4 } from "uuid";
 import debounce from "debounce";
+import { ProgressBar } from 'react-loader-spinner';
+
 
 axios.defaults.withCredentials = true;
 
@@ -18,6 +20,8 @@ const ListaCandidaturas = ({ candidaturas, setCandidaturas }) => {
   const [selectOrder, setSelectOrder] = useState('desc');
   const [limit, setLimit] = useState(10);
   const [offset, setOffset] = useState(0);
+  const [loading, setLoading] = useState(false);
+
   const URL = import.meta.env.VITE_API_URL || 'http://localhost:3000';
 
   const updateURL = useCallback((params) => {
@@ -30,6 +34,8 @@ const ListaCandidaturas = ({ candidaturas, setCandidaturas }) => {
   }, [navigate]);
 
   const getCandidaturas = useCallback(async (search, id_empleado, status, filter, order, limit, offset) => {
+    setLoading(true);
+  
     try {
       const res = await axios.get(`${URL}/api/candidaturas`, {
         params: { search, id_empleado, status, filter, order, limit, offset }
@@ -38,9 +44,11 @@ const ListaCandidaturas = ({ candidaturas, setCandidaturas }) => {
       console.log(json);
       setCandidaturas(json);
     } catch (e) {
+      setLoading(false);
       console.error(e);
       setCandidaturas([]);
     }
+    setLoading(false);
   }, [URL, setCandidaturas]);
 
   useEffect(() => {
@@ -191,7 +199,19 @@ const ListaCandidaturas = ({ candidaturas, setCandidaturas }) => {
       </form>
 
       <article className="listaCandidaturas">
-        {renderCandidaturas()}
+      {loading ? (
+          <div className="spinner"><ProgressBar
+            visible={true}
+            height="150"
+            width="200"
+            color="#4fa94d"
+            barColor='#FFCC00'
+            borderColor='#11654d'
+            ariaLabel="progress-bar-loading"
+            wrapperStyle={{}}
+            wrapperClass=""
+          /></div>
+        ) : (renderCandidaturas())}
       </article>
       </section>
     </>

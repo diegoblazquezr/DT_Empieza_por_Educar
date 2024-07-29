@@ -318,85 +318,28 @@
 						"description": "POST para enviar los datos del empleado que se desloguea. Recibe el token por Header."
 					},
 					"response": []
-				},
+				}
+			]
+		},
+		{
+			"name": "Competencias",
+			"item": [
 				{
-					"name": "https://api-empleados-2nuf.onrender.com/all_empleados?search=Roberto&offset=0&limit=5",
+					"name": "/api/competencias",
 					"request": {
-						"method": "GET",
-						"header": [],
-						"url": {
-							"raw": "https://api-empleados-2nuf.onrender.com/all_empleados?search=Roberto&offset=0&limit=5",
-							"protocol": "https",
-							"host": [
-								"api-empleados-2nuf",
-								"onrender",
-								"com"
-							],
-							"path": [
-								"all_empleados"
-							],
-							"query": [
-								{
-									"key": "search",
-									"value": "Roberto"
-								},
-								{
-									"key": "offset",
-									"value": "0"
-								},
-								{
-									"key": "limit",
-									"value": "5"
-								}
-							]
-						},
-						"description": "GET para obtener empeleados en base un offset y un limit. Además, opcionalmente, se puede usar el search para buscar por nombre y apellido."
-					},
-					"response": []
-				},
-				{
-					"name": "https://api-empleados-2nuf.onrender.com/update_empleado",
-					"request": {
-						"method": "PUT",
+						"method": "POST",
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n    \"nombre_empleado\": \"Francisco\",\n    \"email_empleado\": \"botero@example.com\"\n}",
+							"raw": "{\n    \"id_candidatura\":\"1002\"\n}",
 							"options": {
 								"raw": {
 									"language": "json"
 								}
 							}
 						},
-						"url": "https://api-empleados-2nuf.onrender.com/update_empleado",
-						"description": "PUT para editar alguno/s de los campos del empleado en base a su email."
-					},
-					"response": []
-				},
-				{
-					"name": "https://api-empleados-2nuf.onrender.com/delete_empleado?email_empleado=botero@example.com",
-					"request": {
-						"method": "DELETE",
-						"header": [],
-						"url": {
-							"raw": "https://api-empleados-2nuf.onrender.com/delete_empleado?email_empleado=botero@example.com",
-							"protocol": "https",
-							"host": [
-								"api-empleados-2nuf",
-								"onrender",
-								"com"
-							],
-							"path": [
-								"delete_empleado"
-							],
-							"query": [
-								{
-									"key": "email_empleado",
-									"value": "botero@example.com"
-								}
-							]
-						},
-						"description": "DELETE para eliminar un empleado en base a su email."
+						"url": "https://dt-empieza-por-educar.onrender.com/api/competencias",
+						"description": "POST con el id_candidatura para setear en 0 las competencias iniciales"
 					},
 					"response": []
 				}
