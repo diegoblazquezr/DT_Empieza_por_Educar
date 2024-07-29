@@ -145,7 +145,6 @@ const ListaCandidaturas = ({ candidaturas, setCandidaturas }) => {
   return (
     <>
     <section className="listaCandidaturas">
-      <h2>Candidaturas</h2>
       <form className="search-form" onSubmit={(e) => e.preventDefault()}>
         <input
           type="text"

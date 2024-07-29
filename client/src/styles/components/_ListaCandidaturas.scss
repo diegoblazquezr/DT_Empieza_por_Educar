@@ -1,6 +1,11 @@
 @import "../utils/variables.scss";
 
 .listaCandidaturas{
+    margin: 10px 0px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    justify-items: center;
     &>h2{
         color: black;
         margin-top: 30px;
@@ -16,7 +21,7 @@
     color: white;
     margin-top: 30px;
     margin-bottom: 40px;
-
+    width: 100%;
 
     & > input {
       -webkit-box-shadow: inset 0px 0px 26px 1px rgba(0, 0, 0, 0.75);
@@ -29,6 +34,7 @@
       text-align: center;
       background-color: grey;
       color: white;
+      font-size: 100%;
     }
     & > button {
       border-radius: 10px;
@@ -37,7 +43,7 @@
       text-align: center;
       background-color: $verde;
       margin-right: 10px;
-
+      font-size: 100%;
       color: white;
       
     }
@@ -47,7 +53,7 @@
         box-shadow: inset 0px 0px 26px 1px rgba(0, 0, 0, 0.75);
         border-radius: 10px;
         margin-right: 10px;
-
+        font-size: 100%;
         width: 20%;
         height: 50px;
         text-align: center;
@@ -59,11 +65,9 @@
 }
 
 @media (max-width: 768px) {
+
     .search-form {
         flex-direction: column;
-        justify-content: center;
-        justify-items: center;
-        display: grid;
         & > input {
             width: 100%;
             margin-bottom: 10px;

@@ -1,11 +1,11 @@
 @import "../utils/variables.scss";
 
 .tarjetaCandidatura{
-
     border: 3px solid $amarillo;
     border-radius: 20px;
-    padding: 10px 100px;
-    margin: 10px 100px;
+    padding: 10px 20px;
+    margin: 10px 20px;
+    width: 30%;
     &>.IDCandidatura{
         margin-bottom: 20px;
         margin-top: 10px;
@@ -23,7 +23,7 @@
         display: flex;
         text-align: center;
         flex-wrap: wrap;
-        justify-content: space-evenly;
+        justify-content: center;
         align-items: center;
         padding-right: 10px;
         &>h3{
@@ -66,6 +66,7 @@
     .tarjetaCandidatura{
         padding: 10px 20px;
         margin: 10px 20px;
+        width: 100%;
         &>.IDCandidatura{
             padding: 5px;
             font-size: 15px;
