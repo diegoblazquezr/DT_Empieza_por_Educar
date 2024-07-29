@@ -22,26 +22,32 @@
       -webkit-box-shadow: inset 0px 0px 26px 1px rgba(0, 0, 0, 0.75);
       -moz-box-shadow: inset 0px 0px 26px 1px rgba(0, 0, 0, 0.75);
       box-shadow: inset 0px 0px 26px 1px rgba(0, 0, 0, 0.75);
-      border-radius: 30px;
+      border-radius: 10px;
       width: 30%;
       height: 50px;
+      margin-right: 10px;
       text-align: center;
       background-color: grey;
       color: white;
     }
     & > button {
-      border-radius: 30px;
+      border-radius: 10px;
       width: 10%;
       height: 50px;
       text-align: center;
       background-color: $verde;
+      margin-right: 10px;
+
       color: white;
+      
     }
     &>select{
         -webkit-box-shadow: inset 0px 0px 26px 1px rgba(0, 0, 0, 0.75);
         -moz-box-shadow: inset 0px 0px 26px 1px rgba(0, 0, 0, 0.75);
         box-shadow: inset 0px 0px 26px 1px rgba(0, 0, 0, 0.75);
-        border-radius: 30px;
+        border-radius: 10px;
+        margin-right: 10px;
+
         width: 20%;
         height: 50px;
         text-align: center;

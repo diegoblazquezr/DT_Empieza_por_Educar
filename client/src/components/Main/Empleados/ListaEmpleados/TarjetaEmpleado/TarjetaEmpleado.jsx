@@ -1,4 +1,4 @@
-import React from 'react';
+import React from "react";
 
 const TarjetaEmpleado = ({ empleado }) => {
   if (!empleado) {
@@ -7,17 +7,23 @@ const TarjetaEmpleado = ({ empleado }) => {
   return (
     <article className="tarjetaEmpleado">
       <div className="nombreEmpleado">
-        <h3>{empleado.nombre_empleado} {empleado.apellidos_empleado}</h3>
-        </div>
-        <div className="datosEmpleado">
+        <h3>
+          {empleado.nombre_empleado} {empleado.apellidos_empleado}
+        </h3>
+      </div>
+      <div className="emailEmpleado">
         <h3>Email:</h3>
         <p>{empleado.email_empleado}</p>
+      </div>
+      <div className="rolEmpleado">
         <h3>Rol:</h3>
         <p>{empleado.rol}</p>
-        <h3>Última Conexión:</h3>
-        <p>{empleado.last_logged_date_formatted}</p>
+      </div>
+      <div className="candidaturasEmpleado">
         <h3>Número de Candidaturas:</h3>
         <p>{empleado.num_candidaturas}</p>
+      </div>
+      <div className="idEmpleado">
         <h3>Id:</h3>
         <p>{empleado.id_empleado}</p>
       </div>
@@ -26,4 +32,3 @@ const TarjetaEmpleado = ({ empleado }) => {
 };
 
 export default TarjetaEmpleado;
-
