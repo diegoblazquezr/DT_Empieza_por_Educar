@@ -12,10 +12,10 @@ const Nav = ({ menuOpen }) => {
           <Link to="/estadisticas-empleado">Estadisticas Empleado</Link>
         </li>
         <li>
-          <Link to="/lista-empleados">Empleados</Link>
+          <Link to="/empleados">Empleados</Link>
         </li>
         <li>
-          <Link to="/lista-candidatos">Candidatos</Link>
+          <Link to="/candidatos">Candidatos</Link>
         </li>
         <li>
           <Link to="/estadisticas-admin">Estadisticas Admin</Link>

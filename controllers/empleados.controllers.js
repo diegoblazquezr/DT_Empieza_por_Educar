@@ -1,6 +1,7 @@
 const empleado = require('../models/empleados.models');
 const jwt = require('jsonwebtoken');
 const bcrypt = require('bcrypt');
+const { use } = require('../middlewares/empleadoRoutes');
 const saltRounds = 10;
 const jwt_secret = process.env.ULTRA_SECRET_KEY;
 
@@ -74,17 +75,22 @@ const login = async (req, res) => {
 
             const userForToken = {
                 id: userData.id_empleado,
-                rol: userData.rol
+                rol: userData.rol,
+                islogged: userData.is_logged
             };
 
             const token = jwt.sign(userForToken, jwt_secret, { expiresIn: '20m' });
 
-            res.cookie('token', token, { httpOnly: true, sameSite: 'none', maxAge: 20 * 60 * 1000 });
+            // res.cookie('token', token, { httpOnly: false, secure: true, maxAge: 20 * 60 * 1000 });
+            res.cookie('token', token, { httpOnly: false, secure: true, maxAge: 24 * 60 * 60 * 1000 });
 
             res.status(200).json({
                 msg: 'Correct authentication',
-                token
+                rol: userData.rol,
+                token,
+                id: userData.id_empleado
             });
+
         } else {
             return res.status(400).json({ msg: 'Incorrect user or password' });
         }
