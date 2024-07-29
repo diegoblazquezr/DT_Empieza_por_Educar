@@ -34,7 +34,7 @@ const readCandidaturasController = async (req, res) => {
         return res.status(400).json("Limit no puede superar 50");
     }
     let candidaturas;
-    console.log(req.query);
+    // console.log(req.query);
     try {
         if (req.query.id_candidatura) {
             const errors = validationResult(req);

@@ -23,6 +23,9 @@ const validateCreateEmpleado = [
     body('rol')
         .notEmpty().withMessage('rol es obligatorio')
         .isString().withMessage('rol solo puede contener texto')
+        .isIn(['admin', 'reclutador'])
+        .withMessage("Rol debe ser uno de los siguientes: admin o reclutador"),
+        
 ];
 
 const validateReadEmpleadoByEmail = [

@@ -44,7 +44,9 @@ const createCandidatoValidator = [
         .isString().withMessage('Sexo solo puede contener texto')
         .isLength({ min: 5, max: 20 }).withMessage('Sexo debe tener entre 5 y 20 caracteres')
         .matches(/^[A-Za-zÁÉÍÓÚáéíóúÀÈÌÒÙàèìòùÂÊÎÔÛâêîôûÄËÏÖÜäëïöüÿÇçÑñ\s'-]+$/i
-        ).withMessage('Sexo solo puede contener letras'),
+        ).withMessage('Sexo solo puede contener letras')
+        .isIn(['Hombre', 'Mujer', 'No binario', 'Género fluido', 'Queer', 'Poligénero', 'Agénero', 'Bigénero'])
+        .withMessage("Sexo debe ser uno de los siguientes: Hombre, Mujer, No binario, Género fluido, Queer, Poligénero, Agénero o Bigénero"),
     body('cv')
         .isString().withMessage('CV solo puede contener texto')
         .isLength({ min: 10, max: 2048 }).withMessage('Sexo debe tener entre 5 y 20 caracteres')
