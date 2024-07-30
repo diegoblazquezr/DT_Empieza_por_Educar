@@ -37,7 +37,7 @@ const ListaCandidaturas = ({ candidaturas, setCandidaturas }) => {
     setLoading(true);
   
     try {
-      const res = await axios.get(`${URL}/api/candidaturas`, {
+      const res = await axios.get(`http://localhost:3000/api/candidaturas`, {
         params: { search, id_empleado, status, filter, order, limit, offset }
       });
       const json = res.data;

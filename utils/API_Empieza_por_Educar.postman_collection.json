@@ -138,109 +138,6 @@
 			]
 		},
 		{
-			"name": "Candidaturas",
-			"item": [
-				{
-					"name": "api/candidaturas",
-					"request": {
-						"method": "POST",
-						"header": [],
-						"body": {
-							"mode": "raw",
-							"raw": "{\r\n    \"id_candidato\": 17\r\n}",
-							"options": {
-								"raw": {
-									"language": "json"
-								}
-							}
-						},
-						"url": "https://dt-empieza-por-educar.onrender.com/api/candidaturas"
-					},
-					"response": []
-				},
-				{
-					"name": "/api/candidaturas?search=mar&limit=10&offset=0",
-					"request": {
-						"method": "GET",
-						"header": [],
-						"url": {
-							"raw": "https://dt-empieza-por-educar.onrender.com/api/candidaturas?search=mar&limit=10&offset=0",
-							"protocol": "https",
-							"host": [
-								"dt-empieza-por-educar",
-								"onrender",
-								"com"
-							],
-							"path": [
-								"api",
-								"candidaturas"
-							],
-							"query": [
-								{
-									"key": "search",
-									"value": "mar"
-								},
-								{
-									"key": "limit",
-									"value": "10"
-								},
-								{
-									"key": "offset",
-									"value": "0"
-								}
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "/api/candidaturas",
-					"request": {
-						"method": "PUT",
-						"header": [],
-						"body": {
-							"mode": "raw",
-							"raw": "{\r\n    \"id_empleado\": 6,\r\n    \"status\": \"Entrevista 1\",\r\n    \"id_candidatura\": 1005\r\n}",
-							"options": {
-								"raw": {
-									"language": "json"
-								}
-							}
-						},
-						"url": "https://dt-empieza-por-educar.onrender.com/api/candidaturas"
-					},
-					"response": []
-				},
-				{
-					"name": "/api/candidaturas?id_candidatura=1005",
-					"request": {
-						"method": "DELETE",
-						"header": [],
-						"url": {
-							"raw": "https://dt-empieza-por-educar.onrender.com/api/candidaturas?id_candidatura=1005",
-							"protocol": "https",
-							"host": [
-								"dt-empieza-por-educar",
-								"onrender",
-								"com"
-							],
-							"path": [
-								"api",
-								"candidaturas"
-							],
-							"query": [
-								{
-									"key": "id_candidatura",
-									"value": "1005"
-								}
-							]
-						}
-					},
-					"response": []
-				}
-			]
-		},
-		{
 			"name": "Empleados",
 			"item": [
 				{
@@ -340,6 +237,152 @@
 						},
 						"url": "https://dt-empieza-por-educar.onrender.com/api/competencias",
 						"description": "POST con el id_candidatura para setear en 0 las competencias iniciales"
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Candidaturas",
+			"item": [
+				{
+					"name": "/api/candidaturas",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"id_candidato\": 17\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "https://dt-empieza-por-educar.onrender.com/api/candidaturas"
+					},
+					"response": []
+				},
+				{
+					"name": "/api/candidaturas?id_candidatura=1",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://dt-empieza-por-educar.onrender.com/api/candidaturas?id_candidatura=1",
+							"protocol": "https",
+							"host": [
+								"dt-empieza-por-educar",
+								"onrender",
+								"com"
+							],
+							"path": [
+								"api",
+								"candidaturas"
+							],
+							"query": [
+								{
+									"key": "id_candidatura",
+									"value": "1"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "/api/candidaturas?search=mar&limit=10&offset=0",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://dt-empieza-por-educar.onrender.com/api/candidaturas?search=mar&id_empleado=1&status=&filter=nombre_candidato&order=asc&limit=10&offset=0",
+							"protocol": "https",
+							"host": [
+								"dt-empieza-por-educar",
+								"onrender",
+								"com"
+							],
+							"path": [
+								"api",
+								"candidaturas"
+							],
+							"query": [
+								{
+									"key": "search",
+									"value": "mar"
+								},
+								{
+									"key": "id_empleado",
+									"value": "1"
+								},
+								{
+									"key": "status",
+									"value": ""
+								},
+								{
+									"key": "filter",
+									"value": "nombre_candidato"
+								},
+								{
+									"key": "order",
+									"value": "asc"
+								},
+								{
+									"key": "limit",
+									"value": "10"
+								},
+								{
+									"key": "offset",
+									"value": "0"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "/api/candidaturas",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"id_empleado\": 6,\r\n    \"status\": \"Entrevista 1\",\r\n    \"id_candidatura\": 1005\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "https://dt-empieza-por-educar.onrender.com/api/candidaturas"
+					},
+					"response": []
+				},
+				{
+					"name": "/api/candidaturas?id_candidatura=1005",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "https://dt-empieza-por-educar.onrender.com/api/candidaturas?id_candidatura=1005",
+							"protocol": "https",
+							"host": [
+								"dt-empieza-por-educar",
+								"onrender",
+								"com"
+							],
+							"path": [
+								"api",
+								"candidaturas"
+							],
+							"query": [
+								{
+									"key": "id_candidatura",
+									"value": "1005"
+								}
+							]
+						}
 					},
 					"response": []
 				}

@@ -14,6 +14,7 @@ const Estadisticas = () => {
   //const [statsAno, setStatsAno] = useState([]);
   const [stats, setStats] = useState([]);
   const [statsCarrera, setStatsCarrera] = useState([]);
+  const [statsNotas, setStatsNotas] = useState([]);
   const [searching, setSearching] = useState(false);
   const [screenWidth, setScreenWidth] = useState(window.innerWidth);
   const [error, setError] = useState('');
@@ -37,15 +38,19 @@ const isMobile = screenWidth < 600;
 
     try {
       const res = await axios.get('https://api-empleados-2nuf.onrender.com/candidaturas_status');
-      console.log(res);
+      //console.log(res);
 
       if (res) {
         setStats([res.data]);
         setError('');
         const res2 = await axios.get('https://api-empleados-2nuf.onrender.com/estadisticas/carrera');
-        console.log(res2);
+        //console.log(res2);
         if (res2) {
           setStatsCarrera([res2.data]);
+          setError('');
+          const res3 = await axios.get('https://api-empleados-2nuf.onrender.com/estadisticas/notas');
+          //console.log(res3);
+          setStatsNotas([res3.data]);
         }
       }
       setError('');
@@ -75,117 +80,141 @@ const isMobile = screenWidth < 600;
 
   const dataCarrera = statsCarrera.length > 0 ? [
     {
+      "id": "ADE",
+      "label": "ADE",
+      "value": statsCarrera[0].ade ||0,
+      "color": "hsl(350, 70%, 50%)"
+    },
+    {
       "id": "Arquitectura",
       "label": "Arquitectura",
-      "value": statsCarrera[0].arquitectura,
+      "value": statsCarrera[0].arquitectura ||0,
       "color": "hsl(273, 70%, 50%)"
     },
     {
       "id": "Biología",
       "label": "Biología",
-      "value": statsCarrera[0].biología,
+      "value": statsCarrera[0].biología ||0,
       "color": "hsl(350, 70%, 50%)"
     },
     {
       "id": "Derecho",
       "label": "Derecho",
-      "value": statsCarrera[0].derecho,
+      "value": statsCarrera[0].derecho ||0,
       "color": "hsl(264, 70%, 50%)"
     },
     {
       "id": "Economía",
       "label": "Economía",
-      "value": statsCarrera[0].economía,
+      "value": statsCarrera[0].economía ||0,
       "color": "hsl(122, 70%, 50%)"
     },
     {
-      "id": "educación_primaria",
-      "label": "educación_primaria",
-      "value": statsCarrera[0].educación_primaria,
+      "id": "E. Infantil",
+      "label": "E. Infantil",
+      "value": statsCarrera[0].educación_infantil||0,
+      "color": "hsl(258, 70%, 50%)"
+    },
+    {
+      "id": "E. Primaria",
+      "label": "E. Primaria",
+      "value": statsCarrera[0].educación_primaria||0,
       "color": "hsl(273, 70%, 50%)"
     },
     {
-      "id": "educación_social",
-      "label": "educación_social",
-      "value": statsCarrera[0].educación_social,
+      "id": "E. Social",
+      "label": "E. Social",
+      "value": statsCarrera[0].educación_social||0,
       "color": "hsl(273, 70%, 50%)"
     },
     {
-      "id": "filosofía",
-      "label": "filosofía",
-      "value": statsCarrera[0].filosofía,
+      "id": "Filosofía",
+      "label": "Filosofía",
+      "value": statsCarrera[0].filosofía||0,
       "color": "hsl(273, 70%, 50%)"
     },
     {
       "id": "física",
       "label": "física",
-      "value": statsCarrera[0].física,
+      "value": statsCarrera[0].física||0,
       "color": "hsl(273, 70%, 50%)"
     },
     {
       "id": "historia",
       "label": "historia",
-      "value": statsCarrera[0].historia,
+      "value": statsCarrera[0].historia||0,
       "color": "hsl(273, 70%, 50%)"
     },
     {
       "id": "informática",
       "label": "informática",
-      "value": statsCarrera[0].informática,
+      "value": statsCarrera[0].informática||0,
       "color": "hsl(273, 70%, 50%)"
     },
     {
       "id": "ingeniería",
       "label": "ingeniería",
-      "value": statsCarrera[0].ingeniería,
+      "value": statsCarrera[0].ingeniería||0,
       "color": "hsl(273, 70%, 50%)"
     },
     {
       "id": "literatura",
       "label": "literatura",
-      "value": statsCarrera[0].literatura,
+      "value": statsCarrera[0].literatura||0,
       "color": "hsl(273, 70%, 50%)"
     },
     {
       "id": "matemáticas",
       "label": "matemáticas",
-      "value": statsCarrera[0].matemáticas,
+      "value": statsCarrera[0].matemáticas||0,
       "color": "hsl(273, 70%, 50%)"
     },
     {
       "id": "Medicina",
       "label": "Medicina",
-      "value": statsCarrera[0].medicina,
+      "value": statsCarrera[0].medicina||0,
       "color": "hsl(258, 70%, 50%)"
     }, 
     {
+      "id": "otra",
+      "label": "otra",
+      "value": statsCarrera[0].otra||0,
+      "color": "hsl(273, 70%, 50%)"
+    },
+    {
       "id": "pedagogía",
       "label": "pedagogía",
-      "value": statsCarrera[0].pedagogía,
+      "value": statsCarrera[0].pedagogía||0,
+      "color": "hsl(273, 70%, 50%)"
+    },
+    {
+      "id": "Periodismo",
+      "label": "Periodismo",
+      "value": statsCarrera[0].periodismo||0,
       "color": "hsl(273, 70%, 50%)"
     },
     {
       "id": "psicología",
       "label": "psicología",
-      "value": statsCarrera[0].psicología,
+      "value": statsCarrera[0].psicología||0,
       "color": "hsl(273, 70%, 50%)"
     },
     {
       "id": "psicopedagogía",
       "label": "psicopedagogía",
-      "value": statsCarrera[0].psicopedagogía,
+      "value": statsCarrera[0].psicopedagogía||0,
       "color": "hsl(273, 70%, 50%)"
     },
     {
       "id": "química",
       "label": "química",
-      "value": statsCarrera[0].química,
+      "value": statsCarrera[0].química||0,
       "color": "hsl(273, 70%, 50%)"
     },
     {
       "id": "sociología",
       "label": "sociología",
-      "value": statsCarrera[0].sociología,
+      "value": statsCarrera[0].sociología||0,
       "color": "hsl(273, 70%, 50%)"
     }
   ] : [];
@@ -224,11 +253,24 @@ const isMobile = screenWidth < 600;
     arcLinkLabelsColor: { from: 'color' },
     arcLabelsSkipAngle: 10,
     arcLabelsTextColor: { from: 'color', modifiers: [['darker', 2]] },
-    arcLinkLabel: d => `${d.id} (${d.value})`,
+    arcLinkLabel: d => `${d.id} (${d.value}%)`,
     responsive: true,
-    legends: isMobile ? [] : [legendProps]
+    legends: []
   };
 
+  const dataCarreraNota = [
+    {
+        "carrera": "I. Informática",
+        "candidaturas": 7.26,
+        "nota media": 8.5
+    },
+    {
+        "carrera": "Medicina",
+        "candidaturas": 6.5,
+        "nota media": 9.2
+    },
+    // más datos
+];
   
 
 
@@ -257,14 +299,14 @@ const isMobile = screenWidth < 600;
               data={dataFINAL}
               keys={['value']}
               indexBy="type"
-              margin={{ top: 50, right: 20, bottom: 50, left: 90 }}
+              margin={{ top: 50, right: 20, bottom: 50, left: 100 }}
               padding={0.3}
               groupMode="grouped"
               layout={layoutVariable}
               valueScale={{ type: 'linear' }}
               indexScale={{ type: 'band', round: true }}
               colors={({ data }) => data.color}
-              borderColor="black"
+              borderColor="green"
               axisTop={null}
               axisRight={null}
               axisBottom={{
@@ -276,18 +318,11 @@ const isMobile = screenWidth < 600;
               }}
               labelSkipWidth={12}
               labelSkipHeight={12}
-              labelTextColor={{
-                from: 'color',
-                modifiers: [
-                  [
-                    'darker',
-                    1.6
-                  ]
-                ]
-              }}
+              labelTextColor="black"
               legends={[]}
               role="application"
-              ariaLabel="Nivo bar chart demo"
+              isFocusable={true}
+              ariaLabel="Gráfica de nº de candidaturas por status"
               barAriaLabel={e => `${e.id}: ${e.formattedValue} in user: ${e.indexValue}`}
             />
           </div>
@@ -305,6 +340,69 @@ const isMobile = screenWidth < 600;
       ) : (
         <p>No hay estadísticas disponibles.</p>
       )}
+      
+        <>
+          <h3>Nº de candidatos por carrera y nota media</h3>
+          <div className="grafica-combinada">
+          <ResponsiveBar
+        data={dataCarreraNota}
+        keys={['candidaturas', 'nota media']}
+        indexBy="carrera"
+        margin={{ top: 50, right: 50, bottom: 50, left: 100 }}
+        padding={0.3}
+        groupMode="grouped"
+        layout="horizontal"
+        colors={{ scheme: 'yellow_green' }}
+        borderColor={{ from: 'color', modifiers: [['darker', 1.6]] }}
+        axisTop={null}
+        axisRight={null}
+        axisBottom={{
+            tickSize: 10,
+            tickValues: 4,
+            tickPadding: 5,
+            tickRotation: 35,
+    
+        }}
+        axisLeft={{
+            tickSize: 5,
+            tickPadding: 5,
+            tickRotation: 0,
+         
+        }}
+        labelSkipWidth={15}
+        labelSkipHeight={15}
+        labelTextColor="black"
+        legends={[
+            {
+                dataFrom: 'keys',
+                anchor: 'top-left',
+                direction: 'row',
+                justify: false,
+                translateX: 20,
+                translateY: 0,
+                itemsSpacing: 20,
+                itemWidth: 80,
+                itemHeight: 20,
+                itemDirection: 'left-to-right',
+                itemOpacity: 0.85,
+                symbolSize: 20,
+                effects: [
+                    {
+                        on: 'hover',
+                        style: {
+                            itemOpacity: 1
+                        }
+                    }
+                ]
+            }
+        ]}
+        role="application"
+        isFocusable={true}
+        ariaLabel="Gráfico de barras agrupadas"
+    />
+          </div>
+        </>
+    
     </article>
     )}
   </section>

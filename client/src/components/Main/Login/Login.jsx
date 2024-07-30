@@ -14,7 +14,7 @@ const Login = () => {
   const [loading, setLoading] = useState(false);
   const { setLogged, setId, setRol } = useContext(AuthContext);
   const navigate = useNavigate();
-  const URL = /*import.meta.env.VITE_API_URL ||*/ 'http://localhost:3000'; //OJO HABRÁ QUE DESCOMENTAR
+  const URL = import.meta.env.VITE_API_URL || 'http://localhost:3000';
 
 
   const onSubmit = async (data) => {
