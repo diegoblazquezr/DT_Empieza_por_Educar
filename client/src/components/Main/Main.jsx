@@ -55,7 +55,7 @@ const Main = () => {
               <RolManager
                 component={<EstadisticasEmpleado />}
                 role={rol}
-                allowedRoles={["admin"]}
+                allowedRoles={["reclutador"]}
               />
             }
             logged={logged}

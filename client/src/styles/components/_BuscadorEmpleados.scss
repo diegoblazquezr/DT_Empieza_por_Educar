@@ -5,6 +5,8 @@
     display: flex;
     justify-content: center;
     margin: 40px 0;
+    margin-bottom: 10px;
+    gap: 5px;
     & > input {
       -webkit-box-shadow: inset 0px 0px 26px 1px rgba(0, 0, 0, 0.75);
       -moz-box-shadow: inset 0px 0px 26px 1px rgba(0, 0, 0, 0.75);
@@ -30,9 +32,12 @@
       justify-content: center;
       margin: 40px 0;
     }
+   
   }
 }
+
 .botonesEmpleado{
+  margin-top: 10px;
   & > button {
     border-radius: 30px;
     width: 20%;

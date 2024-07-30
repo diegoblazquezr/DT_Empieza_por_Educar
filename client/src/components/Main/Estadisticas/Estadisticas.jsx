@@ -19,7 +19,6 @@ const Estadisticas = () => {
   const [searching, setSearching] = useState(false);
   const [screenWidth, setScreenWidth] = useState(window.innerWidth);
   const [error, setError] = useState('');
-  const URL = import.meta.env.VITE_API_URL;
 
   useEffect(() => {
     getStats();
@@ -318,10 +317,10 @@ const Estadisticas = () => {
       <div className="spinner"><CirclesWithBar
         height="150"
         width="150"
-        color="#4fa94d"
-        outerCircleColor="#4fa94d"
-        innerCircleColor="#4fa94d"
-        barColor="#4fa94d"
+        color="#11654d"
+        outerCircleColor="#11654d"
+        innerCircleColor="#FFCC00"
+        barColor="#FFCC00"
         ariaLabel="circles-with-bar-loading"
         wrapperStyle={{}}
         wrapperClass=""
