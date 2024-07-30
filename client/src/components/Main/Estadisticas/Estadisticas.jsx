@@ -275,7 +275,7 @@ const isMobile = screenWidth < 600;
 
 
   return <> <section className="estadisticas">
-    <h2>Estadisticas Generales</h2>
+    <h2>Estadísticas Generales</h2>
     {searching ? (
       <div className="spinner"><CirclesWithBar
         height="150"
@@ -342,7 +342,7 @@ const isMobile = screenWidth < 600;
       )}
       
         <>
-          <h3>Nº de candidatos por carrera y nota media</h3>
+          <h3>Nº de candidat@s por carrera y nota media</h3>
           <div className="grafica-combinada">
           <ResponsiveBar
         data={dataCarreraNota}

@@ -1,6 +1,8 @@
-import React, {useState} from "react";
+import React, { useState } from "react";
 import { FaPencil, FaX } from "react-icons/fa6";
 import axios from 'axios';
+import { useForm } from 'react-hook-form';
+
 
 const TarjetaEmpleado = ({ empleado, onUpdate, onDelete }) => {
   if (!empleado) {
@@ -11,7 +13,7 @@ const TarjetaEmpleado = ({ empleado, onUpdate, onDelete }) => {
   const [editDialogVisible, setEditDialogVisible] = useState(false);
   const [confirmDialogVisible, setConfirmDialogVisible] = useState(false);
   const [loading, setLoading] = useState(false);
-  const [editValues, setEditValues] = useState({
+  /*const [editValues, setEditValues] = useState({
     nombre_empleado: empleado.nombre_empleado,
     apellidos_empleado: empleado.apellidos_empleado,
     email_empleado: empleado.email_empleado,
@@ -19,26 +21,37 @@ const TarjetaEmpleado = ({ empleado, onUpdate, onDelete }) => {
     last_logged_date: empleado.last_logged_date,
     num_candidaturas: empleado.num_candidaturas,
     id_empleado: empleado.id_empleado
+  });*/
+  const { register, handleSubmit, reset, formState: { errors } } = useForm({
+    defaultValues: {
+      nombre_empleado: empleado.nombre_empleado,
+      apellidos_empleado: empleado.apellidos_empleado,
+      email_empleado: empleado.email_empleado,
+      rol: empleado.rol,
+      last_logged_date: empleado.last_logged_date,
+      num_candidaturas: empleado.num_candidaturas,
+    }
   });
 
-  const handleEdit = (e) => {
+  /*const handleEdit = (e) => {
     const { name, value } = e.target;
     setEditValues({
       ...editValues,
       [name]: value
     });
-  };
+  };*/
 
-  const handleEditSubmit = async (e) => {
-    e.preventDefault();
+  const onSubmit = async (data) => {
+    //e.preventDefault();
     setLoading(true);
     try {
-      const response = await axios.put(`${URL}/update_empleado`, editValues);
-      const updatedEmpleado = { ...empleado, ...editValues };
+      //const response = await axios.put(`${URL}/update_empleado`, editValues);
+      const response = await axios.put(`${URL}/update_empleado`, { ...data, id_empleado: empleado.id_empleado });
+      const updatedEmpleado = { ...empleado, ...data };
       onUpdate(updatedEmpleado);
       setEditDialogVisible(false);
     } catch (error) {
-      console.error("Error updating empleado:", error);
+      console.error("Error al actualizar el empleado:", error);
     } finally {
       setLoading(false);
     }
@@ -52,6 +65,7 @@ const TarjetaEmpleado = ({ empleado, onUpdate, onDelete }) => {
   const hideEditDialog = (e) => {
     e.stopPropagation();
     setEditDialogVisible(false);
+    reset();
   };
 
   const showConfirmDialog = (e) => {
@@ -78,73 +92,81 @@ const TarjetaEmpleado = ({ empleado, onUpdate, onDelete }) => {
   };
 
   const formatLastLoggedDate = (str) => {
-    return(str.replace(/([T])/g, ' Hora: '));
+    return (str.replace(/([T])/g, ' Hora: '));
   };
 
   return (
     <article className="tarjetaEmpleado">
       {loading && <div className="loading">Loading...</div>}
       {editDialogVisible ? (
-        <form onSubmit={handleEditSubmit} className="editarEmpleadoForm">
+        <form onSubmit={handleSubmit(onSubmit)} className="editarEmpleadoForm">
           <div className="inputContainer">
             <label htmlFor="nombre_empleado">Nombre</label>
             <input
               type="text"
-              name="nombre_empleado"
-              value={editValues.nombre_empleado}
-              onChange={handleEdit}
+              id="nombre_empleado"
+              {...register('nombre_empleado', {
+                required: 'Nombre es obligatorio', pattern: {
+                  value: /^[A-Za-zÁÉÍÓÚáéíóúÀÈÌÒÙàèìòùÂÊÎÔÛâêîôûÄËÏÖÜäëïöüÿÇçÑñ\s'-]+$/i
+                  , message: 'El nombre solo admite letras'
+                }, minLength: { value: 2, message: 'El nombre debe tener más de 2 letras' }, maxLength: { value: 70, message: 'El nombre debe tener menos de 70 caracteres' }
+              })}
             />
+            {errors.nombre_empleado && <p>{errors.nombre_empleado.message}</p>}
           </div>
           <div className="inputContainer">
             <label htmlFor="apellidos_empleado">Apellidos</label>
             <input
               type="text"
-              name="apellidos_empleado"
-              value={editValues.apellidos_empleado}
-              onChange={handleEdit}
+              id="apellidos_empleado"
+              {...register('apellidos_empleado', {
+                required: 'Apellidos son obligatorios', pattern: {
+                  value: /^[A-Za-zÁÉÍÓÚáéíóúÀÈÌÒÙàèìòùÂÊÎÔÛâêîôûÄËÏÖÜäëïöüÿÇçÑñ\s'-]+$/i
+                  , message: 'Apellidos solo admite letras'
+                }, minLength: { value: 2, message: 'Apellidos/o debe tener más de 3 letras' }, maxLength: { value: 70, message: 'Apellidos/o debe tener menos de 70 caracteres' }
+              })}
             />
+            {errors.apellidos_empleado && <p>{errors.apellidos_empleado.message}</p>}
           </div>
           <div className="inputContainer">
             <label htmlFor="email_empleado">Email</label>
             <input
               type="email"
-              name="email_empleado"
-              value={editValues.email_empleado}
-              onChange={handleEdit}
+              id="email_empleado"
+              {...register('email_empleado', { required: 'Email es obligatorio', pattern: { value: /^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/i, message: 'El email introducido no tiene el formato necesario' }, minLength: { value: 6, message: 'El email debe tener más de 6 caracteres' }, maxLength: { value: 100, message: 'El email no puede tener más de 100 caracteres' } })}
             />
+            {errors.email_empleado && <p>{errors.email_empleado.message}</p>}
           </div>
           <div className="inputContainer">
-            <label htmlFor="rol">Rol</label>
-            <input
-              type="text"
-              name="rol"
-              value={editValues.rol}
-              onChange={handleEdit}
-            />
+          <label htmlFor="rol">Rol</label>
+            <select {...register('rol', { required: 'Rol es obligatorio' })}>
+              <option value="">--Rol--</option>
+              <option value="admin">Admin</option>
+              <option value="reclutador">Reclutador</option>
+            </select>
+            {errors.rol && <p>{errors.rol.message}</p>}
           </div>
           <div className="inputContainer">
             <label htmlFor="last_logged_date">Última Conexión</label>
             <input
               type="text"
-              name="last_logged_date"
-              value={editValues.last_logged_date}
-              onChange={handleEdit}
-              disabled={true}
+              id="last_logged_date"
+              {...register('last_logged_date')}
+              disabled
             />
           </div>
           <div className="inputContainer">
             <label htmlFor="num_candidaturas">Número de Candidaturas</label>
             <input
               type="number"
-              name="num_candidaturas"
-              value={editValues.num_candidaturas}
-              onChange={handleEdit}
-              disabled={true}
+              id="num_candidaturas"
+              {...register('num_candidaturas')}
+              disabled
             />
           </div>
           <div className="btnContainer">
-          <button type="submit">Save</button>
-          <button type='button' onClick={hideEditDialog}>Cancel</button>
+            <button type="submit">Save</button>
+            <button type='button' onClick={hideEditDialog}>Cancel</button>
           </div>
         </form>
       ) : (
@@ -174,8 +196,8 @@ const TarjetaEmpleado = ({ empleado, onUpdate, onDelete }) => {
         <div className="confirmDialog">
           <p>¿Estás seguro de que quieres eliminar este empleado?</p>
           <div className="btnContainer">
-          <button onClick={handleDelete}>Sí</button>
-          <button onClick={hideConfirmDialog}>No</button>
+            <button onClick={handleDelete}>Sí</button>
+            <button onClick={hideConfirmDialog}>No</button>
           </div>
         </div>
       )}
