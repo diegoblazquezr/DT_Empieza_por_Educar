@@ -1,28 +1,158 @@
 @import "../utils/variables.scss";
 
-.detallesCandidatura{
-    text-align: center;
-    &>h2{
-        padding: 40px;
+
+
+.container-detalles {
+    margin-top: 20px;
+    @include column;
+    @include centered-content;
+    width: 100%;
+    max-width: 100%;
+    
+}
+
+.active {
+
+    &>.detalles-candidatura {
+        border: 2px solid #28a745;
+        animation: borderPulse 1s infinite;
+
     }
 
-    &>.cajaDetalles{
-        padding: 60px;
-        border: 2px solid black;
-        margin: 20px 200px;
-        border-radius: 20px;
-      
-        &>h2{
-            padding: 30px;
-        }
-    }
-    &>button{
-        border-radius: 30px;
-        width: 10%;
-        height: 50px;
+    .message-prediction {
         text-align: center;
-        background-color: $verde;
-        color: white;
-        margin-bottom:40px;
+        border: 2px solid #28a745;
+        animation: borderPulse 1s infinite;
+
     }
 }
+.detalles-candidatura {
+    border: 2px solid #FFCC00;
+    border-radius: 8px;
+    padding: 16px;
+    margin: 20px 0;
+    background-color: #fff;
+    width: 90%;
+    max-width: 900px;
+    @include column;
+    @include centered-content;
+    
+    &.active {
+      border-color: #28a745; 
+    }
+
+  
+    div {
+      margin-bottom: 12px;
+      max-width: 100%;
+    }
+  
+    span {
+      font-weight: bold;
+    }
+  
+    p {
+      margin: 4px 0;
+    }
+  
+    ul {
+      list-style-type: none;
+      padding: 0;
+      
+      li {
+        display: flex;
+        align-items: center;
+        margin-bottom: 8px;
+  
+        svg {
+          cursor: pointer;
+          margin-left: 8px;
+        }
+  
+        form {
+          display: flex;
+          flex-direction: column;
+          
+          input {
+            margin-bottom: 8px;
+            padding: 4px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+          }
+  
+          button {
+            background-color: $verde;
+            color: #fff;
+            border: none;
+            padding: 8px;
+            border-radius: 4px;
+            cursor: pointer;
+  
+            &:disabled {
+              background-color: $amarillo;
+              cursor: not-allowed;
+            }
+          }
+        }
+      }
+    }
+  
+    .btnsContainer {
+      margin-top: 20px;
+      max-width: 100%;
+  
+      .candidaturaBtn {
+        background-color: #dc3545;
+        color: #fff;
+        border: none;
+        padding: 10px 20px;
+        border-radius: 4px;
+        cursor: pointer;
+        
+        &:hover {
+          background-color: #c82333;
+        }
+      }
+    }
+  
+    .confirmation-dialog {
+      position: fixed;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      background-color: #fff;
+      border: 2px solid $amarillo;
+      border-radius: 8px;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+      padding: 16px;
+      z-index: 1000;
+  
+      p {
+        margin-bottom: 16px;
+      }
+  
+      button {
+        margin-right: 8px;
+        padding: 8px 16px;
+        border: none;
+        border-radius: 4px;
+        cursor: pointer;
+        
+        &:last-child {
+          margin-right: 0;
+        }
+      }
+    }
+  }
+  
+  @keyframes borderPulse {
+    0% {
+      border-width: 2px;
+    }
+    50% {
+      border-width: 5px;
+    }
+    100% {
+      border-width: 2px;
+    }
+  }
