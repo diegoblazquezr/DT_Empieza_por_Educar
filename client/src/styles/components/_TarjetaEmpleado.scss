@@ -1,12 +1,13 @@
 @import "../utils/variables.scss";
 
-.tarjetaEmpleado{
+.tarjetaEmpleado {
 
     border: 3px solid $amarillo;
     border-radius: 20px;
-    padding: 10px 100px;
+    padding: 50px 100px;
     margin: 10px 100px;
-    &>.nombreEmpleado{
+
+    &>.nombreEmpleado {
         margin-bottom: 20px;
         margin-top: 10px;
         border: 2px solid rgb(211, 169, 0);
@@ -14,28 +15,29 @@
         padding: 10px;
         background-color: $amarillo;
 
-        &>h3{
+        &>h3 {
             color: black;
         }
     }
-    &>.datosEmpleado{
+    &>.emailEmpleado, &>.rolEmpleado, &>.candidaturasEmpleado, &>.idEmpleado{
         display: flex;
         text-align: center;
-        flex-wrap: wrap;
-        justify-content: space-evenly;
+        justify-content: center;
         align-items: center;
         padding-right: 10px;
-        &>h3{
+
+        &>h3 {
             color: $verde;
-            margin-right: 10px;
+            padding-right: 20px;
         }
-        &>p{
+
+        &>p {
             padding: 20px 10;
             font-weight: 500;
             font-size: medium;
-            margin-right: 10px;
         }
-        &>p{
+
+        &>p {
             padding: 10px 0;
             font-weight: 500;
             font-size: medium;
@@ -43,8 +45,74 @@
     }
 }
 
-@media (max-width: 960px){
-    .tarjetaEmpleado{
+.editarEmpleadoForm {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 4px;
+
+    &>.inputContainer {
+        display: flex;
+        justify-content: space-between;
+        width: 60%;
+    }
+
+    &>.btnContainer {
+        display: flex;
+        gap: 8px;
+
+        &>button {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            border-radius: 10px;
+            padding: 6px;
+            background-color: $verde;
+            color: white;
+
+            &:hover {
+                cursor: pointer;
+                border: 2px solid black;
+                background-color: lighten(rgb(211, 169, 0), 10%);
+                color: black;
+            }
+        }
+    }
+}
+
+.confirmDialog {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 8px;
+
+    &>.btnContainer {
+        display: flex;
+        gap: 8px;
+        width: 20%;
+
+        &>button {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            border-radius: 10px;
+            padding: 6px;
+            background-color: $verde;
+            color: white;
+            width: 100%;
+
+            &:hover {
+                cursor: pointer;
+                border: 2px solid black;
+                background-color: lighten(rgb(211, 169, 0), 10%);
+                color: black;
+            }
+        }
+    }
+}
+
+@media (max-width: 960px) {
+    .tarjetaEmpleado {
         flex-direction: column;
         padding: 10px 20px;
         margin: 10px 20px;
@@ -52,7 +120,31 @@
             &>p{
                 padding-top: 10px;
                 font-weight: 500;
+                font-size: 12px;
             }
+            &>h3{
+                font-size: 15px;
+            }
+
         }
+
+    }
+}
+
+
+
+@media (max-width: 600px){
+    .tarjetaEmpleado{
+        padding: 10px 20px;
+        margin: 10px 20px;
+
+        &>div {
+            &>p {
+                padding-top: 10px;
+                font-weight: 500;
+            }
+
+        }
+
     }
 }

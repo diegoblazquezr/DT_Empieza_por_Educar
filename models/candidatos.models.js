@@ -58,9 +58,9 @@ const readAllCandidatos = async (limit, offset) => {
 };
 
 const updateCandidato = async (entry) => {
-    const { nombre_candidato, apellidos_candidato, email_candidato, telefono_candidato, edad, carrera, nota_media, nivel_ingles, id_candidato } = entry;
+    const { nombre_candidato, apellidos_candidato, email_candidato, telefono_candidato, edad, carrera, nota_media, nivel_ingles, sexo, cv, id_candidato } = entry;
     return new Promise((resolve, reject) => {
-        connection.query(queries.updateCandidato, [nombre_candidato, apellidos_candidato, email_candidato, telefono_candidato, edad, carrera, nota_media, nivel_ingles, id_candidato], (error, results) => {
+        connection.query(queries.updateCandidato, [nombre_candidato, apellidos_candidato, email_candidato, telefono_candidato, edad, carrera, nota_media, nivel_ingles,sexo, cv, id_candidato], (error, results) => {
             if (error) {
                 console.log(error);
                 reject({

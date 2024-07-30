@@ -6,6 +6,7 @@
 
 const candidatosModels = require('../models/candidatos.models');
 const candidaturasModels = require('../models/candidaturas.models');
+const competenciasModels = require('../models/competencias.models');
 const { validationResult } = require("express-validator");
 
 
@@ -20,13 +21,28 @@ const createCandidato = async (req, res) => {
 
         if (response) {
             const id_candidato = response.insertId;
-            console.log(id_candidato);
+            //console.log(id_candidato);
             try {
                 const responseCandidatura = await candidaturasModels.createCandidaturaModel(id_candidato);
-                res.status(201).json({
-                    candidato: response,
-                    candidatura: responseCandidatura
-                });
+                //console.log(responseCandidatura);
+
+                if (responseCandidatura) {
+                    const id_candidatura = responseCandidatura.insertId;
+                    //console.log(id_candidatura);
+                    try {
+                        const responseCompetencias = await competenciasModels.createCompetencias(id_candidatura);
+                        res.status(201).json({
+                            candidato: response,
+                            candidatura: responseCandidatura,
+                            competencias: responseCompetencias
+                        });
+                    } catch (error) {
+                        res.status(500).json({ error: "Error al crear las competencias" });
+
+                    }
+                } else {
+                    res.status(500).json({ error: "Error al crear las candidaturas" });
+                }
             } catch (error) {
                 res.status(500).json(error);
             }
@@ -74,7 +90,9 @@ const updateCandidato = async (req, res) => {
         "edad" in candidatoUpdated ||
         "carrera" in candidatoUpdated ||
         "nota_media" in candidatoUpdated ||
-        "nivel_ingles" in candidatoUpdated &&
+        "nivel_ingles" in candidatoUpdated ||
+        "sexo" in candidatoUpdated ||
+        "cv" in candidatoUpdated &&
         "id_candidato" in candidatoUpdated
     ) {
         try {

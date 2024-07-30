@@ -138,109 +138,6 @@
 			]
 		},
 		{
-			"name": "Candidaturas",
-			"item": [
-				{
-					"name": "api/candidaturas",
-					"request": {
-						"method": "POST",
-						"header": [],
-						"body": {
-							"mode": "raw",
-							"raw": "{\r\n    \"id_candidato\": 17\r\n}",
-							"options": {
-								"raw": {
-									"language": "json"
-								}
-							}
-						},
-						"url": "https://dt-empieza-por-educar.onrender.com/api/candidaturas"
-					},
-					"response": []
-				},
-				{
-					"name": "/api/candidaturas?search=mar&limit=10&offset=0",
-					"request": {
-						"method": "GET",
-						"header": [],
-						"url": {
-							"raw": "https://dt-empieza-por-educar.onrender.com/api/candidaturas?search=mar&limit=10&offset=0",
-							"protocol": "https",
-							"host": [
-								"dt-empieza-por-educar",
-								"onrender",
-								"com"
-							],
-							"path": [
-								"api",
-								"candidaturas"
-							],
-							"query": [
-								{
-									"key": "search",
-									"value": "mar"
-								},
-								{
-									"key": "limit",
-									"value": "10"
-								},
-								{
-									"key": "offset",
-									"value": "0"
-								}
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "/api/candidaturas",
-					"request": {
-						"method": "PUT",
-						"header": [],
-						"body": {
-							"mode": "raw",
-							"raw": "{\r\n    \"id_empleado\": 6,\r\n    \"status\": \"Entrevista 1\",\r\n    \"id_candidatura\": 1005\r\n}",
-							"options": {
-								"raw": {
-									"language": "json"
-								}
-							}
-						},
-						"url": "https://dt-empieza-por-educar.onrender.com/api/candidaturas"
-					},
-					"response": []
-				},
-				{
-					"name": "/api/candidaturas?id_candidatura=1005",
-					"request": {
-						"method": "DELETE",
-						"header": [],
-						"url": {
-							"raw": "https://dt-empieza-por-educar.onrender.com/api/candidaturas?id_candidatura=1005",
-							"protocol": "https",
-							"host": [
-								"dt-empieza-por-educar",
-								"onrender",
-								"com"
-							],
-							"path": [
-								"api",
-								"candidaturas"
-							],
-							"query": [
-								{
-									"key": "id_candidatura",
-									"value": "1005"
-								}
-							]
-						}
-					},
-					"response": []
-				}
-			]
-		},
-		{
 			"name": "Empleados",
 			"item": [
 				{
@@ -318,85 +215,174 @@
 						"description": "POST para enviar los datos del empleado que se desloguea. Recibe el token por Header."
 					},
 					"response": []
-				},
+				}
+			]
+		},
+		{
+			"name": "Competencias",
+			"item": [
 				{
-					"name": "https://api-empleados-2nuf.onrender.com/all_empleados?search=Roberto&offset=0&limit=5",
+					"name": "/api/competencias",
 					"request": {
-						"method": "GET",
-						"header": [],
-						"url": {
-							"raw": "https://api-empleados-2nuf.onrender.com/all_empleados?search=Roberto&offset=0&limit=5",
-							"protocol": "https",
-							"host": [
-								"api-empleados-2nuf",
-								"onrender",
-								"com"
-							],
-							"path": [
-								"all_empleados"
-							],
-							"query": [
-								{
-									"key": "search",
-									"value": "Roberto"
-								},
-								{
-									"key": "offset",
-									"value": "0"
-								},
-								{
-									"key": "limit",
-									"value": "5"
-								}
-							]
-						},
-						"description": "GET para obtener empeleados en base un offset y un limit. Además, opcionalmente, se puede usar el search para buscar por nombre y apellido."
-					},
-					"response": []
-				},
-				{
-					"name": "https://api-empleados-2nuf.onrender.com/update_empleado",
-					"request": {
-						"method": "PUT",
+						"method": "POST",
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n    \"nombre_empleado\": \"Francisco\",\n    \"email_empleado\": \"botero@example.com\"\n}",
+							"raw": "{\n    \"id_candidatura\":\"1002\"\n}",
 							"options": {
 								"raw": {
 									"language": "json"
 								}
 							}
 						},
-						"url": "https://api-empleados-2nuf.onrender.com/update_empleado",
-						"description": "PUT para editar alguno/s de los campos del empleado en base a su email."
+						"url": "https://dt-empieza-por-educar.onrender.com/api/competencias",
+						"description": "POST con el id_candidatura para setear en 0 las competencias iniciales"
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Candidaturas",
+			"item": [
+				{
+					"name": "/api/candidaturas",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"id_candidato\": 17\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "https://dt-empieza-por-educar.onrender.com/api/candidaturas"
 					},
 					"response": []
 				},
 				{
-					"name": "https://api-empleados-2nuf.onrender.com/delete_empleado?email_empleado=botero@example.com",
+					"name": "/api/candidaturas?id_candidatura=1",
 					"request": {
-						"method": "DELETE",
+						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "https://api-empleados-2nuf.onrender.com/delete_empleado?email_empleado=botero@example.com",
+							"raw": "https://dt-empieza-por-educar.onrender.com/api/candidaturas?id_candidatura=1",
 							"protocol": "https",
 							"host": [
-								"api-empleados-2nuf",
+								"dt-empieza-por-educar",
 								"onrender",
 								"com"
 							],
 							"path": [
-								"delete_empleado"
+								"api",
+								"candidaturas"
 							],
 							"query": [
 								{
-									"key": "email_empleado",
-									"value": "botero@example.com"
+									"key": "id_candidatura",
+									"value": "1"
 								}
 							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "/api/candidaturas?search=mar&limit=10&offset=0",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://dt-empieza-por-educar.onrender.com/api/candidaturas?search=mar&id_empleado=1&status=&filter=nombre_candidato&order=asc&limit=10&offset=0",
+							"protocol": "https",
+							"host": [
+								"dt-empieza-por-educar",
+								"onrender",
+								"com"
+							],
+							"path": [
+								"api",
+								"candidaturas"
+							],
+							"query": [
+								{
+									"key": "search",
+									"value": "mar"
+								},
+								{
+									"key": "id_empleado",
+									"value": "1"
+								},
+								{
+									"key": "status",
+									"value": ""
+								},
+								{
+									"key": "filter",
+									"value": "nombre_candidato"
+								},
+								{
+									"key": "order",
+									"value": "asc"
+								},
+								{
+									"key": "limit",
+									"value": "10"
+								},
+								{
+									"key": "offset",
+									"value": "0"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "/api/candidaturas",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"id_empleado\": 6,\r\n    \"status\": \"Entrevista 1\",\r\n    \"id_candidatura\": 1005\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
 						},
-						"description": "DELETE para eliminar un empleado en base a su email."
+						"url": "https://dt-empieza-por-educar.onrender.com/api/candidaturas"
+					},
+					"response": []
+				},
+				{
+					"name": "/api/candidaturas?id_candidatura=1005",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "https://dt-empieza-por-educar.onrender.com/api/candidaturas?id_candidatura=1005",
+							"protocol": "https",
+							"host": [
+								"dt-empieza-por-educar",
+								"onrender",
+								"com"
+							],
+							"path": [
+								"api",
+								"candidaturas"
+							],
+							"query": [
+								{
+									"key": "id_candidatura",
+									"value": "1005"
+								}
+							]
+						}
 					},
 					"response": []
 				}

@@ -1,6 +1,50 @@
-.estadisticasAdmin{
-    text-align: center;
-    &>h2{
+@import "../utils/variables.scss";
+@import "../utils/mixins.scss";
+
+.estadisticas {
+    margin: 6px 0 0 0;
+    width: 100%;
+    @include column;
+    &>h2 {
         padding: 40px;
+        text-align: center;
+        font-size: 30px;
     }
+    &>.spinner {
+        align-self: center;
+        justify-self: center;
+        margin-bottom: 20px;
+      }
+
+    .estadisticas-admin {
+        width: 100%;
+        margin: 6px 0 0 0;
+        width: 100%;
+        @include column;
+        @include centered-content;
+        &>h3 {
+            text-align: center;
+            font-size: 20px;
+          }
+        .grafica-admin-container {
+            height: 40vh;
+            width: 90%;
+            margin-bottom: 5px;
+           
+        }
+        .piechart {
+            height: 40vh;
+            width: 100%;
+            margin-bottom: 5px;
+            
+          }
+
+          .grafica-combinada {
+            height: 40vh;
+            width: 100%;
+            margin-bottom: 5px;
+            
+          }
+    }
+
 }

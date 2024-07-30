@@ -4,6 +4,8 @@ import axios from "axios";
 import TarjetaCandidatura from "./TarjetaCandidatura";
 import { v4 as uuidv4 } from "uuid";
 import { AuthContext } from "../../../../context/AuthContext";
+import { ProgressBar } from 'react-loader-spinner';
+
 
 axios.defaults.withCredentials = true;
 
@@ -20,6 +22,8 @@ const ListaCandidaturas = ({ candidaturas, setCandidaturas }) => {
   const [offset, setOffset] = useState(0);
   const [currentPage, setCurrentPage] = useState(1);
   const [totalItems, setTotalItems] = useState(0);
+  const [loading, setLoading] = useState(false);
+
   const URL = import.meta.env.VITE_API_URL || 'http://localhost:3000';
   const { logged, rol, id } = useContext(AuthContext);
 
@@ -56,10 +60,12 @@ const ListaCandidaturas = ({ candidaturas, setCandidaturas }) => {
       setCandidaturas(json.items);
       setTotalItems(json.totalCount);
     } catch (e) {
+      setLoading(false);
       console.error('Error in getCandidaturas:', e);
       setCandidaturas([]);
       setTotalItems(0);
     }
+    setLoading(false);
   }, [URL, setCandidaturas]);
 
   useEffect(() => {
@@ -179,8 +185,7 @@ const ListaCandidaturas = ({ candidaturas, setCandidaturas }) => {
   return (
     <>
       <section className="listaCandidaturas">
-        <h2>Candidaturas</h2>
-        <form className="search-form" onSubmit={(e) => e.preventDefault()}>
+          <form className="search-form" onSubmit={(e) => e.preventDefault()}>
           <input
             type="text"
             name="inputCandidaturasSearch"
@@ -224,9 +229,21 @@ const ListaCandidaturas = ({ candidaturas, setCandidaturas }) => {
           <button type="button" onClick={resetFilters}>Reiniciar Filtros</button>
         </form>
 
-        <article className="listaCandidaturas">
-          {renderCandidaturas()}
-        </article>
+      <article className="listaCandidaturas">
+      {loading ? (
+          <div className="spinner"><ProgressBar
+            visible={true}
+            height="150"
+            width="200"
+            color="#4fa94d"
+            barColor='#FFCC00'
+            borderColor='#11654d'
+            ariaLabel="progress-bar-loading"
+            wrapperStyle={{}}
+            wrapperClass=""
+          /></div>
+        ) : (renderCandidaturas())}
+      </article>
       </section>
 
       {renderPagination()}

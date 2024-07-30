@@ -8,6 +8,10 @@
     font-weight: bold;
 }
 
+::placeholder {
+    color: white;
+  }
+
 body,
 #root {
     height: 100vh;

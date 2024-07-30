@@ -16,7 +16,7 @@ const createCandidaturaModel = async (id_candidato) => {
                 resolve({
                     success: true,
                     message: 'Candidatura creada exitosamente',
-                    affectedRows: results.affectedRows
+                    insertId: results.insertId
                 });
             }
         });

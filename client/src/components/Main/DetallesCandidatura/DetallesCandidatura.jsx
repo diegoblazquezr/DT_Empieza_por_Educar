@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { useParams, useLocation } from "react-router-dom";
 import axios from "axios";
+import { FaPencil, FaX } from "react-icons/fa6";
 
 const DetallesCandidatura = () => {
   const [detallesCandidatura, setDetallesCandidatura] = useState(null);
@@ -95,6 +96,10 @@ const DetallesCandidatura = () => {
         <span>ID Empleado: {id_empleado}</span>
         <p>Status: {status}</p>
         <p>Fecha Registro: {fecha_registro_formatted}</p>
+      </div>
+      <div className="btnsContainer">
+        <button className="candidaturaBtn" /*onClick={showEditDialog}*/>Editar <FaPencil /></button>
+        <button className="candidaturaBtn" /*onClick={showConfirmDialog}*/>Eliminar <FaX /></button>
       </div>
     </article>
   );

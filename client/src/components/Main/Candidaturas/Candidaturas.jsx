@@ -9,8 +9,9 @@ const Candidaturas = () => {
   return (
     <>
       <section className="candidaturas">
+      <h2>Candidaturas</h2>
         {/* <BuscadorCandidaturas setCandidatura={definirNombreCandidatura} /> */}
-        <ListaCandidaturas candidaturas={candidaturas} setCandidaturas={setCandidaturas}/>
+       <ListaCandidaturas candidaturas={candidaturas} setCandidaturas={setCandidaturas} />
       </section>
 
     </>

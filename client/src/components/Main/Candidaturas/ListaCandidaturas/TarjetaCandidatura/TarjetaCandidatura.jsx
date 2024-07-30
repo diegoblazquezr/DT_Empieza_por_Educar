@@ -41,6 +41,7 @@ const TarjetaCandidatura = ({ dataCandidatura }) => {
     <span>Candidatura: {id_candidatura}</span>
     <br />
   </div>
+  <div className="tablasDatos">
   <div className="datosEmpleado">
     <h3>ID Empleado:</h3>
     <p>{id_empleado}</p>
@@ -60,6 +61,7 @@ const TarjetaCandidatura = ({ dataCandidatura }) => {
     <p>{email_candidato}</p>
     <h3>Teléfono:</h3>
     <p>{telefono_candidato}</p>
+  </div>
   </div>
   <div className="detallesCandidatura">
     <Link to={candidaturaUrl}>
