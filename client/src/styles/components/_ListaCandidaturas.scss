@@ -32,8 +32,7 @@
     justify-content: center;
     justify-items: center;
     color: white;
-    margin-top: 30px;
-    margin-bottom: 40px;
+    padding-bottom: 20px;
     width: 100%;
     margin: 0 1%;
 
@@ -77,11 +76,42 @@
 
 
 }
+.pagination{
+    justify-content: center;
+    justify-items: center;
+    display: flex;
+    padding: 30px;
+    & > .next, & > .prev{
+        border-radius: 10px;
+        width: 10%;
+        height: 50px;
+        text-align: center;
+        background-color: $verde;
+        margin-right: 10px;
+        font-size: 100%;
+        color: white;
+      }
+      &>.active{
+        background-color: $amarillo;
+        color: white;
+      }
+      & > button {
+        border-radius: 10px;
+        width: 10%;
+        height: 50px;
+        text-align: center;
+        background-color: white;
+        margin-right: 10px;
+        font-size: 100%;
+        color: black;
+      }
+}
 
-@media (max-width: 768px) {
+@media (max-width: 950px) {
 
     .search-form {
         flex-direction: column;
+        margin: 10px 60px;
         & > input {
             width: 100%;
             margin-bottom: 10px;
@@ -94,4 +124,20 @@
             margin-bottom: 10px;
         }
     }
+    .pagination {
+        & > .next, & > .prev {
+            width: 100%;
+            margin-bottom: 10px;
+            display: block;
+        }
+        &>.active{
+            width: 100%;
+            margin-bottom: 10px;
+            display: block;
+        }
+        & > button {
+            display: none;
+        }
+    }
 }
+

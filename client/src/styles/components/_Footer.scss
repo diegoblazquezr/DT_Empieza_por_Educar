@@ -24,3 +24,20 @@
     }
   }
 }
+
+@media (max-width: 950px) {
+  .footerStyle {
+    display: grid;
+    justify-content: center;
+    &>p{
+      font-size: 12px;
+    }
+    & > .redes {
+      & > a {
+        & > img {
+          width: 30%;
+        }
+      }
+    }
+  }
+}
