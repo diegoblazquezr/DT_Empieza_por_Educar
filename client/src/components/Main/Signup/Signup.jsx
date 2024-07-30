@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { useForm } from 'react-hook-form';
 import axios from 'axios';
+import { useNavigate } from "react-router-dom";
 import { FaCheckCircle, FaExclamationCircle } from 'react-icons/fa';
 
 
@@ -10,6 +11,8 @@ const Form = () => {
   const [confirmationMessage, setConfirmationMessage] = useState('');
   const [isSubmitting, setIsSubmitting] = useState(false);
   const URL = import.meta.env.VITE_API_URL || 'http://localhost:3000';
+  const navigate = useNavigate();
+
 
 
   //Función que gestiona qué ocurre cuando la solicitud no cumple con los requisitos mínimos
@@ -54,6 +57,10 @@ const Form = () => {
         setConfirmationMessage('Error al registrar el/la emplead@');
       }
     }
+  };
+
+  const handleBackClick = () => {
+    navigate("/empleados");
   };
 
   return (
@@ -110,6 +117,8 @@ const Form = () => {
               <button type="submit" disabled={isSubmitting}>{isSubmitting ? 'Registrando...' : 'Registrar emplead@'}</button>
             </form>
           </>)}
+          <button className='button-back' onClick={handleBackClick}>Atrás</button>
+
       </section>
     </>
   );
