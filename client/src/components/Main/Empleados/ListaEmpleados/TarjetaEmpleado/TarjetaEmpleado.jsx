@@ -184,4 +184,3 @@ const TarjetaEmpleado = ({ empleado, onUpdate, onDelete }) => {
 };
 
 export default TarjetaEmpleado;
-

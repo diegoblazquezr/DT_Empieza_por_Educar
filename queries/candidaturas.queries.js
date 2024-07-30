@@ -41,6 +41,18 @@ const candidaturasQueries = {
     LIMIT ?
     OFFSET ?;`,
 
+    readCandidaturasTotalCountQuery: `SELECT COUNT(*) as total
+    FROM candidaturas cr
+    INNER JOIN candidatos ct ON ct.id_candidato = cr.id_candidato
+    WHERE (cr.id_candidato IN (
+        SELECT ct.id_candidato 
+        FROM candidatos 
+        WHERE ct.nombre_candidato LIKE ?
+        OR ct.apellidos_candidato LIKE ?
+    ))
+    AND (? = '' OR cr.id_empleado = ?)
+    AND (? = '' OR cr.status = ?);`,
+
     updateCandidaturaQuery: `UPDATE candidaturas
     SET id_empleado = COALESCE(?, id_empleado),
     status = COALESCE(?, status)

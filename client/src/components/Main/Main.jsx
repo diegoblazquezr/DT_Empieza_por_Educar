@@ -31,7 +31,7 @@ const Main = () => {
               <RolManager
                 component={<Candidaturas />}
                 role={rol}
-                allowedRoles={["Recruiter", "recruiter", "admin"]}
+                allowedRoles={["reclutador", "admin"]}
               />
             }
             logged={logged}
@@ -43,7 +43,7 @@ const Main = () => {
               <RolManager
                 component={<DetallesCandidatura />}
                 role={rol}
-                allowedRoles={["Recruiter", "recruiter", "admin"]}
+                allowedRoles={["reclutador", "admin"]}
               />
             }
             logged={logged}
@@ -67,7 +67,7 @@ const Main = () => {
               <RolManager
                 component={<DetallesCandidatura />}
                 role={rol}
-                allowedRoles={["recruiter", "Recruiter", "admin"]}
+                allowedRoles={["reclutador", "admin"]}
               />
             }
             logged={logged}
