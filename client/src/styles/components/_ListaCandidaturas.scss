@@ -9,14 +9,18 @@
     flex-wrap: wrap;
     justify-content: center;
     justify-items: center;
-    @include column;
-    @include centered-content;
+    //@include column;
+    //@include centered-content;
     &>h2{
         color: black;
         margin-top: 30px;
         margin-bottom: 50px;
         text-align: center;
         font-size: 30px;
+    }
+
+    .spinner {
+        align-self: center;
     }
    
 }
