@@ -26,9 +26,11 @@ const createCompetencias = async (id_candidatura) => {
 };
 
 // UPDATE
-const updateCompetencias = async (id_candidatura, nota) => {
+const updateCompetencias = async (entry) => {
+    const { nota, id_candidatura, nombre_competencia } = entry;
+    console.log('Executing query with:', { nota, id_candidatura, nombre_competencia });
     return new Promise((resolve, reject) => {
-        connection.query(competenciasQueries.updateCompetencia, [nota, id_candidatura], (error, results) => {
+        connection.query(competenciasQueries.updateCompetencia, [nota, id_candidatura, nombre_competencia], (error, results) => {
             if (error) {
                 console.log(error);
                 reject({
@@ -46,6 +48,14 @@ const updateCompetencias = async (id_candidatura, nota) => {
         });
     });
 };
+
+// const entryToUpdate = {
+//     nota: 4,
+//     id_candidatura: 1,
+//     nombre_competencia: 'Dominio'
+// };
+
+// updateCompetencias(entryToUpdate).then(data => console.log(data)).catch(error => console.log(error));
 
 module.exports = {
     createCompetencias,

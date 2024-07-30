@@ -11,12 +11,12 @@ VALUES
     (?, 'Compromiso', 0),
     (?, 'Colaboración', 0),
     (?, 'Iniciativa', 0);`,
-    updateCompetencia: `UPDATE
-        competencias
-    SET
-        nota = ?
-    WHERE 
-        id_candidatura = ?;`
+    updateCompetencia: `
+    UPDATE competencias
+    SET nota = ?
+    WHERE id_candidatura = ?
+    AND nombre_competencia = ?
+  `
 };
 
 

@@ -97,9 +97,9 @@ const updateCandidaturaModel = async (candidatura) => {
 }
 // Pruebas MySQL Workbench
 // const updatedCandidatura = {
-//     id_empleado: 6,
-//     status: "Registro",
-//     id_candidatura: 1005
+//     // id_empleado: 6,
+//     status: "CentroEvaluación",
+//     id_candidatura: 1000
 // }
 // updateCandidaturaModel(updatedCandidatura)
 //     .then(data => console.log(data))

@@ -7,8 +7,8 @@ const getAccessToken = require('../middlewares/getAccessToken');
 const decodeToken = require('../middlewares/decodeToken');
 const empleadosRoutes = require('../middlewares/empleadoRoutes');
 
-// POST /api/competencias
-router.post('/', getAccessToken, decodeToken, empleadosRoutes, competenciasValidators.updateCompetenciasValidator, competenciasController.updateCompetenciaController);
+// PUT /api/competencias
+router.put('/', /*getAccessToken, decodeToken, empleadosRoutes,*/ competenciasValidators.updateCompetenciasValidator, competenciasController.updateCompetenciaController);
 
 
 module.exports = router;

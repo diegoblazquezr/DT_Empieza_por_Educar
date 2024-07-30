@@ -15,14 +15,14 @@ const updateCompetenciaController = async (req, res) => {
     }*/
     const modifiedCompetencia = req.body;
     if (
-        (
-            "nota" in modifiedCompetencia &&
-            "id_candidatura" in modifiedCompetencia
-        )
+
+        "nota" in modifiedCompetencia &&
+        "id_candidatura" in modifiedCompetencia &&
+        "nombre_competencia" in modifiedCompetencia
+
     ) {
         try {
-            const {nota, id_candidatura} = modifiedCompetencia;
-            const response = await competenciasModels.updateCompetencias(nota, id_candidatura);
+            const response = await competenciasModels.updateCompetencias(modifiedCompetencia);
             res.status(201).json({
                 items_updated: response
             });

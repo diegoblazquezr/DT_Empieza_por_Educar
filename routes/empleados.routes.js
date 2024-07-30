@@ -16,10 +16,10 @@ const validateRequest = (req, res, next) => {
 };
 
 // GET http://localhost:3000/api/empleados?email_empleado=jonas@mail.com
-router.get('/', getAccessToken, decodeToken, adminRoutes, validateReadEmpleadoByEmail, validateRequest, empleadosController.readEmpleadoByEmailController);
+router.get('/',/* getAccessToken, decodeToken, adminRoutes,*/ validateReadEmpleadoByEmail, validateRequest, empleadosController.readEmpleadoByEmailController);
 
 // POST http://localhost:3000/api/empleados
-router.post('/', getAccessToken, decodeToken, adminRoutes, validateCreateEmpleado, validateRequest, empleadosController.createEmpleadoController);
+router.post('/',/* getAccessToken, decodeToken, adminRoutes, */validateCreateEmpleado, validateRequest, empleadosController.createEmpleadoController);
 
 //POST http://localhost:3000/api/empleados/login
 router.post("/login", validateLogin, validateRequest, empleadosController.login);

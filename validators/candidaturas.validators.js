@@ -57,8 +57,8 @@ const validateUpdateCandidatura = [
     body("status")
         .optional()
         .isString().withMessage("status debe contener texto")
-        .isIn(['Registro', 'Centro de Evaluación', 'Solicitud', 'Descartado', 'Entrevista 1', 'Entrevista 2', 'Ofertado', 'Abandona'])
-        .withMessage("status solo puede ser Registro, Centro de Evaluación, Solicitud, Descartado, Entrevista 1, Entrevista 2, Ofertado, o Abandona"),
+        .isIn(['Registro', 'CentroEvaluación', 'Solicitud', 'Descartado', 'Entrevista1', 'Entrevista2', 'Ofertado', 'Abandona'])
+        .withMessage("status solo puede ser Registro, CentroEvaluación, Solicitud, Descartado, Entrevista1, Entrevista2, Ofertado, o Abandona"),
     body("id_candidatura")
         .exists().withMessage("id_candidatura es obligatorio")
         .isNumeric().withMessage("id_candidatura debe ser un número")
