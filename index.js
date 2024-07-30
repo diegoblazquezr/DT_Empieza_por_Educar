@@ -28,6 +28,7 @@ const allowedOrigins = [
     'http://localhost:3000',
     'https://dt-form-registro-exe.onrender.com',
     'https://dt-empieza-por-educar.onrender.com',
+    'https://empieza-por-educar.onrender.com',
     'https://api-empleados-2nuf.onrender.com'
   ];
 
