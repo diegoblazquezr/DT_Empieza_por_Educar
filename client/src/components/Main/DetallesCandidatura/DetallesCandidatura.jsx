@@ -2,6 +2,10 @@ import React, { useState, useEffect } from "react";
 import { useParams, useLocation, useNavigate } from "react-router-dom";
 import axios from "axios";
 import { FaPencil, FaX } from "react-icons/fa6";
+import { useForm } from "react-hook-form";
+import { BsFileEarmarkPdfFill } from "react-icons/bs";
+import GraficaCandidatura from "./GraficaCandidatura/GraficaCandidatura";
+
 
 const statusOptions = [
   "Registro",
@@ -17,14 +21,14 @@ const statusOptions = [
 const DetallesCandidatura = () => {
   const [detallesCandidatura, setDetallesCandidatura] = useState(null);
   const [editIndex, setEditIndex] = useState(-1);
-  const [newNota, setNewNota] = useState('');
-  const [editCompetencia, setEditCompetencia] = useState('');
+  //const [newNota, setNewNota] = useState('');
+  // const [editCompetencia, setEditCompetencia] = useState('');
   const [loading, setLoading] = useState(false);
   const [showDialog, setShowDialog] = useState(false);
   const [editStatus, setEditStatus] = useState(false);
-  const [newStatus, setNewStatus] = useState('');
+  //const [newStatus, setNewStatus] = useState('');
   const [editEmpleado, setEditEmpleado] = useState(false);
-  const [newEmpleado, setNewEmpleado] = useState('');
+  //const [newEmpleado, setNewEmpleado] = useState('');
   const { id_candidatura } = useParams();
   const location = useLocation();
   const searchParams = new URLSearchParams(location.search);
@@ -32,20 +36,21 @@ const DetallesCandidatura = () => {
   const navigate = useNavigate();
 
   const candidaturaId = id_candidatura || id_candidaturaFromQuery;
-
   const URL = import.meta.env.VITE_API_URL || 'http://localhost:3000';
+
+  const { register, handleSubmit, reset, setValue } = useForm();
 
   useEffect(() => {
     async function fetchData() {
       if (!candidaturaId) {
-        console.error('No id_candidatura provided');
+        console.error('No se ha provisto de un id_candidatura');
         return;
       }
 
       try {
         const res = await axios.get(`${URL}/api/candidaturas?id_candidatura=${candidaturaId}`);
         const json = res.data;
-        // console.log(json);
+        console.log(json);
         setDetallesCandidatura(json);
       } catch (e) {
         console.error(e);
@@ -65,13 +70,44 @@ const DetallesCandidatura = () => {
     return `${day}-${month}-${year}`;
   };
 
-  const handleEditClick = (index, nota, nombre_competencia) => {
+  const handleBorrarCandidatura = async () => {
+    setLoading(true);
+    try {
+      await axios.delete(`${URL}/api/candidaturas?id_candidatura=${candidaturaId}`);
+      navigate('/candidaturas');
+    } catch (e) {
+      console.error("Error al borrar candidatura:", e);
+    } finally {
+      setLoading(false);
+    }
+  };
+
+
+  const handleShowDialog = () => {
+    setShowDialog(true);
+  };
+
+  const handleHideDialog = () => {
+    setShowDialog(false);
+  };
+
+  const handleStatusEditClick = (currentStatus) => {
+    setEditStatus(true);
+    setValue("status", currentStatus);
+  };
+
+  const handleEmpleadoEditClick = (currentEmpleado) => {
+    setEditEmpleado(true);
+    setValue("id_empleado", currentEmpleado);
+  };
+
+  /*const handleEditClick = (index, nota, nombre_competencia) => {
     setEditIndex(index);
     setNewNota(nota);
     setEditCompetencia(nombre_competencia);
-  };
+  };*/
 
-  const handleSubmitEditCompetencias = async (e, index) => {
+  /*const handleSubmitEditCompetencias = async (e, index) => {
     e.preventDefault();
     setLoading(true);
     try {
@@ -98,39 +134,39 @@ const DetallesCandidatura = () => {
     } finally {
       setLoading(false);
     }
-  };
+  };*/
 
-  const handleBorrarCandidatura = async () => {
+  const onSubmitEditCompetencias = async (data) => {
     setLoading(true);
     try {
-      await axios.delete(`${URL}/api/candidaturas?id_candidatura=${candidaturaId}`);
-      navigate('/candidaturas');
+      await axios.put(`${URL}/api/competencias`, {
+        id_candidatura: candidaturaId,
+        nombre_competencia: data.nombre_competencia,
+        nota: data.nota,
+      });
+
+      setDetallesCandidatura(prevState => {
+        const updatedState = [...prevState];
+        const index = prevState.findIndex(item => item.nombre_competencia === data.nombre_competencia);
+        if (index !== -1) {
+          updatedState[index] = {
+            ...updatedState[index],
+            nota: data.nota
+          };
+        }
+        return updatedState;
+      });
+      reset({ nota: '', nombre_competencia: '' });
+      setEditIndex(-1);
     } catch (e) {
-      console.error("Error deleting candidatura:", e);
+      console.error("Error updating competencia:", e);
     } finally {
       setLoading(false);
     }
   };
 
-  const handleShowDialog = () => {
-    setShowDialog(true);
-  };
 
-  const handleHideDialog = () => {
-    setShowDialog(false);
-  };
-
-  const handleStatusEditClick = (currentStatus) => {
-    setEditStatus(true);
-    setNewStatus(currentStatus);
-  };
-
-  const handleEmpleadoEditClick = (currentEmpleado) => {
-    setEditEmpleado(true);
-    setNewEmpleado(currentEmpleado);
-  };
-
-  const handleSubmitEditStatus = async (e) => {
+  /*const handleSubmitEditStatus = async (e) => {
     e.preventDefault();
     setLoading(true);
     try {
@@ -154,9 +190,31 @@ const DetallesCandidatura = () => {
     } finally {
       setLoading(false);
     }
+  };*/
+
+  const onSubmitEditStatus = async (data) => {
+    setLoading(true);
+    try {
+      await axios.put(`${URL}/api/candidaturas`, {
+        id_candidatura: candidaturaId,
+        status: data.status,
+      });
+
+      setDetallesCandidatura(prevState => {
+        return [{
+          ...prevState[0],
+          status: data.status
+        }];
+      });
+      setEditStatus(false);
+    } catch (e) {
+      console.error("Error updating status:", e);
+    } finally {
+      setLoading(false);
+    }
   };
 
-  const handleSubmitEditEmpleado = async (e) => {
+  /*const handleSubmitEditEmpleado = async (e) => {
     e.preventDefault();
     setLoading(true);
     try {
@@ -175,6 +233,28 @@ const DetallesCandidatura = () => {
       });
       setEditEmpleado(false);
 
+    } catch (e) {
+      console.error("Error updating empleado:", e);
+    } finally {
+      setLoading(false);
+    }
+  };*/
+
+  const onSubmitEditEmpleado = async (data) => {
+    setLoading(true);
+    try {
+      await axios.put(`${URL}/api/candidaturas`, {
+        id_candidatura: candidaturaId,
+        id_empleado: data.id_empleado,
+      });
+
+      setDetallesCandidatura(prevState => {
+        return [{
+          ...prevState[0],
+          id_empleado: data.id_empleado
+        }];
+      });
+      setEditEmpleado(false);
     } catch (e) {
       console.error("Error updating empleado:", e);
     } finally {
@@ -209,7 +289,7 @@ const DetallesCandidatura = () => {
 
   const fecha_registro_formatted = formatDate(fecha_registro);
 
-  return (
+  return (<>
     <article className="detallesCandidaura">
       <div>
         <span>ID Candidato: {id_candidato}</span>
@@ -220,6 +300,7 @@ const DetallesCandidatura = () => {
         <span>Edad: {edad}</span>
         <p>Carrera: {carrera}</p>
         <p>Nivel de Inglés: {nivel_ingles}</p>
+        <p>CV: <BsFileEarmarkPdfFill src={cv} target="_blank" /></p>
       </div>
       <div>
         <p>Competencias:</p>
@@ -228,12 +309,17 @@ const DetallesCandidatura = () => {
             <li key={index}>
               {item.nombre_competencia}:
               {editIndex === index ? (
-                <form onSubmit={(e) => { handleSubmitEditCompetencias(e, index), setEditIndex(-1) }}>
+                <form onSubmit={handleSubmit(onSubmitEditCompetencias)}>
                   <input
                     type="text"
-                    value={newNota}
-                    onChange={(e) => setNewNota(e.target.value)}
-                    required
+                    {...register("nombre_competencia", { required: true })}
+                    defaultValue={item.nombre_competencia}
+                    readOnly
+                  />
+                  <input
+                    type="number"
+                    {...register("nota", { required: true, min: { value: 0, message: 'Debe ser mayor de 0' }, max: { value: 5, message: 'Debe ser menor de 5' } })}
+                    defaultValue={item.nota}
                   />
                   <button type="submit" disabled={loading}>
                     {loading ? 'Saving...' : 'Guardar'}
@@ -242,8 +328,11 @@ const DetallesCandidatura = () => {
               ) : (
                 <>
                   {item.nota}
-                  <button onClick={() => handleEditClick(index, item.nota, item.nombre_competencia)}>Edit</button>
-                </>
+                  <FaPencil onClick={() => {
+                    setEditIndex(index);
+                    setValue("nombre_competencia", item.nombre_competencia);
+                    setValue("nota", item.nota);
+                  }}/></>
               )}
             </li>
           ))}
@@ -252,12 +341,11 @@ const DetallesCandidatura = () => {
       <div>
         <span>ID Candidatura: {candidaturaId}</span><br />
         <span>ID Empleado: {editEmpleado ? (
-          <form onSubmit={handleSubmitEditEmpleado}>
-            <input
+          <form onSubmit={handleSubmit(onSubmitEditEmpleado)}>
+             <input
               type="number"
-              value={newEmpleado}
-              onChange={(e) => setNewEmpleado(e.target.value)}
-              required
+              {...register("id_empleado", { required: true, min: { value: 0, message: 'Debe ser mayor de 0' }})}
+              defaultValue={id_empleado}
             />
             <button type="submit" disabled={loading}>
               {loading ? 'Saving...' : 'Guardar'}
@@ -266,15 +354,14 @@ const DetallesCandidatura = () => {
         ) : (
           <>
             {id_empleado}
-            <button onClick={() => handleEmpleadoEditClick(id_empleado)}>Editar</button>
+            <FaPencil onClick={() => handleEmpleadoEditClick(id_empleado)}/>
           </>
         )}</span>
         <p>Status: {editStatus ? (
-          <form onSubmit={handleSubmitEditStatus}>
+          <form onSubmit={handleSubmit(onSubmitEditStatus)}>
             <select
-              value={newStatus}
-              onChange={(e) => setNewStatus(e.target.value)}
-              required
+              {...register("status", { required: true })}
+              defaultValue={status}
             >
               {statusOptions.map(option => (
                 <option key={option} value={option}>{option}</option>
@@ -287,13 +374,13 @@ const DetallesCandidatura = () => {
         ) : (
           <>
             {status}
-            <button onClick={() => handleStatusEditClick(status)}>Editar</button>
+            <FaPencil onClick={() => handleStatusEditClick(status)}/>
           </>
         )}</p>
         <p>Fecha Registro: {fecha_registro_formatted}</p>
       </div>
       <div className="btnsContainer">
-        <button className="candidaturaBtn" onClick={handleShowDialog}>Eliminar Candidatura<FaX /></button>
+        <button className="candidaturaBtn" onClick={handleShowDialog}>Eliminar candidatura</button>
       </div>
 
       {showDialog && (
@@ -306,6 +393,7 @@ const DetallesCandidatura = () => {
         </div>
       )}
     </article>
+    <GraficaCandidatura competencias={detallesCandidatura} /></>
   );
 };
 

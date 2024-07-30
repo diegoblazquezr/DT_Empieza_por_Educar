@@ -1,0 +1,32 @@
+@import "../utils/variables.scss";
+@import "../utils/mixins.scss";
+
+.estadisticas-candidato {
+    margin: 20px 0 0 0;
+    width: 100%;
+    @include column;
+    @include centered-content;
+
+    &>h3 {
+        text-align: center;
+        font-size: 20px;
+        margin-bottom: 6px;
+    }
+
+    &>.spinner {
+        align-self: center;
+        justify-self: center;
+        margin-bottom: 20px;
+    }
+
+
+
+    .grafica-competencias {
+        height: 40vh;
+        width: 90%;
+        margin-bottom: 5px;
+
+    }
+
+
+}
