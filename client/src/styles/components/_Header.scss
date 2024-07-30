@@ -2,7 +2,8 @@ header{
     display: flex;
     &>img {
         width: 10%;
-        height: 100%;
+        min-width: 150px;
+        height: 80%;
         padding-top: 46px;
         padding-left: 20px;
       }
