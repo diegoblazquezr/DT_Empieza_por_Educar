@@ -2,10 +2,6 @@
 
 header {
   position: relative;
-  &>img{
-    width: 10%;
-    height: 100%;
-  }
 }
 
 .hamburger-menu {
@@ -84,10 +80,11 @@ nav {
 
 
 
-@media (max-width: 900px) {
+@media (max-width: 950px) {
   header {
     &>img{
-      width: 20%;
+      width: 10%;
+      height: 100%;
     }
   }
   .hamburger-menu {

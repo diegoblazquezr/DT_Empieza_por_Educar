@@ -1,9 +1,23 @@
 @import '../utils/variables.scss';
 
-*{
+* {
     margin: 0px;
     padding: 0px;
     box-sizing: border-box;
     font-family: Lato;
     font-weight: bold;
+}
+
+body,
+#root {
+    height: 100vh;
+}
+
+#root {
+    display: flex;
+    flex-direction: column;
+}
+
+main {
+    margin-bottom: auto;
 }
