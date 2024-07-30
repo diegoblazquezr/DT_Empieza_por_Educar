@@ -74,7 +74,9 @@ const updateCandidato = async (req, res) => {
         "edad" in candidatoUpdated ||
         "carrera" in candidatoUpdated ||
         "nota_media" in candidatoUpdated ||
-        "nivel_ingles" in candidatoUpdated &&
+        "nivel_ingles" in candidatoUpdated ||
+        "sexo" in candidatoUpdated ||
+        "cv" in candidatoUpdated &&
         "id_candidato" in candidatoUpdated
     ) {
         try {

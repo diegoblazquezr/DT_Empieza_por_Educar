@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useCallback } from "react";
 import TarjetaCandidatos from "./TarjetaCandidatos";
 import axios from "axios";
 import { v4 as uuidv4 } from "uuid";
@@ -10,9 +10,8 @@ const ListaCandidatos = ({ candidatosName }) => {
 
   const getCandidatosDetails = async () => {
     try {
-      const response = await axios.get(`${URL}/api/candidatos?limit=10&offset=0`);
-      console.log("Response data:", response.data); 
-      return response.data || []; 
+      const response = await axios.get(`${URL}/api/candidatos?limit=20&offset=1000`);
+      return response.data || [];
     } catch (error) {
       console.error("Error obteniendo candidatos", error);
       return [];
@@ -22,9 +21,8 @@ const ListaCandidatos = ({ candidatosName }) => {
   useEffect(() => {
     const fetchCandidatos = async () => {
       const details = await getCandidatosDetails();
-      console.log("Fetched details:", details); 
       setCandidatosDetails(details);
-      setFilteredCandidatosDetails(details); 
+      setFilteredCandidatosDetails(details);
     };
     fetchCandidatos();
   }, []);
@@ -34,18 +32,44 @@ const ListaCandidatos = ({ candidatosName }) => {
       const filteredDetails = candidatosDetails.filter((candidato) =>
         candidato.nombre_candidato && candidato.nombre_candidato.toLowerCase().includes(candidatosName.toLowerCase())
       );
-      console.log("Filtered details:", filteredDetails); 
+      console.log("Filtered details:", filteredDetails);
       setFilteredCandidatosDetails(filteredDetails);
     } else {
-      setFilteredCandidatosDetails(candidatosDetails); 
+      setFilteredCandidatosDetails(candidatosDetails);
     }
   }, [candidatosName, candidatosDetails]);
+
+  const handleUpdate = useCallback((updatedCandidato) => {
+    console.log("Updating candidate:", updatedCandidato);
+    setCandidatosDetails(prevCandidatos => 
+      prevCandidatos.map(candidato => 
+        candidato.id_candidato === updatedCandidato.id_candidato ? updatedCandidato : candidato
+      )
+    );
+
+    setFilteredCandidatosDetails(prevCandidatos =>
+      prevCandidatos.map(candidato =>
+        candidato.id_candidato === updatedCandidato.id_candidato ? updatedCandidato : candidato
+      )
+    );
+  }, []);
+
+  const handleDelete = (id_candidato) => {
+    setCandidatosDetails((prevDetails) =>
+      prevDetails.filter((candidato) => candidato.id_candidato !== id_candidato)
+    );
+  };
 
   return (
     <section className="listaCandidatos">
       {filteredCandidatosDetails.length > 0 ? (
         filteredCandidatosDetails.map((candidato) => (
-          <TarjetaCandidatos candidatos={candidato} key={uuidv4()} />
+          <TarjetaCandidatos
+            candidatos={candidato}
+            key={candidato.id_candidato}
+            onUpdate={handleUpdate}
+            onDelete={handleDelete}
+          />
         ))
       ) : (
         <p>No se encontraron candidatos.</p>
