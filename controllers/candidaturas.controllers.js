@@ -31,7 +31,7 @@ const { validationResult } = require("express-validator");
 
 const readCandidaturasController = async (req, res) => {
     if (req.query.limit > 50) {
-        return res.status(400).json("Limit can not surpass 50");
+        return res.status(400).json("Limit no puede superar 50");
     }
     let candidaturas;
     // console.log(req.query);
@@ -48,13 +48,24 @@ const readCandidaturasController = async (req, res) => {
             if (!errors.isEmpty()) {
                 return res.status(400).json({ errors: errors.array() });
             }
-            candidaturas = await candidaturasModels.readCandidaturasModel(req.query.search, req.query.id_empleado, req.query.status, req.query.filter, req.query.order, parseInt(req.query.limit), parseInt(req.query.offset));
-            res.status(200).json(candidaturas);
+            const result = await candidaturasModels.readCandidaturasModel(
+                req.query.search,
+                req.query.id_empleado,
+                req.query.status,
+                req.query.filter,
+                req.query.order,
+                parseInt(req.query.limit),
+                parseInt(req.query.offset)
+            );
+            res.status(200).json({
+                items: result.items,
+                totalCount: result.totalCount
+            });
         }
     } catch (error) {
         res.status(500).json({ error: error.message });
     }
-}
+};
 // Prueba Postman
 // GET ONE http://localhost:3000/api/candidaturas?id_candidatura=1
 // GET ALL http://localhost:3000/api/candidaturas?search=mar&id_empleado=1&status=&filter=nombre_candidato&order=asc&limit=10&offset=0

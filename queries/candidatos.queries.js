@@ -41,7 +41,7 @@ const queries = {
         sexo= COALESCE(?, sexo),
         cv= COALESCE(?, cv)
     WHERE 
-        id_candidato=?;`,
+        id_candidato = ?;`,
     deleteCandidato: `DELETE 
         cas, cd, comp
     FROM 

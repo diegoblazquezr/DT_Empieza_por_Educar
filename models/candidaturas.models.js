@@ -48,16 +48,34 @@ const readCandidaturaByIdModel = async (id_candidatura) => {
 // READ ALL
 const readCandidaturasModel = async (search, id_empleado, status, filter, order, limit, offset) => {
     return new Promise((resolve, reject) => {
-        connection.query(candidaturasQueries.readCandidaturasQuery, [`%${search}%`, `%${search}%`, id_empleado, id_empleado, status, status, filter, order, filter, order, filter, order, filter, order, filter, order, filter, order, limit, offset], (error, results) => {
-            if (error) {
-                console.log(error);
-                reject(error);
-            } else {
-                resolve(results);
+        connection.query(
+            candidaturasQueries.readCandidaturasQuery,
+            [`%${search}%`, `%${search}%`, id_empleado, id_empleado, status, status, filter, order, filter, order, filter, order, filter, order, filter, order, filter, order, limit, offset],
+            (error, results) => {
+                if (error) {
+                    console.log(error);
+                    reject(error);
+                } else {
+                    connection.query(
+                        candidaturasQueries.readCandidaturasTotalCountQuery,
+                        [`%${search}%`, `%${search}%`, id_empleado, id_empleado, status, status],
+                        (countError, countResults) => {
+                            if (countError) {
+                                console.log(countError);
+                                reject(countError);
+                            } else {
+                                resolve({
+                                    items: results,
+                                    totalCount: countResults[0].total
+                                });
+                            }
+                        }
+                    );
+                }
             }
-        });
+        );
     });
-}
+};
 // Pruebas MySQL Workbench
 // readCandidaturasModel('mar', '', 'Registro', 'nombre_candidato', 'desc', 10, 0)
 //     .then(data => console.log(data))

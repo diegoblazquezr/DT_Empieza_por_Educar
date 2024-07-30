@@ -8,7 +8,6 @@ const BuscadorEmpleados = ({ setEmpleado }) => {
   const handleSubmit = (e) => {
     e.preventDefault();
     setEmpleado(value);
-    setValue("");
   };
 
   const handleRegisterClick = () => {
