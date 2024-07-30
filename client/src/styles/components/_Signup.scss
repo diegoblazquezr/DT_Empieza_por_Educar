@@ -46,6 +46,10 @@
             text-align: center;
             padding: 10px;
         }
+        & > ::placeholder {
+            color: black;
+          }
+
         &>button{
             width: 30%;
             min-width: 150px;
@@ -61,6 +65,21 @@
                 color: black;
               }
         }  
+    }
+    .button-back {
+        width: 30%;
+            min-width: 150px;
+            height: 40px;
+            margin-bottom: 40px;
+            background-color: $verde;
+            cursor: pointer;
+            border-radius: 20px;
+            color: white;
+
+            &:hover {
+                background-color: $amarillo;
+                color: black;
+              }
     }
     p {
         color: $verde;

@@ -173,6 +173,48 @@
 					"response": []
 				}
 			]
+		},
+		{
+			"name": "Modelo",
+			"item": [
+				{
+					"name": "https://api-empleados-2nuf.onrender.com/predict?id_candidatura=9",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://api-empleados-2nuf.onrender.com/predict?id_candidatura=9",
+							"protocol": "https",
+							"host": [
+								"api-empleados-2nuf",
+								"onrender",
+								"com"
+							],
+							"path": [
+								"predict"
+							],
+							"query": [
+								{
+									"key": "id_candidatura",
+									"value": "9"
+								}
+							]
+						},
+						"description": "GET de la valoración del modelo de una candidatura específica"
+					},
+					"response": []
+				},
+				{
+					"name": "https://api-empleados-2nuf.onrender.com/retrain",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"url": "https://api-empleados-2nuf.onrender.com/retrain",
+						"description": "POST para reentrenar al modelo"
+					},
+					"response": []
+				}
+			]
 		}
 	]
 }

@@ -163,7 +163,7 @@ const ListaCandidaturas = ({ candidaturas, setCandidaturas }) => {
 
     return (
       <div className="pagination">
-        <button onClick={() => handlePageChange(currentPage - 1)} disabled={currentPage === 1}>
+        <button className="prev" onClick={() => handlePageChange(currentPage - 1)} disabled={currentPage === 1}>
           Previous
         </button>
         {pageNumbers.map(number => (
@@ -175,7 +175,7 @@ const ListaCandidaturas = ({ candidaturas, setCandidaturas }) => {
             {number}
           </button>
         ))}
-        <button onClick={() => handlePageChange(currentPage + 1)} disabled={currentPage === totalPages}>
+        <button className="next" onClick={() => handlePageChange(currentPage + 1)} disabled={currentPage === totalPages}>
           Next
         </button>
       </div>

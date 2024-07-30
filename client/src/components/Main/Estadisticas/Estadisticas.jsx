@@ -15,10 +15,10 @@ const Estadisticas = () => {
   const [stats, setStats] = useState([]);
   const [statsCarrera, setStatsCarrera] = useState([]);
   const [statsNotas, setStatsNotas] = useState([]);
+  const [statsEdad, setStatsEdad] = useState([]);
   const [searching, setSearching] = useState(false);
   const [screenWidth, setScreenWidth] = useState(window.innerWidth);
   const [error, setError] = useState('');
-  const URL = import.meta.env.VITE_API_URL;
 
   useEffect(() => {
     getStats();
@@ -31,33 +31,85 @@ const Estadisticas = () => {
   }, []);
 
   const layoutVariable = screenWidth > 768 ? "vertical" : "horizontal";
-const isMobile = screenWidth < 600;
+  const isMobile = screenWidth < 600;
 
   const getStats = async () => {
     setSearching(true);
 
     try {
       const res = await axios.get('https://api-empleados-2nuf.onrender.com/candidaturas_status');
-      //console.log(res);
+      console.log(res);
 
       if (res) {
         setStats([res.data]);
         setError('');
-        const res2 = await axios.get('https://api-empleados-2nuf.onrender.com/estadisticas/carrera');
-        //console.log(res2);
-        if (res2) {
-          setStatsCarrera([res2.data]);
-          setError('');
-          const res3 = await axios.get('https://api-empleados-2nuf.onrender.com/estadisticas/notas');
-          //console.log(res3);
-          setStatsNotas([res3.data]);
+        try {
+          const res2 = await axios.get('https://api-empleados-2nuf.onrender.com/estadisticas/carrera');
+          console.log(res2);
+
+          if (res2) {
+            setStatsCarrera([res2.data]);
+            setError('');
+            try {
+              const res3 = await axios.get('https://api-empleados-2nuf.onrender.com/estadisticas/notas');
+              console.log(res3);
+
+              if (res3) {
+                setStatsNotas([res3.data]);
+                setError('');
+                try {
+                  const res4 = await axios.get('https://api-empleados-2nuf.onrender.com/estadisticas/edad');
+                  console.log(res4);
+                  setStatsEdad([res4.data]);
+
+                } catch (error) {
+                  console.error('Error al traer las estadísticas de la base de datos', err);
+                  setStats([]);
+                  setStatsCarrera([]);
+                  setStatsNotas([]);
+                  statsEdad([]);
+                  setError('Error al traer las estadísticas de la base de datos. Inténtalo de nuevo.');
+                  setTimeout(() => {
+                    setError('');
+                  }, 3000);
+                }
+              }
+
+            } catch (error) {
+              console.error('Error al traer las estadísticas de la base de datos', err);
+              setStats([]);
+              setStatsCarrera([]);
+              setStatsNotas([]);
+              statsEdad([]);
+              setError('Error al traer las estadísticas de la base de datos. Inténtalo de nuevo.');
+              setTimeout(() => {
+                setError('');
+              }, 3000);
+            }
+            setError('');
+
+          }
+        } catch (error) {
+          console.error('Error al traer las estadísticas de la base de datos', err);
+          setStats([]);
+          setStatsCarrera([]);
+          setStatsNotas([]);
+          statsEdad([]);
+          setError('Error al traer las estadísticas de la base de datos. Inténtalo de nuevo.');
+          setTimeout(() => {
+            setError('');
+          }, 3000);
         }
+
+
       }
       setError('');
     } catch (err) {
       console.error('Error al traer las estadísticas de la base de datos', err);
       setStats([]);
       setStatsCarrera([]);
+      setStatsNotas([]);
+      statsEdad([]);
       setError('Error al traer las estadísticas de la base de datos. Inténtalo de nuevo.');
       setTimeout(() => {
         setError('');
@@ -78,146 +130,25 @@ const isMobile = screenWidth < 600;
     { user: "admin", type: "Registro", value: dataOK[0].Registro, color: "hsl(81, 77%, 41%)" }
   ] : [];
 
-  const dataCarrera = statsCarrera.length > 0 ? [
-    {
-      "id": "ADE",
-      "label": "ADE",
-      "value": statsCarrera[0].ade ||0,
-      "color": "hsl(350, 70%, 50%)"
-    },
-    {
-      "id": "Arquitectura",
-      "label": "Arquitectura",
-      "value": statsCarrera[0].arquitectura ||0,
-      "color": "hsl(273, 70%, 50%)"
-    },
-    {
-      "id": "Biología",
-      "label": "Biología",
-      "value": statsCarrera[0].biología ||0,
-      "color": "hsl(350, 70%, 50%)"
-    },
-    {
-      "id": "Derecho",
-      "label": "Derecho",
-      "value": statsCarrera[0].derecho ||0,
-      "color": "hsl(264, 70%, 50%)"
-    },
-    {
-      "id": "Economía",
-      "label": "Economía",
-      "value": statsCarrera[0].economía ||0,
-      "color": "hsl(122, 70%, 50%)"
-    },
-    {
-      "id": "E. Infantil",
-      "label": "E. Infantil",
-      "value": statsCarrera[0].educación_infantil||0,
-      "color": "hsl(258, 70%, 50%)"
-    },
-    {
-      "id": "E. Primaria",
-      "label": "E. Primaria",
-      "value": statsCarrera[0].educación_primaria||0,
-      "color": "hsl(273, 70%, 50%)"
-    },
-    {
-      "id": "E. Social",
-      "label": "E. Social",
-      "value": statsCarrera[0].educación_social||0,
-      "color": "hsl(273, 70%, 50%)"
-    },
-    {
-      "id": "Filosofía",
-      "label": "Filosofía",
-      "value": statsCarrera[0].filosofía||0,
-      "color": "hsl(273, 70%, 50%)"
-    },
-    {
-      "id": "física",
-      "label": "física",
-      "value": statsCarrera[0].física||0,
-      "color": "hsl(273, 70%, 50%)"
-    },
-    {
-      "id": "historia",
-      "label": "historia",
-      "value": statsCarrera[0].historia||0,
-      "color": "hsl(273, 70%, 50%)"
-    },
-    {
-      "id": "informática",
-      "label": "informática",
-      "value": statsCarrera[0].informática||0,
-      "color": "hsl(273, 70%, 50%)"
-    },
-    {
-      "id": "ingeniería",
-      "label": "ingeniería",
-      "value": statsCarrera[0].ingeniería||0,
-      "color": "hsl(273, 70%, 50%)"
-    },
-    {
-      "id": "literatura",
-      "label": "literatura",
-      "value": statsCarrera[0].literatura||0,
-      "color": "hsl(273, 70%, 50%)"
-    },
-    {
-      "id": "matemáticas",
-      "label": "matemáticas",
-      "value": statsCarrera[0].matemáticas||0,
-      "color": "hsl(273, 70%, 50%)"
-    },
-    {
-      "id": "Medicina",
-      "label": "Medicina",
-      "value": statsCarrera[0].medicina||0,
-      "color": "hsl(258, 70%, 50%)"
-    }, 
-    {
-      "id": "otra",
-      "label": "otra",
-      "value": statsCarrera[0].otra||0,
-      "color": "hsl(273, 70%, 50%)"
-    },
-    {
-      "id": "pedagogía",
-      "label": "pedagogía",
-      "value": statsCarrera[0].pedagogía||0,
-      "color": "hsl(273, 70%, 50%)"
-    },
-    {
-      "id": "Periodismo",
-      "label": "Periodismo",
-      "value": statsCarrera[0].periodismo||0,
-      "color": "hsl(273, 70%, 50%)"
-    },
-    {
-      "id": "psicología",
-      "label": "psicología",
-      "value": statsCarrera[0].psicología||0,
-      "color": "hsl(273, 70%, 50%)"
-    },
-    {
-      "id": "psicopedagogía",
-      "label": "psicopedagogía",
-      "value": statsCarrera[0].psicopedagogía||0,
-      "color": "hsl(273, 70%, 50%)"
-    },
-    {
-      "id": "química",
-      "label": "química",
-      "value": statsCarrera[0].química||0,
-      "color": "hsl(273, 70%, 50%)"
-    },
-    {
-      "id": "sociología",
-      "label": "sociología",
-      "value": statsCarrera[0].sociología||0,
-      "color": "hsl(273, 70%, 50%)"
-    }
-  ] : [];
+
+  //Transformación para adaptar lo que viene del endpoint a NIVO
+  const dataEdades = statsEdad.length > 0 ? Object.entries(statsEdad[0]).map(([rangoEdad, porcentaje]) => ({
+    id: rangoEdad,
+    value: porcentaje
+  })) : [];
+  console.log(dataEdades)
+
+  const colorScale = [
+    '#EEEF20', 
+    '#DDDF00',
+    '#D4D700',
+    '#BFD200',
+    '#AACC00',
+    '#80B918',
+    '#55A630',
+    '#2B9348',
+    '#108B6C' 
+  ];
 
   const legendProps = {
     anchor: 'bottom',
@@ -236,15 +167,15 @@ const isMobile = screenWidth < 600;
   };
 
   const pieChartProps = {
-    data: dataCarrera,
+    data: dataEdades,
     margin: isMobile
       ? { top: 20, right: 20, bottom: 20, left: 20 }
-      : { top: 40, right: 80, bottom: 80, left: 80 },
+      : { top: 40, right: 40, bottom: 40, left: 40 },
     innerRadius: 0.5,
     padAngle: 0.7,
     cornerRadius: 3,
     activeOuterRadiusOffset: 8,
-    colors: { scheme: 'greens' },
+    colorBy: 'id',    
     borderWidth: isMobile ? 3 : 6,
     enableArcLinkLabels: isMobile ? false : true,
     arcLinkLabelsSkipAngle: 10,
@@ -252,38 +183,144 @@ const isMobile = screenWidth < 600;
     arcLinkLabelsThickness: 2,
     arcLinkLabelsColor: { from: 'color' },
     arcLabelsSkipAngle: 10,
-    arcLabelsTextColor: { from: 'color', modifiers: [['darker', 2]] },
-    arcLinkLabel: d => `${d.id} (${d.value}%)`,
+    arcLabelsTextColor: "black",
+    arcLinkLabel: d => `${d.id} años`,
     responsive: true,
-    legends: []
+    legends: [],
+    colors: ({ id }) => colorScale[dataEdades.findIndex(d => d.id === id) % colorScale.length]
+
   };
 
-  const dataCarreraNota = [
+  const dataCarreraNota = statsNotas.length > 0 ? [
     {
-        "carrera": "I. Informática",
-        "candidaturas": 7.26,
-        "nota media": 8.5
+      "carrera": "ADE",
+      "candidaturas": statsCarrera[0].ade || 0,
+      "nota media": statsNotas[0].ade || 0,
     },
     {
-        "carrera": "Medicina",
-        "candidaturas": 6.5,
-        "nota media": 9.2
+      "carrera": "Arquitectura",
+      "candidaturas": statsCarrera[0].arquitectura || 0,
+      "nota media": statsNotas[0].arquitectura || 0,
     },
-    // más datos
-];
-  
+    {
+      "carrera": "Biología",
+      "candidaturas": statsCarrera[0].biología || 0,
+      "nota media": statsNotas[0].biología || 0,
+    },
+    {
+      "carrera": "Derecho",
+      "candidaturas": statsCarrera[0].derecho || 0,
+      "nota media": statsNotas[0].derecho || 0,
+    },
+    {
+      "carrera": "Economía",
+      "candidaturas": statsCarrera[0].economía || 0,
+      "nota media": statsNotas[0].economía || 0,
+    },
+    {
+      "carrera": "E. Infantil",
+      "candidaturas": statsCarrera[0].educación_infantil || 0,
+      "nota media": statsNotas[0].educación_infantil || 0,
+    },
+    {
+      "carrera": "E. Primaria",
+      "candidaturas": statsCarrera[0].educación_primaria || 0,
+      "nota media": statsNotas[0].educación_primaria || 0,
+    },
+    {
+      "carrera": "E. Social",
+      "candidaturas": statsCarrera[0].educación_social || 0,
+      "nota media": statsNotas[0].educación_social || 0,
+    },
+    {
+      "carrera": "Filosofía",
+      "candidaturas": statsCarrera[0].filosofía || 0,
+      "nota media": statsNotas[0].filosofía || 0,
+    },
+    {
+      "carrera": "Física",
+      "candidaturas": statsCarrera[0].física || 0,
+      "nota media": statsNotas[0].física || 0,
+    },
+    {
+      "carrera": "Historia",
+      "candidaturas": statsCarrera[0].historia || 0,
+      "nota media": statsNotas[0].historia || 0,
+    },
+    {
+      "carrera": "Informática",
+      "candidaturas": statsCarrera[0].informática || 0,
+      "nota media": statsNotas[0].informática || 0,
+    },
+    {
+      "carrera": "Ingeniería",
+      "candidaturas": statsCarrera[0].ingeniería || 0,
+      "nota media": statsNotas[0].ingeniería || 0,
+    },
+    {
+      "carrera": "Literatura",
+      "candidaturas": statsCarrera[0].literatura || 0,
+      "nota media": statsNotas[0].literatura || 0,
+    },
+    {
+      "carrera": "Matemáticas",
+      "candidaturas": statsCarrera[0].matemáticas || 0,
+      "nota media": statsNotas[0].matemáticas || 0,
+    },
+    {
+      "carrera": "Medicina",
+      "candidaturas": statsCarrera[0].medicina || 0,
+      "nota media": statsNotas[0].medicina || 0,
+    },
+    {
+      "carrera": "Otra",
+      "candidaturas": statsCarrera[0].otra || 0,
+      "nota media": statsNotas[0].otra || 0,
+    },
+    {
+      "carrera": "Pedagogía",
+      "candidaturas": statsCarrera[0].pedagogía || 0,
+      "nota media": statsNotas[0].pedagogía || 0,
+    },
+    {
+      "carrera": "Periodismo",
+      "candidaturas": statsCarrera[0].periodismo || 0,
+      "nota media": statsNotas[0].periodismo || 0,
+    },
+    {
+      "carrera": "Psicología",
+      "candidaturas": statsCarrera[0].psicología || 0,
+      "nota media": statsNotas[0].psicología || 0,
+    },
+    {
+      "carrera": "Psicopedagogía",
+      "candidaturas": statsCarrera[0].psicopedagogía || 0,
+      "nota media": statsNotas[0].psicopedagogía || 0,
+    },
+    {
+      "carrera": "Química",
+      "candidaturas": statsCarrera[0].química || 0,
+      "nota media": statsNotas[0].química || 0,
+    },
+    {
+      "carrera": "Sociología",
+      "candidaturas": statsCarrera[0].sociología || 0,
+      "nota media": statsNotas[0].sociología || 0,
+    },
+  ] : [];
+  const filteredData = dataCarreraNota.filter(item => item.candidaturas > 0 || item['nota media'] > 0);
 
 
   return <> <section className="estadisticas">
-    <h2>Estadisticas Generales</h2>
+    <h2>Estadísticas Generales</h2>
     {searching ? (
       <div className="spinner"><CirclesWithBar
         height="150"
         width="150"
-        color="#4fa94d"
-        outerCircleColor="#4fa94d"
-        innerCircleColor="#4fa94d"
-        barColor="#4fa94d"
+        color="#11654d"
+        outerCircleColor="#11654d"
+        innerCircleColor="#FFCC00"
+        barColor="#FFCC00"
         ariaLabel="circles-with-bar-loading"
         wrapperStyle={{}}
         wrapperClass=""
@@ -299,7 +336,7 @@ const isMobile = screenWidth < 600;
               data={dataFINAL}
               keys={['value']}
               indexBy="type"
-              margin={{ top: 50, right: 20, bottom: 50, left: 100 }}
+              margin={{ top: 30, right: 20, bottom: 50, left: 100 }}
               padding={0.3}
               groupMode="grouped"
               layout={layoutVariable}
@@ -314,7 +351,7 @@ const isMobile = screenWidth < 600;
                 tickValues: 9,
                 tickPadding: 5,
                 tickRotation: 0,
-                truncateTickAt: 0
+                truncateTickAt: 0,
               }}
               labelSkipWidth={12}
               labelSkipHeight={12}
@@ -330,9 +367,9 @@ const isMobile = screenWidth < 600;
       ) : (
         <p>No hay estadísticas disponibles.</p>
       )}
-      {statsCarrera.length > 0 ? (
+      {statsEdad.length > 0 ? (
         <>
-          <h3>Nº de candidat@s por carrera</h3>
+          <h3>% de candidaturas por rango de edad</h3>
           <div className="piechart">
             <ResponsivePie {...pieChartProps} />
           </div>
@@ -340,69 +377,73 @@ const isMobile = screenWidth < 600;
       ) : (
         <p>No hay estadísticas disponibles.</p>
       )}
-      
+      {statsNotas.length > 0 ? (
         <>
-          <h3>Nº de candidatos por carrera y nota media</h3>
+          <h3>Nº de candidat@s por carrera y nota media</h3>
           <div className="grafica-combinada">
-          <ResponsiveBar
-        data={dataCarreraNota}
-        keys={['candidaturas', 'nota media']}
-        indexBy="carrera"
-        margin={{ top: 50, right: 50, bottom: 50, left: 100 }}
-        padding={0.3}
-        groupMode="grouped"
-        layout="horizontal"
-        colors={{ scheme: 'yellow_green' }}
-        borderColor={{ from: 'color', modifiers: [['darker', 1.6]] }}
-        axisTop={null}
-        axisRight={null}
-        axisBottom={{
-            tickSize: 10,
-            tickValues: 4,
-            tickPadding: 5,
-            tickRotation: 35,
-    
-        }}
-        axisLeft={{
-            tickSize: 5,
-            tickPadding: 5,
-            tickRotation: 0,
-         
-        }}
-        labelSkipWidth={15}
-        labelSkipHeight={15}
-        labelTextColor="black"
-        legends={[
-            {
-                dataFrom: 'keys',
-                anchor: 'top-left',
-                direction: 'row',
-                justify: false,
-                translateX: 20,
-                translateY: 0,
-                itemsSpacing: 20,
-                itemWidth: 80,
-                itemHeight: 20,
-                itemDirection: 'left-to-right',
-                itemOpacity: 0.85,
-                symbolSize: 20,
-                effects: [
+            <ResponsiveBar
+              data={filteredData}
+              keys={['candidaturas', 'nota media']}
+              indexBy="carrera"
+              margin={isMobile
+                ? { top: 50, right: 30, bottom: 50, left: 100 }
+                : { top: 50, right: 50, bottom: 70, left: 100 }}
+              padding={0.1}
+              groupMode="stacked"
+              layout={layoutVariable}
+              colors={({ id }) => (id === 'candidaturas' ? '#11654d' : '#FFCC00')}
+              borderColor={{ from: 'color', modifiers: [['darker', 1.6]] }}
+              axisTop={null}
+              axisRight={null}
+              axisBottom={{
+                tickSize: 10,
+                tickValues: 4,
+                tickPadding: 5,
+                tickRotation: 35,
+
+              }}
+              axisLeft={{
+                tickSize: 5,
+                tickPadding: 5,
+                tickRotation: 0,
+
+              }}
+              labelSkipWidth={15}
+              labelSkipHeight={15}
+              labelTextColor="black"
+              legends={[
+                {
+                  dataFrom: 'keys',
+                  anchor: 'top-left',
+                  direction: 'row',
+                  justify: false,
+                  translateX: 20,
+                  translateY: -20,
+                  itemsSpacing: 20,
+                  itemWidth: 80,
+                  itemHeight: 20,
+                  itemDirection: 'left-to-right',
+                  itemOpacity: 0.85,
+                  symbolSize: 20,
+                  effects: [
                     {
-                        on: 'hover',
-                        style: {
-                            itemOpacity: 1
-                        }
+                      on: 'hover',
+                      style: {
+                        itemOpacity: 1
+                      }
                     }
-                ]
-            }
-        ]}
-        role="application"
-        isFocusable={true}
-        ariaLabel="Gráfico de barras agrupadas"
-    />
+                  ]
+                }
+              ]}
+              role="application"
+              isFocusable={true}
+              ariaLabel="Gráfico de barras agrupadas"
+            />
           </div>
         </>
-    
+      ) : (
+        <p>No hay estadísticas disponibles.</p>
+      )}
     </article>
     )}
   </section>
