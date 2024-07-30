@@ -1,9 +1,5 @@
 @import "../utils/variables.scss";
 
-header {
-  position: relative;
-}
-
 .hamburger-menu {
   display: none;
   font-size: 30px;
@@ -27,7 +23,6 @@ nav {
   color: rgb(63, 63, 63);
   text-decoration: none;
   font-size: 20px;
-
 
   & > ul {
     margin: 0px 20px;
@@ -81,12 +76,6 @@ nav {
 
 
 @media (max-width: 950px) {
-  header {
-    &>img{
-      width: 10%;
-      height: 100px;
-    }
-  }
   .hamburger-menu {
     display: block;
   }
@@ -102,18 +91,27 @@ nav {
   nav > ul {
     flex-direction: column;
     align-items: center;
-    border-bottom: 2px solid $amarillo;
     &>h3{
-      padding-bottom: 40px;
+      padding-bottom: 10px;
+      font-size: 20px;
+      border-bottom: 2px solid $verde;
     }
     &>button{
-      border: none;
-      text-align: center;
+      border: 2px solid $amarillo;
+      border-radius: 30px;
+      padding: 10px 20px;      text-align: center;
       color: $verde;
+      font-size: 20px;
+      margin-bottom: 10px;
     }
     a:-webkit-any-link {
       color: $verde;
+      font-size: 20px;
+      border: 2px solid $amarillo;
+      border-radius: 30px;
+      padding: 10px 20px;
     }
+  
   }
 
   nav > ul > li {
@@ -121,15 +119,4 @@ nav {
     border: none;
   }
   
-}
-
-@media (max-width: 1200px) {
-  nav > ul {
-    &>li{
-      font-size: 14px;
-    }
-    &>button{
-      font-size: 14px;
-    }
-  }
 }

@@ -1,10 +1,26 @@
 header{
     display: flex;
-    &>img {
+    position: relative;
+    justify-content: space-between;
+    &>.imgLogo>img {
+      justify-content: flex-start;
         width: 10%;
         min-width: 150px;
-        height: 80%;
+        height: 100px;
         padding-top: 46px;
         padding-left: 20px;
       }
+}
+
+@media (max-width: 950px) {
+  header {
+    display: grid;
+    justify-content: center;
+    &>.imgLogo>img{
+      width: 10%;
+      height: 110px;
+      padding-left: 0px;
+    
+    }
+  }
 }

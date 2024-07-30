@@ -1,7 +1,19 @@
+@import "../utils/variables.scss";
+
 .candidaturas{
     &>h2{
     text-align: center;
     padding-top: 40px;
-    font-size: 30px;
+    font-size: 40px;
+    padding-bottom: 30px;
+    color: rgb(36, 36, 46)
 }
+}
+
+@media (max-width: 950px) {
+    .candidaturas{
+        &>h2{
+            font-size: 30px;
+        }
+    }
 }
