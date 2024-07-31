@@ -60,7 +60,7 @@ const sendMailEmpleado = (email_empleado, subject, nombre_empleado, password) =>
   <p>Te remitimos este email desde el equipo de IT de Empieza por Educar.</p>
   <p>Ante tu reciente incorporación a nuestro proyecto, hemos creado unas claves de acceso iniciales para que puedas acceder al Dashboard de nuestra Intranet, desde donde podrás acceder a todos los datos de las candidaturas que se te vayan asignando.</p>
   <p>Si tienes alguna duda, no dudes en ponerte en contacto con nosotr@s.</p>
-  <p>Ya puedes acceder a tu panel desde el siguiente <a href='' target='_blank'>enlace</a>.</p>
+  <p>Ya puedes acceder a tu panel desde el siguiente <a href='https://empieza-por-educar.onrender.com/' target='_blank'>enlace</a>.</p>
   <p>Estas son tus credenciales:</p>
   <p>Nombre de usuario: ${email_empleado}</p>
   <p>Contraseña:${password}</p>

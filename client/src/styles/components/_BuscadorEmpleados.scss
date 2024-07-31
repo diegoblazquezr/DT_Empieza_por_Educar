@@ -1,6 +1,7 @@
 @import "../utils/variables.scss";
 
 .buscadorEmpleados {
+ 
   & > form {
     display: flex;
     justify-content: center;
@@ -21,47 +22,59 @@
     }
     & > button {
       border-radius: 10px;
-      width: 10%;
+      width: 30%;
       height: 50px;
       text-align: center;
       background-color: $verde;
+      cursor: pointer;
       color: white;
+      &:hover {
+        background-color: $amarillo;
+        color: black;
+      }
     }
-    & > form {
-      display: flex;
-      justify-content: center;
-      margin: 40px 0;
-    }
+   
    
   }
 }
-
+.spinner-empleados {
+  align-self: center;
+  justify-self: center;
+  margin-bottom: 20px;
+}
 .botonesEmpleado{
   margin-top: 10px;
+  display: flex;
+  gap:5px;
+  justify-content: center;
+  align-items: center;
   & > button {
     border-radius: 30px;
     width: 30%;
+    cursor: pointer;
     height: 50px;
     text-align: center;
     background-color: $amarillo;
     color: black;
     margin-bottom: 30px;
+    &:hover {
+      background-color: $verde;
+      color: white;
+    }
   }
+ 
 }
 
 @media (max-width: 600px) {
   .buscadorEmpleados {
-    flex-direction: column;
-    justify-content: center;
-    justify-items: center;
-    display: grid;
+  padding: 10px;
     & > form > input {
       width: 100%;
       margin-bottom: 10px;
       min-width: 150px;
     }
     & > form > button {
-      width: 100%;
+      width: 20%;
     }
   }
   .botonesEmpleado{

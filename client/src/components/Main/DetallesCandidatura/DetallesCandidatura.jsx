@@ -25,7 +25,7 @@ const DetallesCandidatura = () => {
   const [loading, setLoading] = useState(false);
   const [showDialog, setShowDialog] = useState(false);
   const [editStatus, setEditStatus] = useState(false);
-  const [statusClass, setStatusClass] = useState("");
+  const [statusClass, setStatusClass] = useState('');
   //const [newStatus, setNewStatus] = useState('');
   const [editEmpleado, setEditEmpleado] = useState(false);
   //const [newEmpleado, setNewEmpleado] = useState('');
@@ -36,14 +36,14 @@ const DetallesCandidatura = () => {
   const navigate = useNavigate();
 
   const candidaturaId = id_candidatura || id_candidaturaFromQuery;
-  const URL = import.meta.env.VITE_API_URL || "http://localhost:3000";
 
+  const URL = import.meta.env.VITE_API_URL || 'http://localhost:3000';
   const { register, handleSubmit, reset, setValue } = useForm();
 
   useEffect(() => {
     async function fetchData() {
       if (!candidaturaId) {
-        console.error("No se ha provisto de un id_candidatura");
+        console.error('No se ha provisto de un id_candidatura');
         return;
       }
 
@@ -56,18 +56,17 @@ const DetallesCandidatura = () => {
         setDetallesCandidatura(json);
         if (res.data) {
           try {
-            const res2 = await axios.get(
-              `https://api-empleados-2nuf.onrender.com/predict?id_candidatura=${candidaturaId}`
-            );
+            const res2 = await axios.get(`https://api-empleados-2nuf.onrender.com/predict?id_candidatura=${candidaturaId}`);
             const prediction = res2.data;
             console.log(prediction);
 
-            if (prediction.prediction === "Admitido") {
-              setStatusClass("active");
+            if (prediction.prediction === 'Admitido') {
+              setStatusClass('active');
             }
+
           } catch (error) {
             console.error(error);
-            statusClass("");
+            statusClass('');
             setDetallesCandidatura(null);
           }
         }
@@ -92,10 +91,8 @@ const DetallesCandidatura = () => {
   const handleBorrarCandidatura = async () => {
     setLoading(true);
     try {
-      await axios.delete(
-        `${URL}/api/candidaturas?id_candidatura=${candidaturaId}`
-      );
-      navigate("/candidaturas");
+      await axios.delete(`${URL}/api/candidaturas?id_candidatura=${candidaturaId}`);
+      navigate('/candidaturas');
     } catch (e) {
       console.error("Error al borrar candidatura:", e);
     } finally {
@@ -165,20 +162,18 @@ const DetallesCandidatura = () => {
         nota: data.nota,
       });
 
-      setDetallesCandidatura((prevState) => {
+      setDetallesCandidatura(prevState => {
         const updatedState = [...prevState];
-        const index = prevState.findIndex(
-          (item) => item.nombre_competencia === data.nombre_competencia
-        );
+        const index = prevState.findIndex(item => item.nombre_competencia === data.nombre_competencia);
         if (index !== -1) {
           updatedState[index] = {
             ...updatedState[index],
-            nota: data.nota,
+            nota: data.nota
           };
         }
         return updatedState;
       });
-      reset({ nota: "", nombre_competencia: "" });
+      reset({ nota: '', nombre_competencia: '' });
       setEditIndex(-1);
     } catch (e) {
       console.error("Error updating competencia:", e);
@@ -221,13 +216,11 @@ const DetallesCandidatura = () => {
         status: data.status,
       });
 
-      setDetallesCandidatura((prevState) => {
-        return [
-          {
-            ...prevState[0],
-            status: data.status,
-          },
-        ];
+      setDetallesCandidatura(prevState => {
+        return [{
+          ...prevState[0],
+          status: data.status
+        }];
       });
       setEditStatus(false);
     } catch (e) {
@@ -271,13 +264,11 @@ const DetallesCandidatura = () => {
         id_empleado: data.id_empleado,
       });
 
-      setDetallesCandidatura((prevState) => {
-        return [
-          {
-            ...prevState[0],
-            id_empleado: data.id_empleado,
-          },
-        ];
+      setDetallesCandidatura(prevState => {
+        return [{
+          ...prevState[0],
+          id_empleado: data.id_empleado
+        }];
       });
       setEditEmpleado(false);
     } catch (e) {
@@ -313,7 +304,6 @@ const DetallesCandidatura = () => {
   } = firstCandidatura;
 
   const fecha_registro_formatted = formatDate(fecha_registro);
-
   return (
     <>
       <section className={`container-detalles ${statusClass}`}>

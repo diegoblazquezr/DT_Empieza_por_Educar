@@ -1,12 +1,11 @@
 import React, { useState } from "react";
 
-const BuscadorCandidatos = ({ definirNombreCandidato }) => {
+const BuscadorCandidatos = ({ setCandidato }) => {
   const [value, setValue] = useState("");
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    definirNombreCandidato(value);
-    setValue("");
+    setCandidato(value);
   };
 
   return (
@@ -17,7 +16,7 @@ const BuscadorCandidatos = ({ definirNombreCandidato }) => {
           value={value}
           onChange={(e) => setValue(e.target.value)}
           name="topic"
-          placeholder="Busca un candidato..."
+          placeholder="Busca un candidato por email"
         />
         <button type="submit">Buscar</button>
       </form>
