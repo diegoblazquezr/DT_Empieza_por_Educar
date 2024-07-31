@@ -116,7 +116,7 @@
       }
 }
 
-@media (max-width: 950px) {
+@media (max-width: 768px) {
 
     .search-form {
         flex-direction: column;
@@ -147,6 +147,26 @@
         }
         & > button {
             display: none;
+        }
+    }
+    .listaCandidaturas{
+        margin: 10px 0px;
+        display: flex;
+        justify-content: center;
+        justify-items: center;
+        flex-direction: column;
+        align-content: center;
+        align-items: center;
+        &>h2{
+            color: black;
+            margin-top: 30px;
+            margin-bottom: 50px;
+            text-align: center;
+            font-size: 30px;
+        }
+    
+        .spinner {
+            align-self: center;
         }
     }
 }
