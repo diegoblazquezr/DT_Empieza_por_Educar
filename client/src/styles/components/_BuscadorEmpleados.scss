@@ -50,8 +50,8 @@
   align-items: center;
   & > button {
     border-radius: 30px;
+    width: 30%;
     cursor: pointer;
-    width: 20%;
     height: 50px;
     text-align: center;
     background-color: $amarillo;
@@ -65,12 +65,13 @@
  
 }
 
-@media (max-width: 768px) {
+@media (max-width: 600px) {
   .buscadorEmpleados {
   padding: 10px;
     & > form > input {
       width: 100%;
       margin-bottom: 10px;
+      min-width: 150px;
     }
     & > form > button {
       width: 20%;

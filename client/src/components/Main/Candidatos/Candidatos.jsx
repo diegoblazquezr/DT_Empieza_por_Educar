@@ -3,13 +3,17 @@ import ListaCandidatos from "./ListaCandidatos";
 import BuscadorCandidatos from "./BuscadorCandidatos";
 
 const Candidatos = () => {
-  const [candidatosName, setCandidatoName] = useState("");
+  const [candidatoEmail, setCandidatoEmail] = useState("");
 
   return (
     <section className="listaCandidatos">
       <h2>Lista de Candidatos</h2>
-      <BuscadorCandidatos definirNombreCandidato={setCandidatoName} />
-      <ListaCandidatos candidatosName={candidatosName} />
+      <BuscadorCandidatos setCandidato={setCandidatoEmail} />
+      {candidatoEmail ? (
+        <ListaCandidatos candidatoEmail={candidatoEmail} />
+      ) : (
+        <h4>Busca un candidato</h4>
+      )}
     </section>
   );
 };

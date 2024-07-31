@@ -6,7 +6,6 @@ import { useForm } from "react-hook-form";
 import { BsFileEarmarkPdfFill } from "react-icons/bs";
 import GraficaCandidatura from "./GraficaCandidatura/GraficaCandidatura";
 
-
 const statusOptions = [
   "Registro",
   "Solicitud",
@@ -15,7 +14,7 @@ const statusOptions = [
   "CentroEvaluación",
   "Ofertado",
   "Abandona",
-  "Descartado"
+  "Descartado",
 ];
 
 const DetallesCandidatura = () => {
@@ -33,12 +32,12 @@ const DetallesCandidatura = () => {
   const { id_candidatura } = useParams();
   const location = useLocation();
   const searchParams = new URLSearchParams(location.search);
-  const id_candidaturaFromQuery = searchParams.get('id_candidatura');
+  const id_candidaturaFromQuery = searchParams.get("id_candidatura");
   const navigate = useNavigate();
 
   const candidaturaId = id_candidatura || id_candidaturaFromQuery;
-  const URL = import.meta.env.VITE_API_URL || 'http://localhost:3000';
 
+  const URL = import.meta.env.VITE_API_URL || 'http://localhost:3000';
   const { register, handleSubmit, reset, setValue } = useForm();
 
   useEffect(() => {
@@ -49,7 +48,9 @@ const DetallesCandidatura = () => {
       }
 
       try {
-        const res = await axios.get(`${URL}/api/candidaturas?id_candidatura=${candidaturaId}`);
+        const res = await axios.get(
+          `${URL}/api/candidaturas?id_candidatura=${candidaturaId}`
+        );
         const json = res.data;
         console.log(json);
         setDetallesCandidatura(json);
@@ -79,10 +80,10 @@ const DetallesCandidatura = () => {
   }, [candidaturaId]);
 
   const formatDate = (dateString) => {
-    if (!dateString) return '';
+    if (!dateString) return "";
     const date = new Date(dateString);
-    const day = date.getDate().toString().padStart(2, '0');
-    const month = (date.getMonth() + 1).toString().padStart(2, '0');
+    const day = date.getDate().toString().padStart(2, "0");
+    const month = (date.getMonth() + 1).toString().padStart(2, "0");
     const year = date.getFullYear();
     return `${day}-${month}-${year}`;
   };
@@ -98,7 +99,6 @@ const DetallesCandidatura = () => {
       setLoading(false);
     }
   };
-
 
   const handleShowDialog = () => {
     setShowDialog(true);
@@ -181,7 +181,6 @@ const DetallesCandidatura = () => {
       setLoading(false);
     }
   };
-
 
   /*const handleSubmitEditStatus = async (e) => {
     e.preventDefault();
@@ -305,122 +304,169 @@ const DetallesCandidatura = () => {
   } = firstCandidatura;
 
   const fecha_registro_formatted = formatDate(fecha_registro);
-
-
-
-  return (<>
-    <section className={`container-detalles ${statusClass}`}>
-      <div className="message-prediction">{statusClass === 'active' ? 'Candidato óptimo' : ''}</div>
-      <article className="detalles-candidatura">
-        <div>
-          <span>ID Candidato: {id_candidato}</span>
-          <p>Nombre: {nombre_candidato}</p>
-          <p>Apellidos: {apellidos_candidato}</p>
-          <p>Email: {email_candidato}</p>
-          <span>Teléfono: {telefono_candidato}</span><br></br>
-          <span>Edad: {edad}</span>
-          <p>Carrera: {carrera}</p>
-          <p>Nivel de Inglés: {nivel_ingles}</p>
-          <p>CV: <a href={cv} target="_blank" ><BsFileEarmarkPdfFill className="icon-pdf"/></a></p>
+  return (
+    <>
+      <section className={`container-detalles ${statusClass}`}>
+        <div className="message-prediction">
+          {statusClass === "active" ? "Candidato óptimo" : ""}
         </div>
-        <div>
-          <p>Competencias:</p>
-          <ul>
-            {detallesCandidatura.map((item, index) => (
-              <li key={index}>
-                {item.nombre_competencia}:
-                {editIndex === index ? (
-                  <form onSubmit={handleSubmit(onSubmitEditCompetencias)}>
-                    <input
-                      type="text"
-                      {...register("nombre_competencia", { required: true })}
-                      defaultValue={item.nombre_competencia}
-                      readOnly
-                    />
-                    <input
-                      type="number"
-                      {...register("nota", { required: true, min: { value: 0, message: 'Debe ser mayor de 0' }, max: { value: 5, message: 'Debe ser menor de 5' } })}
-                      defaultValue={item.nota}
-                    />
-                    <button type="submit" disabled={loading}>
-                      {loading ? 'Saving...' : 'Guardar'}
-                    </button>
-                  </form>
-                ) : (
-                  <>
-                    {item.nota}
-                    <FaPencil onClick={() => {
-                      setEditIndex(index);
-                      setValue("nombre_competencia", item.nombre_competencia);
-                      setValue("nota", item.nota);
-                    }} /></>
-                )}
-              </li>
-            ))}
-          </ul>
-        </div>
-        <div>
-          <span>ID Candidatura: {candidaturaId}</span><br />
-          <span>ID Empleado: {editEmpleado ? (
-            <form onSubmit={handleSubmit(onSubmitEditEmpleado)}>
-              <input
-                type="number"
-                {...register("id_empleado", { required: true, min: { value: 0, message: 'Debe ser mayor de 0' } })}
-                defaultValue={id_empleado}
-              />
-              <button type="submit" disabled={loading}>
-                {loading ? 'Saving...' : 'Guardar'}
-              </button>
-            </form>
-          ) : (
-            <>
-              {id_empleado}
-              <FaPencil onClick={() => handleEmpleadoEditClick(id_empleado)} />
-            </>
-          )}</span>
-          <p>Status: {editStatus ? (
-            <form onSubmit={handleSubmit(onSubmitEditStatus)}>
-              <select
-                {...register("status", { required: true })}
-                defaultValue={status}
-              >
-                {statusOptions.map(option => (
-                  <option key={option} value={option}>{option}</option>
-                ))}
-              </select>
-              <button type="submit" disabled={loading}>
-                {loading ? 'Saving...' : 'Guardar'}
-              </button>
-            </form>
-          ) : (
-            <>
-              {status}
-              <FaPencil onClick={() => handleStatusEditClick(status)} />
-            </>
-          )}</p>
-          <p>Fecha Registro: {fecha_registro_formatted}</p>
-        </div>
-        <div className="btnsContainer">
-          <button className="candidaturaBtn" onClick={handleShowDialog}>Eliminar candidatura</button>
-        </div>
+        <article className="detalles-candidatura">
+          <div className="detalles-candidato">
+            <div className="idCandidato">
+              <h2>ID Candidato: {id_candidato}</h2>
+            </div>
+            <div className="titulos-candidato">
+              <div className="titulos-maximos">
+                <h3>Nombre</h3>
+                <h3>Apellidos</h3>
+                <h3>Email</h3>
+                <h3>Teléfono</h3>
+                <h3>Edad</h3>
+                <h3>Carrera</h3>
+                <h3>Nivel de Inglés</h3>
+                <h3>CV</h3>
+              </div>
 
-        {showDialog && (
-          <div className="confirmation-dialog">
-            <p>¿Estás seguro de que deseas eliminar esta candidatura?</p>
-            <button onClick={handleBorrarCandidatura} disabled={loading}>
-              {loading ? 'Eliminando...' : 'Sí, eliminar'}
-            </button>
-            <button onClick={handleHideDialog}>Cancelar</button>
+              <div className="parrafos-maximos">
+                <p>{nombre_candidato}</p>
+                <p>{apellidos_candidato}</p>
+                <p>{email_candidato}</p>
+                <p>{telefono_candidato}</p>
+                <p>{edad}</p>
+                <p>{carrera}</p>
+                <p>{nivel_ingles}</p>
+                <p>
+                  <a href={cv} target="_blank">
+                    <BsFileEarmarkPdfFill className="icon-pdf" />
+                  </a>
+                </p>
+              </div>
+            </div>
           </div>
-        )}
-      </article>
-    </section>
-    <GraficaCandidatura competencias={detallesCandidatura} /></>
+          <div className="competencias">
+            <h3>Competencias</h3>
+            <ul>
+              {detallesCandidatura.map((item, index) => (
+                <li key={index}>
+                  {item.nombre_competencia}:{" "}
+                  {editIndex === index ? (
+                    <form onSubmit={handleSubmit(onSubmitEditCompetencias)}>
+                      <input
+                        type="text"
+                        {...register("nombre_competencia", { required: true })}
+                        defaultValue={item.nombre_competencia}
+                        readOnly
+                      />
+                      <input
+                        type="number"
+                        {...register("nota", {
+                          required: true,
+                          min: { value: 0, message: "Debe ser mayor de 0" },
+                          max: { value: 5, message: "Debe ser menor de 5" },
+                        })}
+                        defaultValue={item.nota}
+                      />
+                      <button type="submit" disabled={loading}>
+                        {loading ? "Saving..." : "Guardar"}
+                      </button>
+                    </form>
+                  ) : (
+                    <>
+                    
+                      {item.nota}
+                      <div className="lapiz" onClick={() => {
+                          setEditIndex(index);
+                          setValue(
+                            "nombre_competencia",
+                            item.nombre_competencia
+                          );
+                          setValue("nota", item.nota);
+                        }}>
+                        <p>Editar</p>
+                      <FaPencil/>
+                      </div>
+                    </>
+                  )}
+                </li>
+              ))}
+            </ul>
+          </div>
+          <div className="detalles-candidatura">
+            <div className="idCandidato">
+            <h2>ID Candidatura: {candidaturaId}</h2>
+            </div>
+            <h3>
+              ID Empleado:{" "}
+              {editEmpleado ? (
+                <form onSubmit={handleSubmit(onSubmitEditEmpleado)}>
+                  <input
+                    type="number"
+                    {...register("id_empleado", {
+                      required: true,
+                      min: { value: 0, message: "Debe ser mayor de 0" },
+                    })}
+                    defaultValue={id_empleado}
+                  />
+                  <button type="submit" disabled={loading}>
+                    {loading ? "Saving..." : "Guardar"}
+                  </button>
+                </form>
+              ) : (
+                <>
+                  {id_empleado}
+                  <FaPencil
+                    onClick={() => handleEmpleadoEditClick(id_empleado)}
+                  />
+                </>
+              )}
+            </h3>
+            <h3>
+              Status:{" "}
+              {editStatus ? (
+                <form onSubmit={handleSubmit(onSubmitEditStatus)}>
+                  <select
+                    {...register("status", { required: true })}
+                    defaultValue={status}
+                  >
+                    {statusOptions.map((option) => (
+                      <option key={option} value={option}>
+                        {option}
+                      </option>
+                    ))}
+                  </select>
+                  <button type="submit" disabled={loading}>
+                    {loading ? "Saving..." : "Guardar"}
+                  </button>
+                </form>
+              ) : (
+                <>
+                  {status}
+                  <FaPencil onClick={() => handleStatusEditClick(status)} />
+                </>
+              )}
+            </h3>
+            <h3>Fecha Registro: {fecha_registro_formatted}</h3>
+          </div>
+          <div className="btnsContainer">
+            <button className="candidaturaBtn" onClick={handleShowDialog}>
+              Eliminar candidatura
+            </button>
+          </div>
+
+          {showDialog && (
+            <div className="confirmation-dialog">
+              <p>¿Estás seguro de que deseas eliminar esta candidatura?</p>
+              <button onClick={handleBorrarCandidatura} disabled={loading}>
+                {loading ? "Eliminando..." : "Sí, eliminar"}
+              </button>
+              <button onClick={handleHideDialog}>Cancelar</button>
+            </div>
+          )}
+        </article>
+      </section>
+      <GraficaCandidatura competencias={detallesCandidatura} />
+    </>
   );
 };
 
 export default DetallesCandidatura;
-
-
-
-
