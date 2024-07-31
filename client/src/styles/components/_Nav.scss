@@ -3,7 +3,7 @@
 .hamburger-menu {
   display: none;
   font-size: 30px;
-  position: absolute;
+  position: fixed;
   top: 20px;
   right: 20px;
   cursor: pointer;
@@ -12,6 +12,10 @@
   height: 50px;
   padding-bottom: 5px;
   width: 50px;
+  background-color: $amarillo;
+  border: 3px solid rgb(255, 183, 0);
+  border-radius: 20px;
+  
 }
 
 nav {
@@ -74,12 +78,23 @@ nav {
 }
 
 
-
+@media (max-width: 1000px){
+  nav {
+    &>ul>li{
+      font-size: 14px;
+    }
+    &>ul>button{
+      font-size: 14px;
+    }
+  }
+}
 @media (max-width: 950px) {
   .hamburger-menu {
     display: block;
   }
-
+  .imgLogo{
+    margin: 0 90px;
+  }
   nav {
     display: none;
   }
