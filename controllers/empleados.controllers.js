@@ -103,18 +103,18 @@ const login = async (req, res) => {
 // Logout Controller
 const logout = async (req, res) => {
     try {
-        // console.log(req.cookies);
-        // const token = req.cookies.token || req.cookies.token2;
-        // console.log('token', token)
+        console.log(req.cookies);
+        const token = req.cookies.token || req.cookies.token2;
+        console.log('token', token)
 
-        // if (!token) {
-        //     return res.status(400).json({ message: 'No token provided' });
-        // }
+        if (!token) {
+            return res.status(400).json({ message: 'No token provided' });
+        }
 
-        // const decoded = jwt.verify(token, jwt_secret);
-        // if (!decoded) {
-        //     return res.status(401).json({ message: 'Invalid token' });
-        // }
+        const decoded = jwt.verify(token, jwt_secret);
+        if (!decoded) {
+            return res.status(401).json({ message: 'Invalid token' });
+        }
 
         await empleado.updateLastLoggedDate(decoded.id);
         await empleado.setLoggedFalse(decoded.id);
