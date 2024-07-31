@@ -11,6 +11,13 @@
     
 }
 
+.icon-pdf {
+    color: red; 
+    &:hover {
+        color:#28a745;
+    }
+}
+
 .active {
 
     &>.detalles-candidatura {
