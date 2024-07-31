@@ -82,7 +82,7 @@ const login = async (req, res) => {
             const token = jwt.sign(userForToken, jwt_secret, { expiresIn: '20m' });
 
             // res.cookie('token', token, { httpOnly: false, secure: true, maxAge: 20 * 60 * 1000 });
-            res.cookie('token', token, { httpOnly: false, secure: true, SameSite: 'Lax', maxAge: 24 * 60 * 60 * 1000 });
+            res.cookie('token', token, { httpOnly: false, secure: true, SameSite: 'None', maxAge: 24 * 60 * 60 * 1000, domain: 'dt-empieza-por-educar.onrender.com' });
 
             res.status(200).json({
                 msg: 'Correct authentication',
