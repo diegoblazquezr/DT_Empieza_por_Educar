@@ -2,6 +2,7 @@ import React, { useState, useContext } from "react";
 import { AuthContext } from "../../context/AuthContext";
 import Nav from "./Nav/Nav";
 
+
 const Header = () => {
   const { logged, setLogged, rol, setRol, id, setId } = useContext(AuthContext);
 

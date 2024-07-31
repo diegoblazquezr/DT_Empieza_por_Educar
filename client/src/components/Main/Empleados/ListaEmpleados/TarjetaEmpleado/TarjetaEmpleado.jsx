@@ -142,7 +142,7 @@ const TarjetaEmpleado = ({ empleado, onUpdate, onDelete }) => {
             </select>
             {errors.rol && <p>{errors.rol.message}</p>}
           </div>
-          <div className="inputContainer">
+          <div className="inputContainer" id="ocultarForm">
             <label htmlFor="last_logged_date">Última Conexión</label>
             <input
               type="text"
@@ -151,7 +151,7 @@ const TarjetaEmpleado = ({ empleado, onUpdate, onDelete }) => {
               disabled
             />
           </div>
-          <div className="inputContainer">
+          <div className="inputContainer" id="ocultarForm">
             <label htmlFor="num_candidaturas">Número de Candidaturas</label>
             <input
               type="number"
