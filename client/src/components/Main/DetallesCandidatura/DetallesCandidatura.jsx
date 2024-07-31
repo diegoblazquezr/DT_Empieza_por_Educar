@@ -321,7 +321,7 @@ const DetallesCandidatura = () => {
           <span>Edad: {edad}</span>
           <p>Carrera: {carrera}</p>
           <p>Nivel de Inglés: {nivel_ingles}</p>
-          <p>CV: <BsFileEarmarkPdfFill src={cv} target="_blank" /></p>
+          <p>CV: <a href={cv} target="_blank" ><BsFileEarmarkPdfFill className="icon-pdf"/></a></p>
         </div>
         <div>
           <p>Competencias:</p>
