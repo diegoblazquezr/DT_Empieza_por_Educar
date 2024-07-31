@@ -309,10 +309,10 @@ const DetallesCandidatura = () => {
   const fecha_registro_formatted = formatDate(fecha_registro);
   return (
     <>
-      <section className={`container-detalles ${statusClass}`}>
-        <div className="message-prediction">
+    <h4 className={`message-prediction ${statusClass}`}>
           {statusClass === "active" ? "Candidato óptimo" : ""}
-        </div>
+        </h4>
+      <section className='container-detalles'>
         <article className="detalles-candidatura">
           <div className="detalles-candidato">
             <div className="idCandidato">
