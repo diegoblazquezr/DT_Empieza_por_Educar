@@ -1,13 +1,21 @@
 /**
- * @author Antonio, Diego, Miguel y Sergio
- * @exports controllers
- * @namespace candidatos.controllers
+ * @author Sergio Lillo
+ * @namespace Controladores Competencias
  */
 
 const competenciasModels = require('../models/competencias.models');
 const { validationResult } = require("express-validator");
 
-
+/**
+ * Controlador para actualizar una competencia.
+ *
+ * @async
+ * @function updateCompetenciaController
+ * @memberof Controladores Competencias
+ * @param {Object} req - El objeto de solicitud.
+ * @param {Object} res - El objeto de respuesta.
+ * @returns {Promise<void>} Responde con la competencia actualizada o un error.
+ */
 const updateCompetenciaController = async (req, res) => {
     /*const errors = validationResult(req);
     if (!errors.isEmpty()) {
