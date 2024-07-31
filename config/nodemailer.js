@@ -29,7 +29,7 @@ const sendMailCandidato = (email_candidato, subject, nombre_candidato) => {
       />
     </div>
     <p>Estimad@ ${nombre_candidato}, ¿cómo estás?</p>
-    <p>Agradecemos tu interés en nuestro proyecto Empieza por Educar. Lamentándolo mucho, no hemos aceptado tu solicitud de inscripción debido a que no cumples con los requisitos mínimos de nota media en la carrera y nivel de inglés que tenemos establecidos. Si quieres conocer más sobre los criterios de nuestro programa, <a href='https://empiezaporeducar.org/proceso-de-seleccion/' target='_blank'>aquí</a> tienes más información.</p>
+    <p>Agradecemos tu interés en nuestro Programa Empieza por Educar. Lamentándolo mucho, no hemos aceptado tu solicitud de inscripción debido a que no cumples con los requisitos mínimos de nota media en la carrera y nivel de inglés que tenemos establecidos. Si quieres conocer más sobre los criterios de nuestro programa, <a href='https://empiezaporeducar.org/proceso-de-seleccion/' target='_blank'>aquí</a> tienes más información.</p>
     <p>Esperamos poder colaborar en alguna otra ocasión contigo.</p>
     <p>Un saludo y que tengas un feliz día</p>
   </body>
@@ -38,6 +38,34 @@ const sendMailCandidato = (email_candidato, subject, nombre_candidato) => {
     };
 
     return transporter.sendMail(mailOptions);
+};
+
+const sendMailCandidatoApproved = (email_candidato, subject, nombre_candidato) => {
+  const mailOptions = {
+      from: 'desafioexethebridge@gmail.com',
+      to: email_candidato,
+      subject: subject,
+      html: `
+    <html>
+<body>
+  <div style="text-align: center;">
+    <img 
+      src="https://zx5f5b.n3cdn1.secureserver.net/wp-content/uploads/2019/08/logo-exe-300-01.png" 
+      alt="logo-exe" 
+      title="logo-exe" 
+      style="max-width: 200px; height: auto; display: block; margin: 0 auto;"
+    />
+  </div>
+  <p>Estimad@ ${nombre_candidato}, ¿cómo estás?</p>
+  <p>Agradecemos tu interés en nuestro Programa Empieza por Educar. Nos complace comunicarte que tu solicitud de inscripción al proceso de selección ha sido aceptada.</p>
+  <p>Estamos deseando conocerte. En los próximos días uno de nuestros reclutadores se pondrá en contacto contigo para darte más información de los siguientes pasos.</p>
+  <p>Un saludo y que tengas un feliz día</p>
+</body>
+</html>
+    `
+  };
+
+  return transporter.sendMail(mailOptions);
 };
 
 const sendMailEmpleado = (email_empleado, subject, nombre_empleado, password) => {
@@ -75,5 +103,6 @@ const sendMailEmpleado = (email_empleado, subject, nombre_empleado, password) =>
 
 module.exports = {
   sendMailCandidato,
-  sendMailEmpleado
+  sendMailEmpleado,
+  sendMailCandidatoApproved
 };

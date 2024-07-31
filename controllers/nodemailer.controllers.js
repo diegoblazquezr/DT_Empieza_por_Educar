@@ -12,6 +12,18 @@ const sendEmailCandidato = async (req, res) => {
   }
 };
 
+const sendEmailCandidatoApproved = async (req, res) => {
+  const { email_candidato, subject, nombre_candidato } = req.body;
+
+  try {
+    await sendMail.sendMailCandidatoApproved(email_candidato, subject, nombre_candidato);
+    res.status(200).json({ message: 'Correo enviado con éxito' });
+  } catch (error) {
+    console.error('Error al enviar el correo:', error);
+    res.status(500).json({ message: 'Error al enviar el correo' });
+  }
+};
+
 const sendEmailEmpleado = async (req, res) => {
   const { email_empleado, subject, nombre_empleado, password } = req.body;
 
@@ -26,5 +38,6 @@ const sendEmailEmpleado = async (req, res) => {
 
 module.exports = {
   sendEmailCandidato,
-  sendEmailEmpleado
+  sendEmailEmpleado,
+  sendEmailCandidatoApproved
 };
