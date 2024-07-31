@@ -121,13 +121,15 @@ const Estadisticas = () => {
 
   const dataOK = stats;
   const dataFINAL = stats.length > 0 ? [
-    { user: "admin", type: "Abandona", value: dataOK[0].Abandona, color: "hsl(165, 100%, 25%)" },
-    { user: "admin", type: "Centro Eval.", value: dataOK[0].CentroEvaluación, color: "hsl(61, 100%, 42%)" },
-    { user: "admin", type: "Descartado", value: dataOK[0].Descartado, color: "hsl(137, 55%, 37%)" },
-    { user: "admin", type: "Entrevista 1", value: dataOK[0].Entrevista1, color: "hsl(61, 100%, 44%)" },
+    { user: "admin", type: "Registro", value: dataOK[0].Registro, color: "hsl(165, 100%, 25%)" },
+    { user: "admin", type: "Solicitud", value: dataOK[0].Solicitud, color: "hsl(60, 100%, 62%)" },
+    { user: "admin", type: "Centro Eval.", value: dataOK[0].CentroEvaluación, color: "hsl(137, 55%, 37%)" },
+    { user: "admin", type: "Entrevista 1", value: dataOK[0].Entrevista1, color: "hsl(60, 87%, 53%)" },
     { user: "admin", type: "Entrevista 2", value: dataOK[0].Entrevista2, color: "hsl(101, 55%, 42%)" },
-    { user: "admin", type: "Ofertado", value: dataOK[0].Ofertado, color: "hsl(60, 87%, 53%)" },
-    { user: "admin", type: "Registro", value: dataOK[0].Registro, color: "hsl(81, 77%, 41%)" }
+    { user: "admin", type: "Ofertado", value: dataOK[0].Ofertado, color: "hsl(61, 100%, 44%)" },
+    { user: "admin", type: "Descartado", value: dataOK[0].Descartado, color: "hsl(81, 77%, 41%)" },
+    { user: "admin", type: "Abandona", value: dataOK[0].Abandona, color: "hsl(65, 100%, 41%)" },
+
   ] : [];
 
 
