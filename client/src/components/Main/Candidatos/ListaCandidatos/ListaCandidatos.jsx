@@ -1,80 +1,79 @@
-import React, { useEffect, useState, useCallback } from "react";
-import TarjetaCandidatos from "./TarjetaCandidatos";
-import axios from "axios";
-import { v4 as uuidv4 } from "uuid";
 
-const ListaCandidatos = ({ candidatosName }) => {
-  const [candidatosDetails, setCandidatosDetails] = useState([]);
-  const [filteredCandidatosDetails, setFilteredCandidatosDetails] = useState([]);
+import axios from 'axios';
+import { useEffect, useState } from 'react';
+import TarjetaCandidatos from './TarjetaCandidatos';
+import { v4 as uuidv4 } from 'uuid';
+import { ProgressBar } from 'react-loader-spinner';
+
+const ListaCandidatos = ({ candidatoEmail }) => {
+  const [candidatoDetails, setCandidatoDetails] = useState([]);
+  const [loading, setLoading] = useState(false);
   const URL = import.meta.env.VITE_API_URL || 'http://localhost:3000';
 
-  const getCandidatosDetails = async () => {
+  const getCandidatoDetails = async () => {
     try {
-      const response = await axios.get(`${URL}/api/candidatos?limit=20&offset=1000`);
-      return response.data || [];
+      setLoading(true);
+      const response = await axios.get(`${URL}/api/candidatos?email_candidato=${candidatoEmail}`);
+      console.log(response.data[0]);
+      return response.data[0];
     } catch (error) {
-      console.error("Error obteniendo candidatos", error);
+      console.error('Error obteniendo candidatos', error);
       return [];
+    } finally {
+      setLoading(false);
     }
   };
 
   useEffect(() => {
-    const fetchCandidatos = async () => {
-      const details = await getCandidatosDetails();
-      setCandidatosDetails(details);
-      setFilteredCandidatosDetails(details);
+    const fetchCandidato = async () => {
+      if (candidatoEmail) {
+        const details = await getCandidatoDetails(candidatoEmail);
+        setCandidatoDetails(details);
+      } else {
+        setCandidatoDetails(null);
+      }
     };
-    fetchCandidatos();
-  }, []);
+    fetchCandidato();
+  }, [candidatoEmail]);
 
-  useEffect(() => {
-    if (candidatosName) {
-      const filteredDetails = candidatosDetails.filter((candidato) =>
-        candidato.nombre_candidato && candidato.nombre_candidato.toLowerCase().includes(candidatosName.toLowerCase())
-      );
-      console.log("Filtered details:", filteredDetails);
-      setFilteredCandidatosDetails(filteredDetails);
-    } else {
-      setFilteredCandidatosDetails(candidatosDetails);
+  const handleUpdate = (updatedCandidato) => {
+    if (candidatoDetails && candidatoDetails.id_candidato === updatedCandidato.id_candidato) {
+      setCandidatoDetails(updatedCandidato);
     }
-  }, [candidatosName, candidatosDetails]);
-
-  const handleUpdate = useCallback((updatedCandidato) => {
-    console.log("Updating candidate:", updatedCandidato);
-    setCandidatosDetails(prevCandidatos => 
-      prevCandidatos.map(candidato => 
-        candidato.id_candidato === updatedCandidato.id_candidato ? updatedCandidato : candidato
-      )
-    );
-
-    setFilteredCandidatosDetails(prevCandidatos =>
-      prevCandidatos.map(candidato =>
-        candidato.id_candidato === updatedCandidato.id_candidato ? updatedCandidato : candidato
-      )
-    );
-  }, []);
+  };
 
   const handleDelete = (id_candidato) => {
-    setCandidatosDetails((prevDetails) =>
-      prevDetails.filter((candidato) => candidato.id_candidato !== id_candidato)
-    );
+    if (candidatoDetails && candidatoDetails.id_candidato === id_candidato) {
+      setCandidatoDetails(null);
+    }
   };
 
   return (
-    <section className="listaCandidatos">
-      {filteredCandidatosDetails.length > 0 ? (
-        filteredCandidatosDetails.map((candidato) => (
+    !loading ? (
+      <section className="ListaCandidatos">
+        {candidatoDetails ? (
           <TarjetaCandidatos
-            candidatos={candidato}
-            key={candidato.id_candidato}
+            candidatos={candidatoDetails}
             onUpdate={handleUpdate}
             onDelete={handleDelete}
           />
-        ))
-      ) : (
-        <p>No se encontraron candidatos.</p>
-      )}
-    </section>
+        ) : (
+          <p>No se encontraron candidatos.</p>
+        )}
+      </section>
+    ) : (
+      <ProgressBar
+        visible={true}
+        height="100"
+        width="100"
+        color="#4fa94d"
+        barColor='#FFCC00'
+        borderColor='#11654d'
+        ariaLabel="progress-bar-loading"
+        wrapperStyle={{}}
+        wrapperClass=""
+      />
+    )
   );
 };
 
