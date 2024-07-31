@@ -104,7 +104,7 @@ const login = async (req, res) => {
 const logout = async (req, res) => {
     try {
         // console.log(req.cookies);
-        const token = req.cookies.token;
+        const token = req.cookies.token || req.cookies.token2;
         console.log('token', token)
 
         if (!token) {
@@ -120,6 +120,7 @@ const logout = async (req, res) => {
         await empleado.setLoggedFalse(decoded.id);
 
         res.clearCookie('token');
+        res.clearCookie('token2');
 
         return res.status(200).json({ message: 'Logged out successfully' });
     } catch (error) {
