@@ -3,17 +3,20 @@
 .tarjetaCandidatos {
   border: 3px solid $amarillo;
   border-radius: 20px;
-  padding: 10px 100px;
+  padding: 10px 60px;
   margin: 10px 100px;
   & > .nombre {
-    margin-bottom: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 10px;
     margin-top: 10px;
     border: 2px solid rgb(211, 169, 0);
-    border-radius: 20px;
-    padding: 10px;
+    border-radius: 10px;
     background-color: $amarillo;
 
-    & > h3 {
+    &>h3 {
+      padding-top: 10px;
       color: black;
     }
   }
@@ -21,15 +24,17 @@
     display: flex;
     text-align: center;
     flex-wrap: wrap;
-    justify-content: space-evenly;
+    justify-content: center;
     align-items: center;
-    padding-right: 10px;
+    gap: 5px;
+
+    
     & > h3 {
       color: $verde;
-      margin-right: 10px;
+      margin: 0;
     }
     & > p {
-      padding: 20px 10;
+      //padding: 20px 10;
       font-weight: 500;
       font-size: medium;
       margin-right: 10px;
