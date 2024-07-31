@@ -3,7 +3,7 @@
 .hamburger-menu {
   display: none;
   font-size: 30px;
-  position: fixed;
+  position: relative;
   top: 20px;
   right: 20px;
   cursor: pointer;
@@ -93,6 +93,7 @@ nav {
 @media (max-width: 950px) {
   .hamburger-menu {
     display: block;
+    left: 140px;
   }
   .imgLogo{
     margin: 0 90px;
