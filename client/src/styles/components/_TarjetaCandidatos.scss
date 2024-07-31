@@ -127,3 +127,19 @@ padding-top: 20px;
     }
   }
 }
+
+@media (max-width: 470px) {
+  .editTaskForm{
+    &>div{
+      width: 100%;
+      justify-content: center;
+      &>label{
+        font-size: 15px;
+      }
+      &>select,
+      &>input{
+        width: 100%;
+      }
+    }
+  }
+}

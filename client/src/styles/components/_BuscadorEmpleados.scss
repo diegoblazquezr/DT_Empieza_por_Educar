@@ -40,7 +40,7 @@
   margin-top: 10px;
   & > button {
     border-radius: 30px;
-    width: 20%;
+    width: 30%;
     height: 50px;
     text-align: center;
     background-color: $amarillo;
@@ -49,7 +49,7 @@
   }
 }
 
-@media (max-width: 768px) {
+@media (max-width: 600px) {
   .buscadorEmpleados {
     flex-direction: column;
     justify-content: center;
@@ -58,6 +58,7 @@
     & > form > input {
       width: 100%;
       margin-bottom: 10px;
+      min-width: 150px;
     }
     & > form > button {
       width: 100%;

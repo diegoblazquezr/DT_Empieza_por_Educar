@@ -1,190 +1,192 @@
 @import "../utils/variables.scss";
 
 .tarjetaEmpleado {
+  border: 3px solid $amarillo;
+  border-radius: 20px;
+  padding: 50px 100px;
+  margin: 10px 100px;
 
-    border: 3px solid $amarillo;
+  & > .nombreEmpleado {
+    margin-bottom: 20px;
+    margin-top: 10px;
+    border: 2px solid rgb(211, 169, 0);
     border-radius: 20px;
-    padding: 50px 100px;
-    margin: 10px 100px;
+    padding: 10px;
+    background-color: $amarillo;
 
-    &>.nombreEmpleado {
-        margin-bottom: 20px;
-        margin-top: 10px;
-        border: 2px solid rgb(211, 169, 0);
-        border-radius: 20px;
-        padding: 10px;
-        background-color: $amarillo;
-
-        &>h3 {
-            color: black;
-        }
+    & > h3 {
+      color: black;
     }
-    &>.datosEmpleado, &>.rolEmpleado, &>.candidaturasEmpleado, &>.idEmpleado{
-        display: flex;
-        text-align: center;
-        justify-content: center;
-        align-items: center;
-        padding-right: 10px;
+  }
+  & > .datosEmpleado,
+  & > .rolEmpleado,
+  & > .candidaturasEmpleado,
+  & > .idEmpleado {
+    display: flex;
+    text-align: center;
+    justify-content: center;
+    align-items: center;
+    padding-right: 10px;
 
-        &>h3 {
-            color: $verde;
-            padding-right: 20px;
-        }
-
-        &>p {
-            padding: 20px 10;
-            font-weight: 500;
-            font-size: medium;
-        }
-
-        &>p {
-            padding: 10px 0;
-            font-weight: 500;
-            font-size: medium;
-        }
+    & > h3 {
+      color: $verde;
+      padding-right: 20px;
     }
-    &>.btnContainer {
-        display: flex;
-        gap: 8px;
-        justify-content: center;
-        align-items: center;
-        &>button {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            border-radius: 30px;
-            margin-top: 20px;
-            padding: 15px;
-            background-color: $verde;
-            color: white;
 
-            &:hover {
-                cursor: pointer;
-                border: 2px solid black;
-                background-color: lighten(rgb(211, 169, 0), 10%);
-                color: black;
-            }
-        }
+    & > p {
+      padding: 20px 10;
+      font-weight: 500;
+      font-size: medium;
     }
+
+    & > p {
+      padding: 10px 0;
+      font-weight: 500;
+      font-size: medium;
+    }
+  }
+  & > .btnContainer {
+    display: flex;
+    gap: 8px;
+    justify-content: center;
+    align-items: center;
+    & > button {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      border-radius: 30px;
+      margin-top: 20px;
+      padding: 15px;
+      background-color: $verde;
+      color: white;
+
+      &:hover {
+        cursor: pointer;
+        border: 2px solid black;
+        background-color: lighten(rgb(211, 169, 0), 10%);
+        color: black;
+      }
+    }
+  }
 }
 
 .editarEmpleadoForm {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4px;
+
+  & > .inputContainer {
     display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 4px;
+    width: 60%;
+    justify-content: space-between;
 
-    &>.inputContainer {
-        display: flex;
-        width: 60%;
-        justify-content: space-between;
-
-        &>label {
-            color: $verde;
-            font-weight: 800;
-            padding: 10px;
-            font-size: 20px;
-        }
-        &>select, &>input {
-            width: 200px;
-            padding: 10px;
-            border-radius: 10px;
-            border: 2px solid $amarillo;
-            font-size: 17px;
-        }
+    & > label {
+      color: $verde;
+      font-weight: 800;
+      padding: 10px;
+      font-size: 20px;
     }
-#ocultarForm{
+    & > select,
+    & > input {
+      width: 200px;
+      padding: 10px;
+      border-radius: 10px;
+      border: 2px solid $amarillo;
+      font-size: 17px;
+    }
+  }
+  #ocultarForm {
     display: none;
-}
-    &>.btnContainer {
-        display: flex;
-        gap: 8px;
+  }
+  & > .btnContainer {
+    display: flex;
+    gap: 8px;
 
-        &>button {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            border-radius: 30px;
-            padding: 15px;
-            margin-top: 30px;
-            background-color: $verde;
-            color: white;
-            font-size: 17px;
-            &:hover {
-                cursor: pointer;
-                border: 2px solid black;
-                background-color: lighten(rgb(211, 169, 0), 10%);
-                color: black;
-            }
-        }
+    & > button {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      border-radius: 30px;
+      padding: 15px;
+      margin-top: 30px;
+      background-color: $verde;
+      color: white;
+      font-size: 17px;
+      &:hover {
+        cursor: pointer;
+        border: 2px solid black;
+        background-color: lighten(rgb(211, 169, 0), 10%);
+        color: black;
+      }
     }
+  }
 }
 
 .confirmDialog {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+
+  & > .btnContainer {
     display: flex;
-    flex-direction: column;
-    align-items: center;
     gap: 8px;
+    width: 20%;
 
-    &>.btnContainer {
-        display: flex;
-        gap: 8px;
-        width: 20%;
+    & > button {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      border-radius: 10px;
+      padding: 6px;
+      background-color: $verde;
+      color: white;
+      width: 100%;
 
-        &>button {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            border-radius: 10px;
-            padding: 6px;
-            background-color: $verde;
-            color: white;
-            width: 100%;
-
-            &:hover {
-                cursor: pointer;
-                border: 2px solid black;
-                background-color: lighten(rgb(211, 169, 0), 10%);
-                color: black;
-            }
-        }
+      &:hover {
+        cursor: pointer;
+        border: 2px solid black;
+        background-color: lighten(rgb(211, 169, 0), 10%);
+        color: black;
+      }
     }
+  }
 }
 
 @media (max-width: 960px) {
-    .tarjetaEmpleado {
-        flex-direction: column;
-        padding: 10px 20px;
-        margin: 10px 20px;
-        &>div{
-            &>p{
-                padding-top: 10px;
-                font-weight: 500;
-                font-size: 12px;
-            }
-            &>h3{
-                font-size: 15px;
-            }
-
-        }
-
+  .tarjetaEmpleado {
+    flex-direction: column;
+    padding: 10px 20px;
+    margin: 10px 20px;
+    & > div {
+      & > p {
+        padding-top: 10px;
+        font-weight: 500;
+        font-size: 12px;
+      }
+      & > h3 {
+        font-size: 15px;
+      }
     }
+  }
 }
 
-
-
-@media (max-width: 600px){
-    .tarjetaEmpleado{
-        padding: 10px 20px;
-        margin: 10px 20px;
-
-        &>div {
-            &>p {
-                padding-top: 10px;
-                font-weight: 500;
-            }
-
-        }
-
+@media (max-width: 600px) {
+  .tarjetaEmpleado {
+    padding: 10px 20px;
+    margin: 10px 20px;
+    & > .datosEmpleado {
+      flex-direction: column;
     }
+    &> .btnContainer > button {
+        padding: 10px;
+    }
+    & > div {
+      & > p {
+        padding-top: 10px;
+        font-weight: 500;
+      }
+    }
+  }
 }
