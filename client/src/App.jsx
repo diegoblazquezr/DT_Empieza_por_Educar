@@ -4,7 +4,6 @@ import Header from './components/Header/Header';
 import Main from './components/Main/Main';
 import Footer from './components/Footer/Footer';
 import { AuthProvider } from './context/AuthContext';
-import { CandidaturasProvider } from './context/CandidaturasContext';
 
 function App() {
   console.log('App rendering');
@@ -14,9 +13,7 @@ function App() {
       <BrowserRouter>
         <AuthProvider>
           <Header />
-          <CandidaturasProvider>
             <Main />
-          </CandidaturasProvider>
           <Footer />
         </AuthProvider>
       </BrowserRouter>

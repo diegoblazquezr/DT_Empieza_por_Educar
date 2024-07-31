@@ -4,6 +4,7 @@ import { useForm } from 'react-hook-form';
 import { useNavigate } from 'react-router-dom';
 import { ProgressBar } from 'react-loader-spinner';
 import { AuthContext } from "../../../context/AuthContext";
+import Cookies from 'js-cookie';
 
 
 axios.defaults.withCredentials = true;
@@ -26,6 +27,7 @@ const Login = () => {
 
       console.log(response.data);
 
+      Cookies.set('token2', response.data.token);
       setLogged(true);
       setId(response.data.id);
       setRol(response.data.rol);

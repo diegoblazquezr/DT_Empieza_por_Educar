@@ -82,7 +82,7 @@ const login = async (req, res) => {
             const token = jwt.sign(userForToken, jwt_secret, { expiresIn: '20m' });
 
             // res.cookie('token', token, { httpOnly: false, secure: true, maxAge: 20 * 60 * 1000 });
-            res.cookie('token', token, { httpOnly: false, secure: true, SameSite: 'None', maxAge: 24 * 60 * 60 * 1000 });
+            res.cookie('token', token, { httpOnly: false, secure: true, SameSite: 'Lax', maxAge: 24 * 60 * 60 * 1000 });
 
             res.status(200).json({
                 msg: 'Correct authentication',
@@ -103,8 +103,8 @@ const login = async (req, res) => {
 // Logout Controller
 const logout = async (req, res) => {
     try {
-        // console.log(req.cookies);
-        const token = req.cookies.token;
+        console.log(req.cookies);
+        const token = req.cookies.token || req.cookies.token2;
         console.log('token', token)
 
         if (!token) {
@@ -120,6 +120,7 @@ const logout = async (req, res) => {
         await empleado.setLoggedFalse(decoded.id);
 
         res.clearCookie('token');
+        res.clearCookie('token2');
 
         return res.status(200).json({ message: 'Logged out successfully' });
     } catch (error) {

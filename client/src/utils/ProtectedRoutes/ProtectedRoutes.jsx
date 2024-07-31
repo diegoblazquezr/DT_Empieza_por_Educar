@@ -1,10 +1,11 @@
 import React from "react";
-import { Navigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 
 const ProtectedRoutes = ({ component, logged }) => {
+    const navigate = useNavigate();
 
     return (
-        logged ? component : <div><span>Por favor inicia sesión</span></div>
+        logged ? component : navigate()
     )
 
 };

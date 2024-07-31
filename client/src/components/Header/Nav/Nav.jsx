@@ -3,6 +3,7 @@ import axios from 'axios';
 import { Link } from "react-router-dom";
 import { AuthContext } from "../../../context/AuthContext";
 import { useNavigate } from 'react-router-dom';
+import Cookies from 'js-cookie';
 
 const Nav = ({ menuOpen }) => {
   const { logged, setLogged, rol, setRol, id, setId } = useContext(AuthContext);
@@ -11,7 +12,7 @@ const Nav = ({ menuOpen }) => {
 
   const handleLogout = async () => {
     try {
-      // console.log(Cookies.get('token'));
+      console.log(Cookies.get('token'), Cookies.get('token2'));
       await axios.post(`${URL}/api/empleados/logout`);
       setLogged(false);
       setRol('');
