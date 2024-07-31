@@ -9,8 +9,6 @@
     flex-wrap: wrap;
     justify-content: center;
     justify-items: center;
-    //@include column;
-    //@include centered-content;
     &>h2{
         color: black;
         margin-top: 30px;
@@ -52,12 +50,18 @@
     & > button {
       border-radius: 10px;
       width: 10%;
+      max-width: 100px;
       height: 50px;
       text-align: center;
       background-color: $verde;
       margin-right: 10px;
       font-size: 80%;
       color: white;
+      cursor: pointer;
+      &:hover {
+        background-color: $amarillo;
+        color: black;
+      }
       
     }
     &>select{
@@ -104,6 +108,11 @@
         margin-right: 10px;
         font-size: 100%;
         color: black;
+        cursor: pointer;
+        &:hover {
+            background-color: $amarillo;
+            color: black;
+          }
       }
 }
 
@@ -118,6 +127,7 @@
         }
         & > button {
             width: 100%;
+            max-width: 800px;
         }
         &>select{
             width: 100%;

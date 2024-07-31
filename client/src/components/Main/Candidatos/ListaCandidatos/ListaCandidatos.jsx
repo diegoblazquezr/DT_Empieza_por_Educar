@@ -50,7 +50,7 @@ const ListaCandidatos = ({ candidatoEmail }) => {
 
   return (
     !loading ? (
-      <section className="ListaCandidatos">
+      <section className="listaCandidatos">
         {candidatoDetails ? (
           <TarjetaCandidatos
             candidatos={candidatoDetails}

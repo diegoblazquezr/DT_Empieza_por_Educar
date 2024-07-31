@@ -379,7 +379,7 @@ const Estadisticas = () => {
       )}
       {statsNotas.length > 0 ? (
         <>
-          <h3>Nº de candidat@s por carrera y nota media</h3>
+          <h3>% de candidat@s por carrera y nota media</h3>
           <div className="grafica-combinada">
             <ResponsiveBar
               data={filteredData}

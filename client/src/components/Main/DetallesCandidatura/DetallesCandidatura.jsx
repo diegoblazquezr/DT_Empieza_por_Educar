@@ -410,16 +410,16 @@ const DetallesCandidatura = () => {
                     })}
                     defaultValue={id_empleado}
                   />
-                  <button type="submit" disabled={loading}>
+                  <button className="save-button" type="submit" disabled={loading}>
                     {loading ? "Saving..." : "Guardar"}
                   </button>
                 </form>
               ) : (
                 <>
                   {id_empleado}
-                  <FaPencil
+                  <div className="lapiz" ><FaPencil
                     onClick={() => handleEmpleadoEditClick(id_empleado)}
-                  />
+                  /></div>
                 </>
               )}
             </h3>
@@ -446,7 +446,7 @@ const DetallesCandidatura = () => {
               ) : (
                 <>
                   {status}
-                  <FaPencil onClick={() => handleStatusEditClick(status)} />
+                  <div className="lapiz" ><FaPencil onClick={() => handleStatusEditClick(status)} /></div>
                 </>
               )}
             </h3>

@@ -17,30 +17,20 @@
       color: white;
       margin-right: 25px;
     }
-    & > button {
+    &>button {
       border-radius: 10px;
       width: 10%;
       height: 50px;
+      max-width: 100px;
       text-align: center;
+      cursor: pointer;
       background-color: $verde;
       color: white;
+      &:hover {
+        background-color: $amarillo;
+        color: black;
+      }
     }
-    & > form {
-      display: flex;
-      justify-content: center;
-      margin: 40px 0;
-    }
-  }
-}
-.botonesCandidatos{
-  & > button {
-    border-radius: 30px;
-    width: 20%;
-    height: 50px;
-    text-align: center;
-    background-color: $amarillo;
-    color: black;
-    margin-bottom: 30px;
   }
 }
 
@@ -59,6 +49,7 @@
       }
       & > button {
         width: 100%;
+        max-width: 400px;
       }
     }
   }

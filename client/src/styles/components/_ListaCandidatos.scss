@@ -23,7 +23,7 @@
         &:hover {
             cursor: pointer;
             border: 2px solid black;
-            background-color: lighten(rgb(211, 169, 0), 10%);
+            background-color: $amarillo;
             color: black;
         }
     }

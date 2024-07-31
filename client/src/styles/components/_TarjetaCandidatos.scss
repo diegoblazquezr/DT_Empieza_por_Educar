@@ -114,6 +114,22 @@ padding-top: 20px;
   }
 }
 
+.confirmDialog {
+margin-top: 15px;
+  &>button {
+    border-radius: 10px;
+    padding: 15px;
+    background-color: $verde;
+    color: white;
+    font-size: 10px;
+    cursor: pointer;
+    &:hover {
+      background-color: $amarillo;
+      color: black;
+    }
+  }
+}
+
 @media (max-width: 960px) {
   .tarjetaCandidatos {
     flex-direction: column;

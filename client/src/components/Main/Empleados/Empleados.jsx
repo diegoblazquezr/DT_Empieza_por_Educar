@@ -7,7 +7,7 @@ const Empleados = () => {
 
   return (
     <section className="listaEmpleados">
-      <h2>Lista de empleados</h2>
+      <h2>Empleados</h2>
       <BuscadorEmpleados setEmpleado={setEmpleadoEmail} />
       {empleadoEmail ? <ListaEmpleados empleadoEmail={empleadoEmail} /> : <h4>Busca un empleado</h4>}
     </section>

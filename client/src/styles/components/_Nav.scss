@@ -44,8 +44,9 @@ nav {
       display: flex;
       font-size: 80%;
       border: 2px solid $amarillo;
-      border-radius: 20px;
+      border-radius: 10px;
       padding: 10px 20px;
+      margin: 0px 5px 0px 0px;
     }
     &>li:hover {
       background-color: $amarillo;
@@ -59,8 +60,9 @@ nav {
       font-size: 80%;
       padding: 10px 20px;
       border: 2px solid $amarillo;
-      border-radius: 20px;
+      border-radius: 10px;
       justify-content: center;
+      cursor: pointer;
     }
     & > button:hover {
       background-color: $amarillo;
@@ -111,19 +113,21 @@ nav {
       font-size: 20px;
       border-bottom: 2px solid $verde;
     }
+    
     &>button{
       border: 2px solid $amarillo;
-      border-radius: 30px;
+      border-radius: 10px;
       padding: 10px 20px;      text-align: center;
       color: $verde;
       font-size: 20px;
       margin-bottom: 10px;
+      margin-top: 10px;
     }
     a:-webkit-any-link {
       color: $verde;
       font-size: 20px;
       border: 2px solid $amarillo;
-      border-radius: 30px;
+      border-radius: 10px;
       padding: 10px 20px;
     }
   

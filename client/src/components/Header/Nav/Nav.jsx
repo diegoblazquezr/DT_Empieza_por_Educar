@@ -39,7 +39,7 @@ const Nav = ({ menuOpen }) => {
           <Link to="/candidatos">Candidatos</Link>
         </li>
         <li>
-          <Link to="/estadisticas-admin">Estadisticas Admin</Link>
+          <Link to="/estadisticas-admin">Estadísticas Admin</Link>
         </li>
         <button onClick={handleLogout} className="logout">Logout</button>
       </ul>
