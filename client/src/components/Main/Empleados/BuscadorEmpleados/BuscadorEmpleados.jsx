@@ -46,7 +46,7 @@ const BuscadorEmpleados = ({ setEmpleado }) => {
             value={value}
             onChange={(e) => setValue(e.target.value)}
             name="topic"
-            placeholder="Busca un empleado..."
+            placeholder="Busca un empleado por email"
           />
           <button type="submit">Buscar</button>
         </form>

@@ -3,13 +3,13 @@ import ListaEmpleados from "./ListaEmpleados";
 import BuscadorEmpleados from "./BuscadorEmpleados";
 
 const Empleados = () => {
-  const [empleadoName, setEmpleadoName] = useState("");
+  const [empleadoEmail, setEmpleadoEmail] = useState("");
 
   return (
     <section className="listaEmpleados">
       <h2>Lista de empleados</h2>
-      <BuscadorEmpleados setEmpleado={setEmpleadoName} />
-      <ListaEmpleados empleadoName={empleadoName} />
+      <BuscadorEmpleados setEmpleado={setEmpleadoEmail} />
+      {empleadoEmail ? <ListaEmpleados empleadoEmail={empleadoEmail} /> : <h4>Busca un empleado</h4>}
     </section>
   );
 };

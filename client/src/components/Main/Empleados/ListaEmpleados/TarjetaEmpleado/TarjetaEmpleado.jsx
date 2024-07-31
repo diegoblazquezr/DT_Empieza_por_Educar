@@ -13,15 +13,7 @@ const TarjetaEmpleado = ({ empleado, onUpdate, onDelete }) => {
   const [editDialogVisible, setEditDialogVisible] = useState(false);
   const [confirmDialogVisible, setConfirmDialogVisible] = useState(false);
   const [loading, setLoading] = useState(false);
-  /*const [editValues, setEditValues] = useState({
-    nombre_empleado: empleado.nombre_empleado,
-    apellidos_empleado: empleado.apellidos_empleado,
-    email_empleado: empleado.email_empleado,
-    rol: empleado.rol,
-    last_logged_date: empleado.last_logged_date,
-    num_candidaturas: empleado.num_candidaturas,
-    id_empleado: empleado.id_empleado
-  });*/
+
   const { register, handleSubmit, reset, formState: { errors } } = useForm({
     defaultValues: {
       nombre_empleado: empleado.nombre_empleado,
@@ -33,19 +25,10 @@ const TarjetaEmpleado = ({ empleado, onUpdate, onDelete }) => {
     }
   });
 
-  /*const handleEdit = (e) => {
-    const { name, value } = e.target;
-    setEditValues({
-      ...editValues,
-      [name]: value
-    });
-  };*/
-
   const onSubmit = async (data) => {
     //e.preventDefault();
     setLoading(true);
     try {
-      //const response = await axios.put(`${URL}/update_empleado`, editValues);
       const response = await axios.put(`${URL}/update_empleado`, { ...data, id_empleado: empleado.id_empleado });
       const updatedEmpleado = { ...empleado, ...data };
       onUpdate(updatedEmpleado);
@@ -57,8 +40,21 @@ const TarjetaEmpleado = ({ empleado, onUpdate, onDelete }) => {
     }
   };
 
+  // const showEditDialog = (e) => {
+  //   e.stopPropagation();
+  //   setEditDialogVisible(true);
+  // };
+
   const showEditDialog = (e) => {
     e.stopPropagation();
+    reset({
+      nombre_empleado: empleado.nombre_empleado,
+      apellidos_empleado: empleado.apellidos_empleado,
+      email_empleado: empleado.email_empleado,
+      rol: empleado.rol,
+      last_logged_date: empleado.last_logged_date,
+      num_candidaturas: empleado.num_candidaturas,
+    });
     setEditDialogVisible(true);
   };
 
@@ -180,7 +176,7 @@ const TarjetaEmpleado = ({ empleado, onUpdate, onDelete }) => {
             <h3>Rol:</h3>
             <p>{empleado.rol}</p>
             <h3>Última Conexión:</h3>
-            <p>{formatLastLoggedDate(empleado.last_logged_date)}</p>
+            {/* <p>{formatLastLoggedDate(empleado.last_logged_date)}</p> */}
             <h3>Número de Candidaturas:</h3>
             <p>{empleado.num_candidaturas}</p>
             <h3>Id:</h3>
