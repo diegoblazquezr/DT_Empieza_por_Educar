@@ -12,6 +12,9 @@ const TarjetaCandidatura = ({ dataCandidatura }) => {
     apellidos_candidato,
     email_candidato,
     telefono_candidato,
+    nombre_empleado,
+    apellidos_empleado,
+    email_empleado
   } = dataCandidatura;
 
   const fecha_registro_date = new Date(fecha_registro);
@@ -45,6 +48,10 @@ const TarjetaCandidatura = ({ dataCandidatura }) => {
   <div className="datosEmpleado">
     <h3>ID Empleado:</h3>
     <p>{id_empleado}</p>
+    <h3>Nombre: </h3>
+    <p>{nombre_empleado} {apellidos_empleado}</p>
+    <h3>Email: </h3>
+    <p>{email_empleado}</p>
     <h3>Status:</h3>
     <p>{status}</p>
     <h3>Fecha Registro:</h3>

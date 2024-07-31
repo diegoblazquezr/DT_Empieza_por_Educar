@@ -302,6 +302,9 @@ const DetallesCandidatura = () => {
     id_empleado,
     status,
     fecha_registro,
+    nombre_empleado,
+    apellidos_empleado,
+    email_empleado
   } = firstCandidatura;
 
   const fecha_registro_formatted = formatDate(fecha_registro);
@@ -377,7 +380,9 @@ const DetallesCandidatura = () => {
               {id_empleado}
               <FaPencil onClick={() => handleEmpleadoEditClick(id_empleado)} />
             </>
-          )}</span>
+          )}</span><br></br>
+          <span>Nombre Empleado: {nombre_empleado} {apellidos_empleado}</span><br></br>
+          <span>Email Empleado: {email_empleado}</span><br></br>
           <p>Status: {editStatus ? (
             <form onSubmit={handleSubmit(onSubmitEditStatus)}>
               <select

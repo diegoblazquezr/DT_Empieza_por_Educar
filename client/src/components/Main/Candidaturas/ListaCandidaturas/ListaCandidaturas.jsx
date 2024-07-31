@@ -161,6 +161,8 @@ const ListaCandidaturas = ({ candidaturas, setCandidaturas }) => {
       pageNumbers.push(i);
     }
 
+    window.scrollTo(0, 0);
+
     return (
       <div className="pagination">
         <button className="prev" onClick={() => handlePageChange(currentPage - 1)} disabled={currentPage === 1}>

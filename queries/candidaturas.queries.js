@@ -2,15 +2,17 @@ const candidaturasQueries = {
     createCandidaturaQuery: `INSERT INTO candidaturas (id_candidato, id_empleado, status, fecha_registro)
     VALUES (?, 1, 'Registro', NOW());`,
 
-    readCandidaturaByIdQuery: `SELECT ct.id_candidato, ct.nombre_candidato, ct.apellidos_candidato, ct.email_candidato, ct.telefono_candidato, ct.edad, ct.carrera, ct.nota_media, ct.nivel_ingles, ct.cv, cc.*, cr.*
+    readCandidaturaByIdQuery: `SELECT ct.id_candidato, ct.nombre_candidato, ct.apellidos_candidato, ct.email_candidato, ct.telefono_candidato, ct.edad, ct.carrera, ct.nota_media, ct.nivel_ingles, ct.cv, cc.*, cr.*, em.nombre_empleado, em.apellidos_empleado, em.email_empleado
     FROM competencias cc
     INNER JOIN candidaturas cr ON cr.id_candidatura = cc.id_candidatura
     INNER JOIN candidatos ct ON ct.id_candidato = cr.id_candidato
+    INNER JOIN empleados em ON em.id_empleado = cr.id_empleado
     WHERE cc.id_candidatura = ?;`,
 
-    readCandidaturasQuery: `SELECT ct.nombre_candidato, ct.apellidos_candidato, ct.email_candidato, ct.telefono_candidato, cr.*
+    readCandidaturasQuery: `SELECT ct.nombre_candidato, ct.apellidos_candidato, ct.email_candidato, ct.telefono_candidato, cr.*, em.nombre_empleado, em.apellidos_empleado, em.email_empleado
     FROM candidaturas cr
     INNER JOIN candidatos ct ON ct.id_candidato = cr.id_candidato
+    INNER JOIN empleados em ON em.id_empleado = cr.id_empleado
     WHERE (cr.id_candidato IN (
         SELECT ct.id_candidato 
         FROM candidatos 
