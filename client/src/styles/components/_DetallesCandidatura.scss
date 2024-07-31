@@ -1,7 +1,9 @@
 @import "../utils/variables.scss";
 
 .detallesCandidatura{
-    text-align: center;
+display: flex;
+justify-items: center;
+align-items: center;
     &>h2{
         padding: 40px;
     }

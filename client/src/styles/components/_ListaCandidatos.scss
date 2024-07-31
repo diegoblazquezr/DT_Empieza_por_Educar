@@ -4,3 +4,27 @@
     margin-bottom: 20px;
     
 }
+.btnsContainer {
+    display: flex;
+    gap: 8px;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    &>button {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        border-radius: 30px;
+        padding: 15px;
+        margin-top: 30px;
+        background-color: $verde;
+        color: white;
+        font-size: 17px;
+        &:hover {
+            cursor: pointer;
+            border: 2px solid black;
+            background-color: lighten(rgb(211, 169, 0), 10%);
+            color: black;
+        }
+    }
+}

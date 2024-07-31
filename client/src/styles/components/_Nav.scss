@@ -74,7 +74,16 @@ nav {
 }
 
 
-
+@media (max-width: 1000px){
+  nav {
+    &>ul>li{
+      font-size: 14px;
+    }
+    &>ul>button{
+      font-size: 14px;
+    }
+  }
+}
 @media (max-width: 950px) {
   .hamburger-menu {
     display: block;
