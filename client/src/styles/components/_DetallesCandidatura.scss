@@ -6,8 +6,10 @@
   align-items: center;
   justify-content: center;
   text-align: center;
+
   & > .detalles-candidatura {
     padding: 40px;
+
     & > div {
       & > .idCandidato > h2 {
         font-weight: 800;
@@ -18,63 +20,54 @@
         border-radius: 20px;
         margin-bottom: 30px;
       }
+
       & > .titulos-candidato {
         display: flex;
         justify-content: space-evenly;
+
         & > .titulos-maximos, & > .parrafos-maximos {
-            display: flex;
-            flex-direction: column;
-            align-items: flex-start;
-            margin: 0px 40px;
-            margin-bottom: 60px;
+          display: flex;
+          flex-direction: column;
+          align-items: flex-start;
+          margin: 0px 40px;
+          margin-bottom: 60px;
+
           & > h3 {
             font-size: 20px;
             padding: 20px;
             color: $verde;
           }
+
           & > p {
             font-size: 20px;
             padding: 20px;
           }
         }
       }
-.icon-pdf {
-    color: red; 
-    &:hover {
-        color:#28a745;
     }
-}
+  }
 
-.active {
+  .icon-pdf {
+    color: red;
 
-    &>.detalles-candidatura {
-        border: 2px solid #28a745;
-        animation: borderPulse 1s infinite;
+    &:hover {
+      color: #28a745;
+    }
+  }
 
+  .active {
+    & > .detalles-candidatura {
+      border: 2px solid #28a745;
+      animation: borderPulse 1s infinite;
     }
 
     .message-prediction {
-        text-align: center;
-        border: 2px solid #28a745;
-        animation: borderPulse 1s infinite;
-
-    }
-}
-.detalles-candidatura {
-    border: 2px solid #FFCC00;
-    border-radius: 8px;
-    padding: 16px;
-    margin: 20px 0;
-    background-color: #fff;
-    width: 90%;
-    max-width: 900px;
-    @include column;
-    @include centered-content;
-    
-    &.active {
-      border-color: #28a745; 
+      text-align: center;
+      border: 2px solid #28a745;
+      animation: borderPulse 1s infinite;
     }
   }
+
   & > .cajaDetalles {
     padding: 60px;
     border: 2px solid black;
@@ -85,6 +78,7 @@
       padding: 30px;
     }
   }
+
   & > button {
     border-radius: 30px;
     width: 10%;
@@ -96,183 +90,193 @@
   }
 }
 
-.competencias{
-    padding: 20px;
-    & > h3 {
-        font-size: 30px;
-        color: $verde;
-        margin-bottom: 40px;
-    }
-    &>ul{
-        display: flex;
-        padding-right: 10px;
-        align-content: center;
-        flex-wrap: wrap;
-        justify-content: center;
-        align-items: center;
-        &>li{
-            flex: 1 1 calc(33.333% - 20px);
-            box-sizing: border-box;
-            font-size: 20px;
-            margin: 10px;
-            list-style-type: none;
-            display: grid;
-            justify-items: center;
-            &>form{
-                margin: 20px 0;
-                &>input{
-                    width: 50%;
-                    padding: 10px;
-                    border-radius: 10px;
-                    border: 2px solid $amarillo;
-                    font-size: 17px;
-                }
-                &>button{
-                    padding: 10px 20px;
-                    border-radius: 30px;
-                    background-color: $verde;
-                    color: white;
-                    font-size: 17px;
-                    margin-top: 30px;
-                    margin-bottom: 20px;
-                    margin-right: 20px;
-                }
-            }
-            &>.lapiz{
-                display: flex;
-                justify-content: center;
-                margin: 30px 10px;
-                color: $verde;
-                border: 2px solid  rgb(227, 182, 18);
-                background-color: $amarillo;
-                border-radius: 20px;
-                text-align: center;
-                padding: 5px;
-                max-width: fit-content;
-    
-                &>p{
-                    margin: 0px 10px;
-                }
-            }
+.competencias {
+  padding: 20px;
 
+  & > h3 {
+    font-size: 30px;
+    color: $verde;
+    margin-bottom: 40px;
+  }
+
+  & > ul {
+    display: flex;
+    padding-right: 10px;
+    align-content: center;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+
+    & > li {
+      flex: 1 1 calc(33.333% - 20px);
+      box-sizing: border-box;
+      font-size: 20px;
+      margin: 10px;
+      list-style-type: none;
+      display: grid;
+      justify-items: center;
+
+      & > form {
+        margin: 20px 0;
+
+        & > input {
+          width: 50%;
+          padding: 10px;
+          border-radius: 10px;
+          border: 2px solid $amarillo;
+          font-size: 17px;
         }
-  
-        form {
-          display: flex;
-          flex-direction: column;
-          
-          input {
-            margin-bottom: 8px;
-            padding: 4px;
-            border: 1px solid #ccc;
-            border-radius: 4px;
-          }
-  
-          button {
-            background-color: $verde;
-            color: #fff;
-            border: none;
-            padding: 8px;
-            border-radius: 4px;
-            cursor: pointer;
-  
-            &:disabled {
-              background-color: $amarillo;
-              cursor: not-allowed;
-            }
-          }
+
+        & > button {
+          padding: 10px 20px;
+          border-radius: 30px;
+          background-color: $verde;
+          color: white;
+          font-size: 17px;
+          margin-top: 30px;
+          margin-bottom: 20px;
+          margin-right: 20px;
+        }
+      }
+
+      & > .lapiz {
+        display: flex;
+        justify-content: center;
+        margin: 30px 10px;
+        color: $verde;
+        border: 2px solid rgb(227, 182, 18);
+        background-color: $amarillo;
+        border-radius: 20px;
+        text-align: center;
+        padding: 5px;
+        max-width: fit-content;
+
+        & > p {
+          margin: 0px 10px;
         }
       }
     }
+  }
+
+  form {
+    display: flex;
+    flex-direction: column;
+
+    input {
+      margin-bottom: 8px;
+      padding: 4px;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+    }
+
+    button {
+      background-color: $verde;
+      color: #fff;
+      border: none;
+      padding: 8px;
+      border-radius: 4px;
+      cursor: pointer;
+
+      &:disabled {
+        background-color: $amarillo;
+        cursor: not-allowed;
+      }
+    }
+  }
 }
 
 .detalles-candidatura {
-    &>h3{
-        font-size: 20px;
-        color: $verde;
-        margin-bottom: 40px;
-        &>form{
-            margin: 20px 0;
-            &>input, &>select{
-                width: 20%;
-                padding: 10px;
-                border-radius: 10px;
-                border: 2px solid $amarillo;
-                font-size: 17px;
-                margin-right: 20px;
-            }
-            &>button{
-                padding: 10px 20px;
-                border-radius: 30px;
-                background-color: $verde;
-                color: white;
-                font-size: 17px;
-                margin-top: 30px;
-                margin-bottom: 20px;
-                margin-right: 20px;
-            }
-        }
-        &>svg{
-            margin-left: 20px;
-            color: $amarillo;
-        }
-  
-    .btnsContainer {
-      margin-top: 20px;
-      max-width: 100%;
-  
-      .candidaturaBtn {
-        background-color: #dc3545;
-        color: #fff;
-        border: none;
+  & > h3 {
+    font-size: 20px;
+    color: $verde;
+    margin-bottom: 40px;
+
+    & > form {
+      margin: 20px 0;
+
+      & > input, & > select {
+        width: 20%;
+        padding: 10px;
+        border-radius: 10px;
+        border: 2px solid $amarillo;
+        font-size: 17px;
+        margin-right: 20px;
+      }
+
+      & > button {
         padding: 10px 20px;
-        border-radius: 4px;
-        cursor: pointer;
-        
-        &:hover {
-          background-color: #c82333;
-        }
+        border-radius: 30px;
+        background-color: $verde;
+        color: white;
+        font-size: 17px;
+        margin-top: 30px;
+        margin-bottom: 20px;
+        margin-right: 20px;
       }
     }
-  
-    .confirmation-dialog {
-      position: fixed;
-      top: 50%;
-      left: 50%;
-      transform: translate(-50%, -50%);
-      background-color: #fff;
-      border: 2px solid $amarillo;
-      border-radius: 8px;
-      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-      padding: 16px;
-      z-index: 1000;
-  
-      p {
-        margin-bottom: 16px;
-      }
-  
-      button {
-        margin-right: 8px;
-        padding: 8px 16px;
-        border: none;
-        border-radius: 4px;
-        cursor: pointer;
-        
-        &:last-child {
-          margin-right: 0;
-        }
+
+    & > svg {
+      margin-left: 20px;
+      color: $amarillo;
+    }
+  }
+
+  .btnsContainer {
+    margin-top: 20px;
+    max-width: 100%;
+
+    .candidaturaBtn {
+      background-color: #dc3545;
+      color: #fff;
+      border: none;
+      padding: 10px 20px;
+      border-radius: 4px;
+      cursor: pointer;
+
+      &:hover {
+        background-color: #c82333;
       }
     }
   }
-  
-  @keyframes borderPulse {
-    0% {
-      border-width: 2px;
+
+  .confirmation-dialog {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: #fff;
+    border: 2px solid $amarillo;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    padding: 16px;
+    z-index: 1000;
+
+    p {
+      margin-bottom: 16px;
     }
-    50% {
-      border-width: 5px;
-    }
-    100% {
-      border-width: 2px;
+
+    button {
+      margin-right: 8px;
+      padding: 8px 16px;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+
+      &:last-child {
+        margin-right: 0;
+      }
     }
   }
+}
+
+@keyframes borderPulse {
+  0% {
+    border-width: 2px;
+  }
+  50% {
+    border-width: 5px;
+  }
+  100% {
+    border-width: 2px;
+  }
+}
