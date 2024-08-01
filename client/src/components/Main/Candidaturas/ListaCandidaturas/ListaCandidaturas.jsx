@@ -51,6 +51,7 @@ const ListaCandidaturas = ({ candidaturas, setCandidaturas }) => {
 
   const getCandidaturas = useCallback(async (search, id, status, filter, order, limit, offset) => {
     console.log('getCandidaturas called with id:', id);
+    setLoading(true);
     try {
       const res = await axios.get(`${URL}/api/candidaturas`, {
         params: { search, id_empleado: id, status, filter, order, limit, offset }

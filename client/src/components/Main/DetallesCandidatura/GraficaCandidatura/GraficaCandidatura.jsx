@@ -22,7 +22,7 @@ const GraficaCandidatura = ({ competencias }) => {
 
   return (
     <>
-      <article className="estadisticas-candidato">
+      <div className="estadisticas-candidato">
         <h3>Competencias del candidato</h3>
         {searching ? (
           <div className="spinner">
@@ -42,7 +42,7 @@ const GraficaCandidatura = ({ competencias }) => {
         ) : error && error.length > 0 ? (
           <p>{error}</p>
         ) : (
-          <section className="grafica-competencias">
+          <article className="grafica-competencias">
             {data && data.length > 0 ? (
               <ResponsiveRadar
                 data={data} 
@@ -54,7 +54,7 @@ const GraficaCandidatura = ({ competencias }) => {
                 borderWidth={3}
                 borderColor={{ from: 'color', modifiers: [] }}
                 gridLevels={7}
-                gridLabelOffset={isMobile ? 16 : 25}
+                gridLabelOffset={isMobile ? 20 : 25}
                 dotSize={10}
                 dotColor={{ theme: 'background' }}
                 dotBorderWidth={2}
@@ -88,9 +88,9 @@ const GraficaCandidatura = ({ competencias }) => {
             ) : (
               <p>No hay estadísticas disponibles.</p>
             )}
-          </section>
+          </article>
         )}
-      </article>
+      </div>
     </>
   );
 };

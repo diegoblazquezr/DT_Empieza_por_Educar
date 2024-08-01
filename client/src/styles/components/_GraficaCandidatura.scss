@@ -2,7 +2,7 @@
 @import "../utils/mixins.scss";
 
 .estadisticas-candidato {
-    margin: 20px 0 0 0;
+    margin:0px;
     width: 100%;
     @include column;
     @include centered-content;
@@ -19,10 +19,8 @@
         margin-bottom: 20px;
     }
 
-
-
     .grafica-competencias {
-        height: 40vh;
+        height:40vh;
         width: 90%;
         margin-bottom: 5px;
 

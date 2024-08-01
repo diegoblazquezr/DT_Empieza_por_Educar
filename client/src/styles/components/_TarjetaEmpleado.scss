@@ -3,54 +3,58 @@
 .tarjetaEmpleado {
   border: 3px solid $amarillo;
   border-radius: 20px;
-  padding: 50px 100px;
+  padding: 30px 50px;
   margin: 10px 100px;
 
-  & > .nombreEmpleado {
-    margin-bottom: 20px;
+  &>.nombreEmpleado {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 10px;
     margin-top: 10px;
     border: 2px solid rgb(211, 169, 0);
-    border-radius: 20px;
-    padding: 10px;
+    border-radius: 10px;
     background-color: $amarillo;
 
-    & > h3 {
+    &>h3 {
+      padding-top: 10px;
       color: black;
     }
   }
-  & > .datosEmpleado,
-  & > .rolEmpleado,
-  & > .candidaturasEmpleado,
-  & > .idEmpleado {
+
+  &>.datosEmpleado,
+  &>.rolEmpleado,
+  &>.candidaturasEmpleado,
+  &>.idEmpleado {
     display: flex;
     text-align: center;
     justify-content: center;
     align-items: center;
-    padding-right: 10px;
+    flex-wrap: wrap;
+    gap: 5px;
+    //padding-right: 10px;
 
-    & > h3 {
+    &>h3 {
       color: $verde;
-      padding-right: 20px;
+      padding-right: 5px;
+      margin:0px;
+
     }
 
-    & > p {
-      padding: 20px 10;
-      font-weight: 500;
-      font-size: medium;
-    }
-
-    & > p {
-      padding: 10px 0;
+    &>p {
+      padding-right: 10px;
       font-weight: 500;
       font-size: medium;
     }
   }
-  & > .btnContainer {
+
+  &>.btnContainer {
     display: flex;
     gap: 8px;
     justify-content: center;
     align-items: center;
-    & > button {
+
+    &>button {
       display: flex;
       justify-content: center;
       align-items: center;
@@ -76,19 +80,20 @@
   align-items: center;
   gap: 4px;
 
-  & > .inputContainer {
+  &>.inputContainer {
     display: flex;
     width: 60%;
     justify-content: space-between;
 
-    & > label {
+    &>label {
       color: $verde;
       font-weight: 800;
       padding: 10px;
       font-size: 20px;
     }
-    & > select,
-    & > input {
+
+    &>select,
+    &>input {
       width: 200px;
       padding: 10px;
       border-radius: 10px;
@@ -96,14 +101,16 @@
       font-size: 17px;
     }
   }
+
   #ocultarForm {
     display: none;
   }
-  & > .btnContainer {
+
+  &>.btnContainer {
     display: flex;
     gap: 8px;
 
-    & > button {
+    &>button {
       display: flex;
       justify-content: center;
       align-items: center;
@@ -113,6 +120,7 @@
       background-color: $verde;
       color: white;
       font-size: 17px;
+
       &:hover {
         cursor: pointer;
         border: 2px solid black;
@@ -129,12 +137,12 @@
   align-items: center;
   gap: 8px;
 
-  & > .btnContainer {
+  &>.btnContainer {
     display: flex;
     gap: 8px;
     width: 20%;
 
-    & > button {
+    &>button {
       display: flex;
       justify-content: center;
       align-items: center;
@@ -159,13 +167,16 @@
     flex-direction: column;
     padding: 10px 20px;
     margin: 10px 20px;
-    & > div {
-      & > p {
-        padding-top: 10px;
+
+    &>div {
+      &>p {
+        //padding-top: 10px;
         font-weight: 500;
         font-size: 12px;
+
       }
-      & > h3 {
+
+      &>h3 {
         font-size: 15px;
       }
     }
@@ -176,15 +187,18 @@
   .tarjetaEmpleado {
     padding: 10px 20px;
     margin: 10px 20px;
-    & > .datosEmpleado {
+
+    &>.datosEmpleado {
       flex-direction: column;
     }
-    &> .btnContainer > button {
-        padding: 10px;
+
+    &>.btnContainer>button {
+      padding: 10px;
     }
-    & > div {
-      & > p {
-        padding-top: 10px;
+
+    &>div {
+      &>p {
+        //padding-top: 10px;
         font-weight: 500;
       }
     }

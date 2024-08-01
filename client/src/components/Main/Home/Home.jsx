@@ -17,7 +17,7 @@ const Home = () => {
         className="home-logo"
       />
       <h2>¡Bienvenid@! </h2>
-      <h3>Si quieres acceder a la web:</h3>
+      {/* <h3>Si quieres acceder a la web:</h3> */}
       <button 
         onClick={navigateToLogin} 
         className="home-button"

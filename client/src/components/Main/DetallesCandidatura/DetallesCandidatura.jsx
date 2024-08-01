@@ -309,97 +309,40 @@ const DetallesCandidatura = () => {
   const fecha_registro_formatted = formatDate(fecha_registro);
   return (
     <>
-    <h4 className={`message-prediction ${statusClass}`}>
-          {statusClass === "active" ? "Candidato óptimo" : ""}
-        </h4>
-      <section className='container-detalles'>
-        <article className="detalles-candidatura">
-          <div className="detalles-candidato">
-            <div className="idCandidato">
-              <h2>ID Candidato: {id_candidato}</h2>
-            </div>
-            <div className="titulos-candidato">
-              <div className="titulos-maximos">
-                <h3>Nombre</h3>
-                <h3>Apellidos</h3>
-                <h3>Email</h3>
-                <h3>Teléfono</h3>
-                <h3>Edad</h3>
-                <h3>Carrera</h3>
-                <h3>Nivel de Inglés</h3>
-                <h3>CV</h3>
-              </div>
+      <h4 className={`message-prediction ${statusClass}`}>
+        {statusClass === "active" ? "Candidato óptimo" : ""}
+      </h4>
+      <section className='dashboard-container'>
+        <article className="candidato-details">
+          <div className="candidato-info">
+            <span><h4>Nombre:</h4>
+            <p>{nombre_candidato}</p></span>
 
-              <div className="parrafos-maximos">
-                <p>{nombre_candidato}</p>
-                <p>{apellidos_candidato}</p>
-                <p>{email_candidato}</p>
-                <p>{telefono_candidato}</p>
-                <p>{edad}</p>
-                <p>{carrera}</p>
-                <p>{nivel_ingles}</p>
-                <p>
-                  <a href={cv} target="_blank">
-                    <BsFileEarmarkPdfFill className="icon-pdf" />
-                  </a>
-                </p>
-              </div>
-            </div>
+            <span><h4>Apellidos:</h4><p>{apellidos_candidato}</p></span>
+
+            <span><h4>Email:</h4>
+            <p>{email_candidato}</p></span>
+
+            <span><h4>Teléfono:</h4>
+            <p>{telefono_candidato}</p></span>
+
+            <span><h4>Edad:</h4>
+            <p>{edad}</p></span>
+
+            <span><h4>Carrera:</h4>
+            <p>{carrera}</p></span>
+
+            <span><h4>Nivel de inglés:</h4>
+            <p>{nivel_ingles}</p></span>
+
+            <span><h4>CV:</h4>
+              <a href={cv} target="_blank">
+                <BsFileEarmarkPdfFill className="icon-pdf" />
+              </a>
+            </span>
           </div>
-          <div className="competencias">
-            <h3>Competencias</h3>
-            <ul>
-              {detallesCandidatura.map((item, index) => (
-                <li key={index}>
-                  {item.nombre_competencia}:{" "}
-                  {editIndex === index ? (
-                    <form onSubmit={handleSubmit(onSubmitEditCompetencias)}>
-                      <input
-                        type="text"
-                        {...register("nombre_competencia", { required: true })}
-                        defaultValue={item.nombre_competencia}
-                        readOnly
-                      />
-                      <input
-                        type="number"
-                        {...register("nota", {
-                          required: true,
-                          min: { value: 0, message: "Debe ser mayor de 0" },
-                          max: { value: 5, message: "Debe ser menor de 5" },
-                        })}
-                        defaultValue={item.nota}
-                      />
-                      <button type="submit" disabled={loading}>
-                        {loading ? "Saving..." : "Guardar"}
-                      </button>
-                    </form>
-                  ) : (
-                    <>
-                    
-                      {item.nota}
-                      <div className="lapiz" onClick={() => {
-                          setEditIndex(index);
-                          setValue(
-                            "nombre_competencia",
-                            item.nombre_competencia
-                          );
-                          setValue("nota", item.nota);
-                        }}>
-                        <p>Editar</p>
-                      <FaPencil/>
-                      </div>
-                    </>
-                  )}
-                </li>
-              ))}
-            </ul>
-          </div>
-          <div className="detalles-candidatura">
-            <div className="idCandidato">
-            <h2>ID Candidatura: {candidaturaId}</h2>
-            </div>
-            <h3>
-              ID Empleado:{" "}
+          <div className="candidatura-info">
+            <span><h3>ID Empleado:{" "}
               {editEmpleado ? (
                 <form onSubmit={handleSubmit(onSubmitEditEmpleado)}>
                   <input
@@ -421,11 +364,11 @@ const DetallesCandidatura = () => {
                     onClick={() => handleEmpleadoEditClick(id_empleado)}
                   /></div>
                 </>
-              )}
-            </h3>
-            <h3>Nombre Empleado: {nombre_empleado} {apellidos_empleado}</h3>
-            <h3>Email Empleado: {email_empleado}</h3>
-            <h3>
+              )}</h3>
+            </span>
+            <span><h3>Nombre Empleado: {nombre_empleado} {apellidos_empleado}</h3></span>
+            <span><h3>Email Empleado: {email_empleado}</h3></span>
+            <span><h3>
               Status:{" "}
               {editStatus ? (
                 <form onSubmit={handleSubmit(onSubmitEditStatus)}>
@@ -439,7 +382,7 @@ const DetallesCandidatura = () => {
                       </option>
                     ))}
                   </select>
-                  <button type="submit" disabled={loading}>
+                  <button className="save-button" type="submit" disabled={loading}>
                     {loading ? "Saving..." : "Guardar"}
                   </button>
                 </form>
@@ -449,15 +392,16 @@ const DetallesCandidatura = () => {
                   <div className="lapiz" ><FaPencil onClick={() => handleStatusEditClick(status)} /></div>
                 </>
               )}
-            </h3>
-            <h3>Fecha Registro: {fecha_registro_formatted}</h3>
+            </h3></span>
+            <span><h3>Fecha Registro: {fecha_registro_formatted}</h3></span>
           </div>
-          <div className="btnsContainer">
-            <button className="candidaturaBtn" onClick={handleShowDialog}>
+    
+        </article>
+        <div className="button-candidatura-container">
+            <button className="delete-candidatura-button" onClick={handleShowDialog}>
               Eliminar candidatura
             </button>
           </div>
-
           {showDialog && (
             <div className="confirmation-dialog">
               <p>¿Estás seguro de que deseas eliminar esta candidatura?</p>
@@ -467,9 +411,57 @@ const DetallesCandidatura = () => {
               <button onClick={handleHideDialog}>Cancelar</button>
             </div>
           )}
+        <article className="candidatura-details">
+        <div className="competencies">
+            <h3>Competencias</h3>
+            <ul className="competencies-list">
+              {detallesCandidatura.map((item, index) => (
+                <li key={index}>
+                  {item.nombre_competencia}:{" "}
+                  {editIndex === index ? (
+                    <form onSubmit={handleSubmit(onSubmitEditCompetencias)}>
+                      <input
+                        type="text"
+                        {...register("nombre_competencia", { required: true })}
+                        defaultValue={item.nombre_competencia}
+                        readOnly
+                      />
+                      <input
+                        type="number"
+                        {...register("nota", {
+                          required: true,
+                          min: { value: 0, message: "Debe ser mayor de 0" },
+                          max: { value: 5, message: "Debe ser menor de 5" },
+                        })}
+                        defaultValue={item.nota}
+                      />
+                      <button className='save-button' type="submit" disabled={loading}>
+                        {loading ? "Saving..." : "Guardar"}
+                      </button>
+                    </form>
+                  ) : (
+                    <>
+                      {item.nota}
+                      <div className="lapiz" onClick={() => {
+                        setEditIndex(index);
+                        setValue(
+                          "nombre_competencia",
+                          item.nombre_competencia
+                        );
+                        setValue("nota", item.nota);
+                      }}>
+                      <FaPencil />
+                      </div>
+                    </>
+                  )}
+                </li>
+              ))}
+            </ul>
+          </div>
+          
+          <GraficaCandidatura competencias={detallesCandidatura} />
         </article>
       </section>
-      <GraficaCandidatura competencias={detallesCandidatura} />
     </>
   );
 };
