@@ -182,32 +182,6 @@ const DetallesCandidatura = () => {
     }
   };
 
-  /*const handleSubmitEditStatus = async (e) => {
-    e.preventDefault();
-    setLoading(true);
-    try {
-      await axios.put(`${URL}/api/candidaturas`, {
-        id_candidatura: candidaturaId,
-        status: newStatus,
-      });
-
-      setDetallesCandidatura(prevState => {
-        const updatedState = [...prevState];
-        updatedState[0] = {
-          ...updatedState[0],
-          status: newStatus
-        };
-        return updatedState;
-      });
-      setEditStatus(false);
-
-    } catch (e) {
-      console.error("Error updating status:", e);
-    } finally {
-      setLoading(false);
-    }
-  };*/
-
   const onSubmitEditStatus = async (data) => {
     setLoading(true);
     try {
@@ -215,12 +189,17 @@ const DetallesCandidatura = () => {
         id_candidatura: candidaturaId,
         status: data.status,
       });
-
+  
       setDetallesCandidatura(prevState => {
-        return [{
-          ...prevState[0],
-          status: data.status
-        }];
+        return prevState.map(item => {
+          if (item.id_candidatura === candidaturaId) {
+            return {
+              ...item,
+              status: data.status
+            };
+          }
+          return item;
+        });
       });
       setEditStatus(false);
     } catch (e) {
@@ -229,7 +208,6 @@ const DetallesCandidatura = () => {
       setLoading(false);
     }
   };
-
   /*const handleSubmitEditEmpleado = async (e) => {
     e.preventDefault();
     setLoading(true);
