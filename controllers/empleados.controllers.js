@@ -145,7 +145,7 @@ const login = async (req, res) => {
 const logout = async (req, res) => {
     try {
         console.log(req.cookies);
-        const token = req.cookies.token || req.cookies.token2 || req.headers.authorization;
+        const token = req.cookies.token || req.cookies.token2 || req.headers.authorization?.split(' ')[1];
         console.log('token', token)
 
         if (!token) {
