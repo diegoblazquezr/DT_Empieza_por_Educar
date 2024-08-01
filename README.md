@@ -13,8 +13,8 @@ Automatizar el proceso de generación y seguimiento de la evolución del candida
 Proporcionar herramientas de análisis y visualización de datos para obtener insights útiles a partir de la información recopilada. 
 ## Características de la Interfaz
 ![./client\src\assets\readme\sc1.png](https://github.com/diegoblazquezr/DT_Empieza_por_Educar/blob/develop/client/src/assets/readme/sc1.png)
-![sc2](client\src\assets\readme\sc2.png)](https://github.com/diegoblazquezr/DT_Empieza_por_Educar/blob/develop/client/src/assets/readme/sc2.png)
-![sc3](client\src\assets\readme\sc3.png)](https://github.com/diegoblazquezr/DT_Empieza_por_Educar/blob/develop/client/src/assets/readme/sc3.png)
+![./client\src\assets\readme\sc2.png](https://github.com/diegoblazquezr/DT_Empieza_por_Educar/blob/develop/client/src/assets/readme/sc2.png)
+![./client\src\assets\readme\sc3.png](https://github.com/diegoblazquezr/DT_Empieza_por_Educar/blob/develop/client/src/assets/readme/sc3.png)
 ### Interfaz Intuitiva
 Interfaz de usuario amigable y fácil de usar, diseñada para que usuarios de todos los niveles de experiencia puedan navegar y utilizar las funciones de manera eficiente.
 ### Personalización
