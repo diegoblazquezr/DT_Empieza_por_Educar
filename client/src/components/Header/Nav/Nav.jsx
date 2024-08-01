@@ -13,7 +13,16 @@ const Nav = ({ menuOpen }) => {
   const handleLogout = async () => {
     try {
       console.log(Cookies.get('token'), Cookies.get('token2'));
-      await axios.post(`${URL}/api/empleados/logout`);
+      const token = Cookies.get('token') || Cookies.get('token2');
+
+      await axios.post(`${URL}/api/empleados/logout`, {}, {
+        headers: {
+          'Content-Type': 'application/json',
+          'Authorization': `Bearer ${token}`
+        },
+        withCredentials: true
+      });
+      
       setLogged(false);
       setRol('');
       setId('');
@@ -44,20 +53,20 @@ const Nav = ({ menuOpen }) => {
         </li>
         <button onClick={handleLogout} className="logout">Logout</button>
       </ul>
-    </nav> : 
-    <nav className={menuOpen ? 'open' : ''}>
-    <ul>
-      <h3>Hola, Empleado</h3>
-      <li>
-        <Link to="/candidaturas">Candidaturas</Link>
-      </li>
-      {<li>
-        <Link to="/estadisticas-empleado">Estadísticas Empleado</Link>
-      </li>}
-      <button onClick={handleLogout} className="logout">Logout</button>
-    </ul>
+    </nav> :
+      <nav className={menuOpen ? 'open' : ''}>
+        <ul>
+          <h3>Hola, Empleado</h3>
+          <li>
+            <Link to="/candidaturas">Candidaturas</Link>
+          </li>
+          {<li>
+            <Link to="/estadisticas-empleado">Estadísticas Empleado</Link>
+          </li>}
+          <button onClick={handleLogout} className="logout">Logout</button>
+        </ul>
 
-  </nav>
+      </nav>
   );
 };
 
