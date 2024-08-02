@@ -47,7 +47,7 @@ const Footer = () => {
           </a>
         </div>
         <p>
-          © 2022 Empieza Por Educar. Socio de la red internacional Teach For All
+          © 2024 Empieza Por Educar. Socio de la red internacional Teach For All
           Política de cookies | Aviso legal | Política de privacidad y
           protección de datos
         </p>
