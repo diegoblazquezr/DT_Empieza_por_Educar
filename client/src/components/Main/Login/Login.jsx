@@ -27,7 +27,7 @@ const Login = () => {
 
       console.log(response.data);
 
-      // Cookies.set('token2', response.data.token);
+      Cookies.set('token2', response.data.token);
       setLogged(true);
       setId(response.data.id);
       setRol(response.data.rol);
