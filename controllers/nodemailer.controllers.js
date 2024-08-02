@@ -1,5 +1,20 @@
+/**
+ * @author Sergio Lillo
+ * @namespace Controladores Nodemailer
+ */
+
 const sendMail = require('../config/nodemailer');
 
+/**
+ * Controlador para enviar un correo electrónico a un candidato.
+ *
+ * @async
+ * @function sendEmailCandidato
+ * @memberof Controladores Correo
+ * @param {Object} req - El objeto de solicitud.
+ * @param {Object} res - El objeto de respuesta.
+ * @returns {Promise<void>} Responde con un mensaje de éxito o un error.
+ */
 const sendEmailCandidato = async (req, res) => {
   const { email_candidato, subject, nombre_candidato } = req.body;
 
@@ -12,6 +27,16 @@ const sendEmailCandidato = async (req, res) => {
   }
 };
 
+/**
+ * Controlador para enviar un correo electrónico aprobado a un candidato.
+ *
+ * @async
+ * @function sendEmailCandidatoApproved
+ * @memberof Controladores Correo
+ * @param {Object} req - El objeto de solicitud.
+ * @param {Object} res - El objeto de respuesta.
+ * @returns {Promise<void>} Responde con un mensaje de éxito o un error.
+ */
 const sendEmailCandidatoApproved = async (req, res) => {
   const { email_candidato, subject, nombre_candidato } = req.body;
 
@@ -24,6 +49,16 @@ const sendEmailCandidatoApproved = async (req, res) => {
   }
 };
 
+/**
+ * Controlador para enviar un correo electrónico a un empleado.
+ *
+ * @async
+ * @function sendEmailEmpleado
+ * @memberof Controladores Correo
+ * @param {Object} req - El objeto de solicitud.
+ * @param {Object} res - El objeto de respuesta.
+ * @returns {Promise<void>} Responde con un mensaje de éxito o un error.
+ */
 const sendEmailEmpleado = async (req, res) => {
   const { email_empleado, subject, nombre_empleado, password } = req.body;
 

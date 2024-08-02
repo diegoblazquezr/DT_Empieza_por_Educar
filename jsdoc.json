@@ -1,0 +1,13 @@
+{
+    "source": {
+      "includePattern": ".+\\.js(doc|x)?$",   
+      "include": ["controllers", "middlewares", "models"],                        
+      "exclude": ["node_modules"]              
+    },
+    "recurseDepth": 10,                         
+    "opts": {
+      "destination": "./jsondocs/",          
+      "recurse": true                         
+    }
+  }
+  

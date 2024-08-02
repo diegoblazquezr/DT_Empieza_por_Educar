@@ -10,7 +10,7 @@ export const AuthProvider = ({ children }) => {
   const [id, setId] = useState('');
 
   useEffect(() => {
-    const token = Cookies.get('token') || Cookies.get('token2');
+    const token = Cookies.get('token');
     console.log(token);
     if (token) {
       try {

@@ -12,7 +12,6 @@ const Nav = ({ menuOpen }) => {
 
   const handleLogout = async () => {
     try {
-      console.log(Cookies.get('token'), Cookies.get('token2'));
       await axios.post(`${URL}/api/empleados/logout`);
       setLogged(false);
       setRol('');

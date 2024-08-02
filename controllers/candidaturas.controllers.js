@@ -1,3 +1,8 @@
+/**
+ * @author Diego Blázquez
+ * @namespace Controladores Candidaturas
+ */
+
 const candidaturasModels = require('../models/candidaturas.models');
 const { validationResult } = require("express-validator");
 
@@ -29,6 +34,17 @@ const { validationResult } = require("express-validator");
 //     "id_candidato": 17 
 // }
 
+
+/**
+ * Controlador para leer candidaturas.
+ *
+ * @async
+ * @function readCandidaturasController
+ * @memberof Controladores Candidaturas
+ * @param {Object} req - El objeto de solicitud.
+ * @param {Object} res - El objeto de respuesta.
+ * @returns {Promise<void>} Responde con la lista de candidaturas o un error.
+ */
 const readCandidaturasController = async (req, res) => {
     if (req.query.limit > 50) {
         return res.status(400).json("Limit no puede superar 50");
@@ -70,6 +86,16 @@ const readCandidaturasController = async (req, res) => {
 // GET ONE http://localhost:3000/api/candidaturas?id_candidatura=1
 // GET ALL http://localhost:3000/api/candidaturas?search=mar&id_empleado=1&status=&filter=nombre_candidato&order=asc&limit=10&offset=0
 
+/**
+ * Controlador para actualizar una candidatura.
+ *
+ * @async
+ * @function updateCandidaturaController
+ * @memberof Controladores Candidaturas
+ * @param {Object} req - El objeto de solicitud.
+ * @param {Object} res - El objeto de respuesta.
+ * @returns {Promise<void>} Responde con la candidatura actualizada o un error.
+ */
 const updateCandidaturaController = async (req, res) => {
     const errors = validationResult(req);
     if (!errors.isEmpty()) {
@@ -103,6 +129,17 @@ const updateCandidaturaController = async (req, res) => {
 //     "id_candidatura": 1005
 // }
 
+
+/**
+ * Controlador para eliminar una candidatura.
+ *
+ * @async
+ * @function deleteCandidaturaController
+ * @memberof Controladores Candidaturas
+ * @param {Object} req - El objeto de solicitud.
+ * @param {Object} res - El objeto de respuesta.
+ * @returns {Promise<void>} Responde con la confirmación de eliminación o un error.
+ */
 const deleteCandidaturaController = async (req, res) => {
     const errors = validationResult(req);
     if (!errors.isEmpty()) {

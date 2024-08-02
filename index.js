@@ -10,8 +10,6 @@ const URL = process.env.API_URL || 'http://localhost';
 // const swaggerUi = require('swagger-ui-express');
 // const swaggerDocument = require('./swagger.json');
 
-// app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerDocument));
-
 // Import Middlewares
 const morgan = require('./middlewares/morgan');
 
@@ -57,6 +55,10 @@ app.use('/api/empleados', empleadosRoutes);
 app.use('/api/candidatos', candidatosRoutes);
 app.use('/api/mailing', nodemailerRoutes);
 app.use('/api/competencias', competenciasRoutes);
+
+// DOCS Routes
+app.use('/api-jsdoc', express.static(path.join(__dirname, '/jsondocs')));
+// app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerDocument));
 
 app.get('*', (req,res) =>{
     res.sendFile(path.join(__dirname+'/client/index.html'));

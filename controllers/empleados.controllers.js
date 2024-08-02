@@ -1,3 +1,8 @@
+/**
+ * @author Miguel Pardal
+ * @namespace Controladores Empleados
+ */
+
 const empleado = require('../models/empleados.models');
 const jwt = require('jsonwebtoken');
 const bcrypt = require('bcrypt');
@@ -5,7 +10,16 @@ const { use } = require('../middlewares/empleadoRoutes');
 const saltRounds = 10;
 const jwt_secret = process.env.ULTRA_SECRET_KEY;
 
-//Read empleado by Email
+/**
+ * Controlador para leer un empleado por correo electrónico.
+ *
+ * @async
+ * @function readEmpleadoByEmailController
+ * @memberof Controladores Empleados
+ * @param {Object} req - El objeto de solicitud.
+ * @param {Object} res - El objeto de respuesta.
+ * @returns {Promise<void>} Responde con los detalles del empleado o un error.
+ */
 const readEmpleadoByEmailController = async (req, res) => {
     let empleados;
     try {
@@ -20,7 +34,16 @@ const readEmpleadoByEmailController = async (req, res) => {
     }
 };
 
-// Create Empleado Controller
+/**
+ * Controlador para crear un nuevo empleado.
+ *
+ * @async
+ * @function createEmpleadoController
+ * @memberof Controladores Empleados
+ * @param {Object} req - El objeto de solicitud.
+ * @param {Object} res - El objeto de respuesta.
+ * @returns {Promise<void>} Responde con el nuevo empleado creado o un error.
+ */
 const createEmpleadoController = async (req, res) => {
     const newEmpleado = req.body;
 
@@ -55,7 +78,16 @@ const createEmpleadoController = async (req, res) => {
     }
 };
 
-// Login Controller
+/**
+ * Controlador para iniciar sesión de un empleado.
+ *
+ * @async
+ * @function login
+ * @memberof Controladores Empleados
+ * @param {Object} req - El objeto de solicitud.
+ * @param {Object} res - El objeto de respuesta.
+ * @returns {Promise<void>} Responde con los detalles de autenticación o un error.
+ */
 const login = async (req, res) => {
     try {
         const { email, password } = req.body;
@@ -100,11 +132,20 @@ const login = async (req, res) => {
     }
 };
 
-// Logout Controller
+/**
+ * Controlador para cerrar sesión de un empleado.
+ *
+ * @async
+ * @function logout
+ * @memberof Controladores Empleados
+ * @param {Object} req - El objeto de solicitud.
+ * @param {Object} res - El objeto de respuesta.
+ * @returns {Promise<void>} Responde con la confirmación de cierre de sesión o un error.
+ */
 const logout = async (req, res) => {
     try {
         console.log(req.cookies);
-        const token = req.cookies.token || req.cookies.token2;
+        const token = req.cookies.token;
         console.log('token', token)
 
         if (!token) {

@@ -1,7 +1,6 @@
 /**
- * @author Antonio, Diego, Miguel y Sergio
- * @exports controllers
- * @namespace candidatos.controllers
+ * @author Sergio Lillo
+ * @namespace Controladores Candidatos
  */
 
 const candidatosModels = require('../models/candidatos.models');
@@ -9,7 +8,16 @@ const candidaturasModels = require('../models/candidaturas.models');
 const competenciasModels = require('../models/competencias.models');
 const { validationResult } = require("express-validator");
 
-
+/**
+ * Crea un nuevo candidato y sus respectivas candidaturas y competencias.
+ *
+ * @async
+ * @function createCandidato
+ * @memberof Controladores Candidatos
+ * @param {Object} req - El objeto de solicitud.
+ * @param {Object} res - El objeto de respuesta.
+ * @returns {Promise<void>} Responde con el nuevo candidato, candidatura y competencias creadas, o un error.
+ */
 const createCandidato = async (req, res) => {
     const errors = validationResult(req);
     if (!errors.isEmpty()) {
@@ -55,6 +63,16 @@ const createCandidato = async (req, res) => {
     }
 };
 
+/**
+ * Obtiene candidatos basados en los parámetros de consulta.
+ *
+ * @async
+ * @function readCandidatos
+ * @memberof Controladores Candidatos
+ * @param {Object} req - El objeto de solicitud.
+ * @param {Object} res - El objeto de respuesta.
+ * @returns {Promise<void>} Responde con la lista de candidatos o un error.
+ */
 const readCandidatos = async (req, res) => {
     if (req.query.email_candidato) {
         try {
@@ -75,6 +93,16 @@ const readCandidatos = async (req, res) => {
     }
 };
 
+/**
+ * Actualiza la información de un candidato.
+ *
+ * @async
+ * @function updateCandidato
+ * @memberof Controladores Candidatos
+ * @param {Object} req - El objeto de solicitud.
+ * @param {Object} res - El objeto de respuesta.
+ * @returns {Promise<void>} Responde con el candidato actualizado o un error.
+ */
 const updateCandidato = async (req, res) => {
     /*const errors = validationResult(req);
     if (!errors.isEmpty()) {
@@ -107,6 +135,16 @@ const updateCandidato = async (req, res) => {
 
 };
 
+/**
+ * Elimina un candidato de la base de datos.
+ *
+ * @async
+ * @function deleteCandidato
+ * @memberof Controladores Candidatos
+ * @param {Object} req - El objeto de solicitud.
+ * @param {Object} res - El objeto de respuesta.
+ * @returns {Promise<void>} Responde con la confirmación de eliminación o un error.
+ */
 const deleteCandidato = async (req, res) => {
     const { id_candidato } = req.query;
     try {

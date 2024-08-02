@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>JSDoc: Source: controllers/candidaturas.controllers.js</title>
+
+    <script src="scripts/prettify/prettify.js"> </script>
+    <script src="scripts/prettify/lang-css.js"> </script>
+    <!--[if lt IE 9]>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <link type="text/css" rel="stylesheet" href="styles/prettify-tomorrow.css">
+    <link type="text/css" rel="stylesheet" href="styles/jsdoc-default.css">
+</head>
+
+<body>
+
+<div id="main">
+
+    <h1 class="page-title">Source: controllers/candidaturas.controllers.js</h1>
+
+    
+
+
+
+    
+    <section>
+        <article>
+            <pre class="prettyprint source linenums"><code>/**
+ * @author Diego Blázquez
+ * @namespace Controladores Candidaturas
+ */
+
+const candidaturasModels = require('../models/candidaturas.models');
+const { validationResult } = require("express-validator");
+
+/*const createCandidaturaController = async (req, res) => {
+    const errors = validationResult(req);
+    if (!errors.isEmpty()) {
+        return res.status(400).json({ errors: errors.array() });
+    }
+    const newCandidatura = req.body;
+    if (
+        "id_candidato" in newCandidatura
+    ) {
+        try {
+            const response = await candidaturasModels.createCandidaturaModel({ id_candidato: newCandidatura.id_candidato });
+            res.status(201).json({
+                items_created: response
+            });
+        } catch (error) {
+            res.status(500).json({ error: "Error en la BBDD" });
+        }
+    } else {
+        res.status(400).json({ error: "Faltan campos en la entrada" });
+    }
+}*/
+
+// Prueba Postman
+// POST http://localhost:3000/api/candidaturas
+// {
+//     "id_candidato": 17 
+// }
+
+
+/**
+ * Controlador para leer candidaturas.
+ *
+ * @async
+ * @function readCandidaturasController
+ * @memberof Controladores Candidaturas
+ * @param {Object} req - El objeto de solicitud.
+ * @param {Object} res - El objeto de respuesta.
+ * @returns {Promise&lt;void>} Responde con la lista de candidaturas o un error.
+ */
+const readCandidaturasController = async (req, res) => {
+    if (req.query.limit > 50) {
+        return res.status(400).json("Limit no puede superar 50");
+    }
+    let candidaturas;
+    // console.log(req.query);
+    try {
+        if (req.query.id_candidatura) {
+            const errors = validationResult(req);
+            if (!errors.isEmpty()) {
+                return res.status(400).json({ errors: errors.array() });
+            }
+            candidaturas = await candidaturasModels.readCandidaturaByIdModel(req.query.id_candidatura);
+            res.status(200).json(candidaturas);
+        } else if ((req.query.search || req.query.search == "") &amp;&amp; (req.query.id_empleado || req.query.id_empleado == "") &amp;&amp; (req.query.status || req.query.status == "") &amp;&amp; req.query.filter &amp;&amp; req.query.order &amp;&amp; req.query.limit &amp;&amp; req.query.offset) {
+            const errors = validationResult(req);
+            if (!errors.isEmpty()) {
+                return res.status(400).json({ errors: errors.array() });
+            }
+            const result = await candidaturasModels.readCandidaturasModel(
+                req.query.search,
+                req.query.id_empleado,
+                req.query.status,
+                req.query.filter,
+                req.query.order,
+                parseInt(req.query.limit),
+                parseInt(req.query.offset)
+            );
+            res.status(200).json({
+                items: result.items,
+                totalCount: result.totalCount
+            });
+        }
+    } catch (error) {
+        res.status(500).json({ error: error.message });
+    }
+};
+// Prueba Postman
+// GET ONE http://localhost:3000/api/candidaturas?id_candidatura=1
+// GET ALL http://localhost:3000/api/candidaturas?search=mar&amp;id_empleado=1&amp;status=&amp;filter=nombre_candidato&amp;order=asc&amp;limit=10&amp;offset=0
+
+/**
+ * Controlador para actualizar una candidatura.
+ *
+ * @async
+ * @function updateCandidaturaController
+ * @memberof Controladores Candidaturas
+ * @param {Object} req - El objeto de solicitud.
+ * @param {Object} res - El objeto de respuesta.
+ * @returns {Promise&lt;void>} Responde con la candidatura actualizada o un error.
+ */
+const updateCandidaturaController = async (req, res) => {
+    const errors = validationResult(req);
+    if (!errors.isEmpty()) {
+        return res.status(400).json({ errors: errors.array() });
+    }
+    const modifiedCandidatura = req.body;
+    if (
+        (
+            "id_empleado" in modifiedCandidatura ||
+            "status" in modifiedCandidatura &amp;&amp;
+            "id_candidatura" in modifiedCandidatura
+        )
+    ) {
+        try {
+            const response = await candidaturasModels.updateCandidaturaModel(modifiedCandidatura);
+            res.status(201).json({
+                items_updated: response
+            });
+        } catch (error) {
+            res.status(500).json({ error: "Error en la BBDD" });
+        }
+    } else {
+        res.status(400).json({ error: "old_candidaturaName obligatorio y un campo de update mínimo" });
+    }
+}
+// Prueba Postman
+// PUT http://localhost:3000/api/candidaturas
+// {
+//     "id_empleado": 6,
+//     "status": "Registro",
+//     "id_candidatura": 1005
+// }
+
+
+/**
+ * Controlador para eliminar una candidatura.
+ *
+ * @async
+ * @function deleteCandidaturaController
+ * @memberof Controladores Candidaturas
+ * @param {Object} req - El objeto de solicitud.
+ * @param {Object} res - El objeto de respuesta.
+ * @returns {Promise&lt;void>} Responde con la confirmación de eliminación o un error.
+ */
+const deleteCandidaturaController = async (req, res) => {
+    const errors = validationResult(req);
+    if (!errors.isEmpty()) {
+        return res.status(400).json({ errors: errors.array() });
+    }
+    let candidatura;
+    try {
+        candidatura = await candidaturasModels.deleteCandidaturaModel(req.query.id_candidatura);
+        res.status(200).json(candidatura);
+    } catch (error) {
+        res.status(500).json({ error: 'Error en la BBDD' });
+    }
+}
+// Prueba Postman
+// DELETE http://localhost:3000/api/candidaturas?id_candidatura=1005
+
+module.exports = {
+    //createCandidaturaController,
+    readCandidaturasController,
+    updateCandidaturaController,
+    deleteCandidaturaController,
+}</code></pre>
+        </article>
+    </section>
+
+
+
+
+</div>
+
+<nav>
+    <h2><a href="index.html">Home</a></h2><h3>Namespaces</h3><ul><li><a href="Controladores%2520Candidatos.html">Controladores Candidatos</a></li><li><a href="Controladores%2520Candidaturas.html">Controladores Candidaturas</a></li><li><a href="Controladores%2520Competencias.html">Controladores Competencias</a></li><li><a href="Controladores%2520Empleados.html">Controladores Empleados</a></li><li><a href="Controladores%2520Nodemailer.html">Controladores Nodemailer</a></li><li><a href="MiddlewaresAuth.html">MiddlewaresAuth</a></li><li><a href="MiddlewaresCV.html">MiddlewaresCV</a></li><li><a href="Modelos%2520Candidatos.html">Modelos Candidatos</a></li><li><a href="Modelos%2520Candidaturas.html">Modelos Candidaturas</a></li><li><a href="Modelos%2520Competencias.html">Modelos Competencias</a></li><li><a href="Modelos%2520Empleados.html">Modelos Empleados</a></li></ul>
+</nav>
+
+<br class="clear">
+
+<footer>
+    Documentation generated by <a href="https://github.com/jsdoc/jsdoc">JSDoc 4.0.3</a> on Thu Aug 01 2024 01:41:43 GMT+0200 (hora de verano de Europa central)
+</footer>
+
+<script> prettyPrint(); </script>
+<script src="scripts/linenumber.js"> </script>
+</body>
+</html>
