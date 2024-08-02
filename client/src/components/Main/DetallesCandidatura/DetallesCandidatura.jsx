@@ -313,8 +313,8 @@ const DetallesCandidatura = () => {
             <h3>Competencias</h3>
             <ul className="competencies-list">
               {detallesCandidatura.map((item, index) => (
-                <li key={index}>
-                  {item.nombre_competencia}:{" "}
+                <li className="element-competencies-list" key={index}>
+                  <p>{item.nombre_competencia}:</p>
                   {editIndex === index ? (
                     <form onSubmit={handleSubmit(onSubmitEditCompetencias)}>
                       <input
@@ -338,7 +338,7 @@ const DetallesCandidatura = () => {
                     </form>
                   ) : (
                     <>
-                      {item.nota}
+                      <p>{item.nota}</p>
                       <div className="lapiz" onClick={() => {
                         setEditIndex(index);
                         setValue(
