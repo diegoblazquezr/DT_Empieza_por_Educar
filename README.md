@@ -4,13 +4,6 @@
 Empieza por Educar es una organización sin ánimo de lucro que trabaja para contribuir en la igualdad de oportunidades en educación. La misión de nuestro cliente es crear una red de profesionales que trabajan por la equidad educativa desde dentro y fuera del aula. A través de su programa Programa ExE, enfocado al desarrollo profesional y dirigido a aquellas personas que aspiran a generar un cambio educativo y social en beneficio de la igualdad de oportunidades de todos los niños y niñas, han conseguido formar a más de 300 profesores/as en estos últimos años.
 
 Este proyecto está destinado a ayudar en el proceso de selección de candidat@s del Programa ExE. El objetivo es desarrollar un Admin Dashboard como una aplicación web para proporcionar una plataforma centralizada para la gestión de datos relacionados con candidatos y empleados, facilitando la gestión y el análisis de información crucial para la empresa.
-## Funcionalidades Principales
-### Gestión de Candidatos al Programa
-Permitir el registro y la gestión de información detallada de los postulantes, incluyendo datos personales, CV (en pdf) y detalles de contacto.
-### Seguimiento de Candidatos
-Automatizar el proceso de generación y seguimiento de la evolución del candidato en cada una de las fases del proceso de selección.
-### Análisis de Datos
-Proporcionar herramientas de análisis, predicción y visualización de datos para obtener insights útiles a partir de la información recopilada. 
 ## Características de la Interfaz
 ![utils\assets\readme\landing-exe.png](https://github.com/diegoblazquezr/DT_Empieza_por_Educar/blob/develop/utils/assets/readme/landing-exe.png)
 ### Interfaz Intuitiva
@@ -23,6 +16,44 @@ Posibilidad de personalizar y adaptar la aplicación según las necesidades espe
 Medidas de seguridad robustas para proteger la integridad y confidencialidad de los datos almacenados en la aplicación, incluyendo autenticación de usuarios, cifrado de datos, pro y auditorías de acceso.
 ### Escalabilidad
 La aplicación está diseñada para ser escalable y capaz de manejar grandes volúmenes de datos, lo que la hace adecuada para su uso tanto en instituciones educativas como en organizaciones de diferentes tamaños.
+## Funcionalidades Principales
+### Autenticación y accesos en función del rol del usuario
+Secciones y recursos diferentes en función del rol del usuario logueado.<br>
+Vista inicial admin:<br>
+![utils\assets\readme\ogin-admin.gif](https://github.com/diegoblazquezr/DT_Empieza_por_Educar/blob/develop/utils/assets/readme/login-admin.gif)
+
+Vista inicial reclutador:<br>
+![utils\assets\readme\ogin-reclutador.gif](https://github.com/diegoblazquezr/DT_Empieza_por_Educar/blob/develop/utils/assets/readme/login-reclutador.gif)
+
+### Gestión de candidatos
+Permitir el registro y la gestión de información detallada de los postulantes, incluyendo datos personales, CV (en pdf) y detalles de contacto.<br>
+Buscador:.<br>
+![utils\assets\readme\buscador-candidato.gif](https://github.com/diegoblazquezr/DT_Empieza_por_Educar/blob/develop/utils/assets/readme/buscador-candidato.gif)
+
+### Gestión de empleados
+Permitir el registro y la gestión de información detallada de los empleados, así como el reentrenamiento del modelo predictivo de machine learning diseñado por el equipo de Data Science.<br>
+![utils\assets\readme\buscador-empleado.gif](https://github.com/diegoblazquezr/DT_Empieza_por_Educar/blob/develop/utils/assets/readme/buscador-empleado.gif)
+
+### Seguimiento de candidaturas
+Automatizar el proceso de generación y seguimiento de la evolución de las candidaturas en cada una de las fases del proceso de selección.<br/>
+
+Buscador:<br>
+![utils\assets\readme\buscador-candidatura.gif](https://github.com/diegoblazquezr/DT_Empieza_por_Educar/blob/develop/utils/assets/readme/buscador-candidatura.gif)
+
+Vista detalle de la candidatura:.<br>
+![utils\assets\readme\vista-detalle.gif](https://github.com/diegoblazquezr/DT_Empieza_por_Educar/blob/develop/utils/assets/readme/vista-detalle.gif)
+
+### Análisis de datos
+Proporcionar herramientas de análisis, predicción y visualización de datos para obtener insights útiles a partir de la información recopilada. <br>
+Estadísticas admin (móvil): <br>
+![utils\assets\readme\stats-admin-mobile.gif](https://github.com/diegoblazquezr/DT_Empieza_por_Educar/blob/develop/utils/assets/readme/stats-admin-mobile.gif)
+
+Estadísticas admin (escritorio): <br>
+![utils\assets\readme\stats-admin-desktop.gif](https://github.com/diegoblazquezr/DT_Empieza_por_Educar/blob/develop/utils/assets/readme/stats-admin-desktop.gif)
+
+Estadísticas reclutador: <br>
+![utils\assets\readme\stats-reclutador.gif](https://github.com/diegoblazquezr/DT_Empieza_por_Educar/blob/develop/utils/assets/readme/stats-reclutador.gif)
+
 ## Tecnologías Utilizadas
 - Frontend: React.js, SASS
 - Backend: Node.js, Express.js
