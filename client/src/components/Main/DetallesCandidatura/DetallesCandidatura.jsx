@@ -20,15 +20,11 @@ const statusOptions = [
 const DetallesCandidatura = () => {
   const [detallesCandidatura, setDetallesCandidatura] = useState(null);
   const [editIndex, setEditIndex] = useState(-1);
-  //const [newNota, setNewNota] = useState('');
-  // const [editCompetencia, setEditCompetencia] = useState('');
   const [loading, setLoading] = useState(false);
   const [showDialog, setShowDialog] = useState(false);
   const [editStatus, setEditStatus] = useState(false);
   const [statusClass, setStatusClass] = useState('');
-  //const [newStatus, setNewStatus] = useState('');
   const [editEmpleado, setEditEmpleado] = useState(false);
-  //const [newEmpleado, setNewEmpleado] = useState('');
   const { id_candidatura } = useParams();
   const location = useLocation();
   const searchParams = new URLSearchParams(location.search);
@@ -118,41 +114,6 @@ const DetallesCandidatura = () => {
     setValue("id_empleado", currentEmpleado);
   };
 
-  /*const handleEditClick = (index, nota, nombre_competencia) => {
-    setEditIndex(index);
-    setNewNota(nota);
-    setEditCompetencia(nombre_competencia);
-  };*/
-
-  /*const handleSubmitEditCompetencias = async (e, index) => {
-    e.preventDefault();
-    setLoading(true);
-    try {
-      const res = await axios.put(`${URL}/api/competencias`, {
-        id_candidatura: candidaturaId,
-        nombre_competencia: editCompetencia,
-        nota: newNota,
-      });
-
-      setDetallesCandidatura(prevState => {
-        const updatedState = [...prevState];
-        updatedState[index] = {
-          ...updatedState[index],
-          nota: newNota
-        };
-        return updatedState;
-      });
-      setEditIndex(-1);
-      setNewNota('');
-      setEditCompetencia('');
-
-    } catch (e) {
-      console.error("Error updating competencia:", e);
-    } finally {
-      setLoading(false);
-    }
-  };*/
-
   const onSubmitEditCompetencias = async (data) => {
     setLoading(true);
     try {
@@ -191,15 +152,12 @@ const DetallesCandidatura = () => {
       });
   
       setDetallesCandidatura(prevState => {
-        return prevState.map(item => {
-          if (item.id_candidatura === candidaturaId) {
-            return {
-              ...item,
-              status: data.status
-            };
-          }
-          return item;
-        });
+        const updatedState = [...prevState];
+        updatedState[0] = {
+          ...updatedState[0],
+          status: data.status
+        };
+        return updatedState;
       });
       setEditStatus(false);
     } catch (e) {
@@ -208,32 +166,7 @@ const DetallesCandidatura = () => {
       setLoading(false);
     }
   };
-  /*const handleSubmitEditEmpleado = async (e) => {
-    e.preventDefault();
-    setLoading(true);
-    try {
-      await axios.put(`${URL}/api/candidaturas`, {
-        id_candidatura: candidaturaId,
-        id_empleado: newEmpleado,
-      });
-
-      setDetallesCandidatura(prevState => {
-        const updatedState = [...prevState];
-        updatedState[0] = {
-          ...updatedState[0],
-          id_empleado: newEmpleado
-        };
-        return updatedState;
-      });
-      setEditEmpleado(false);
-
-    } catch (e) {
-      console.error("Error updating empleado:", e);
-    } finally {
-      setLoading(false);
-    }
-  };*/
-
+  
   const onSubmitEditEmpleado = async (data) => {
     setLoading(true);
     try {
