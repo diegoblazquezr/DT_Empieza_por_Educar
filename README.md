@@ -1,5 +1,5 @@
 # Empieza por Educar - Admin Dashboard
-![utils\assets\readme\readmelogo-exe-300-01.png](https://github.com/diegoblazquezr/DT_Empieza_por_Educar/blob/main/client/src/assets/readme/logo-exe-300-01.png)
+![utils\assets\readme\logo-exe-300-01.png](https://github.com/diegoblazquezr/DT_Empieza_por_Educar/blob/develop/utils/assets/readme/logo-exe-300-01.png)
 ## Descripción del Proyecto
 Empieza por Educar es una organización sin ánimo de lucro que trabaja para contribuir en la igualdad de oportunidades en educación. La misión de nuestro cliente es crear una red de profesionales que trabajan por la equidad educativa desde dentro y fuera del aula. A través de su programa Programa ExE, enfocado al desarrollo profesional y dirigido a aquellas personas que aspiran a generar un cambio educativo y social en beneficio de la igualdad de oportunidades de todos los niños y niñas, han conseguido formar a más de 300 profesores/as en estos últimos años.
 
