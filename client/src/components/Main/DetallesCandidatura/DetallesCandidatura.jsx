@@ -150,7 +150,7 @@ const DetallesCandidatura = () => {
         id_candidatura: candidaturaId,
         status: data.status,
       });
-  
+
       setDetallesCandidatura(prevState => {
         const updatedState = [...prevState];
         updatedState[0] = {
@@ -166,7 +166,7 @@ const DetallesCandidatura = () => {
       setLoading(false);
     }
   };
-  
+
   const onSubmitEditEmpleado = async (data) => {
     setLoading(true);
     try {
@@ -227,24 +227,24 @@ const DetallesCandidatura = () => {
         <article className="candidato-details">
           <div className="candidato-info">
             <span><h4>Nombre:</h4>
-            <p>{nombre_candidato}</p></span>
+              <p>{nombre_candidato}</p></span>
 
             <span><h4>Apellidos:</h4><p>{apellidos_candidato}</p></span>
 
             <span><h4>Email:</h4>
-            <p>{email_candidato}</p></span>
+              <p>{email_candidato}</p></span>
 
             <span><h4>Teléfono:</h4>
-            <p>{telefono_candidato}</p></span>
+              <p>{telefono_candidato}</p></span>
 
             <span><h4>Edad:</h4>
-            <p>{edad}</p></span>
+              <p>{edad}</p></span>
 
             <span><h4>Carrera:</h4>
-            <p>{carrera}</p></span>
+              <p>{carrera}</p></span>
 
             <span><h4>Nivel de inglés:</h4>
-            <p>{nivel_ingles}</p></span>
+              <p>{nivel_ingles}</p></span>
 
             <span><h4>CV:</h4>
               <a href={cv} target="_blank">
@@ -306,24 +306,10 @@ const DetallesCandidatura = () => {
             </h3></span>
             <span><h3>Fecha Registro: {fecha_registro_formatted}</h3></span>
           </div>
-    
+
         </article>
-        <div className="button-candidatura-container">
-            <button className="delete-candidatura-button" onClick={handleShowDialog}>
-              Eliminar candidatura
-            </button>
-          </div>
-          {showDialog && (
-            <div className="confirmation-dialog">
-              <p>¿Estás seguro de que deseas eliminar esta candidatura?</p>
-              <button onClick={handleBorrarCandidatura} disabled={loading}>
-                {loading ? "Eliminando..." : "Sí, eliminar"}
-              </button>
-              <button onClick={handleHideDialog}>Cancelar</button>
-            </div>
-          )}
         <article className="candidatura-details">
-        <div className="competencies">
+          <div className="competencies">
             <h3>Competencias</h3>
             <ul className="competencies-list">
               {detallesCandidatura.map((item, index) => (
@@ -361,7 +347,7 @@ const DetallesCandidatura = () => {
                         );
                         setValue("nota", item.nota);
                       }}>
-                      <FaPencil />
+                        <FaPencil />
                       </div>
                     </>
                   )}
@@ -369,9 +355,23 @@ const DetallesCandidatura = () => {
               ))}
             </ul>
           </div>
-          
+
           <GraficaCandidatura competencias={detallesCandidatura} />
         </article>
+        <div className="button-candidatura-container">
+          <button className="delete-candidatura-button" onClick={handleShowDialog}>
+            Eliminar candidatura
+          </button>
+        </div>
+        {showDialog && (
+          <div className="confirmation-dialog">
+            <p>¿Estás seguro de que deseas eliminar esta candidatura?</p>
+            <button onClick={handleBorrarCandidatura} disabled={loading}>
+              {loading ? "Eliminando..." : "Sí, eliminar"}
+            </button>
+            <button onClick={handleHideDialog}>Cancelar</button>
+          </div>
+        )}
       </section>
     </>
   );
